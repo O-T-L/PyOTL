@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <OTL/Optimizer/CDAS/CDAS.h>
 #include <OTL/Optimizer/Epsilon-MOEA/Epsilon-MOEA.h>
 #include <OTL/Optimizer/TDEA/TDEA.h>
-#include <OTL/Optimizer/ISNPS/ISNPS.h>
+//#include <OTL/Optimizer/ISNPS/ISNPS.h>
 #include <OTL/Optimizer/NSGA-III/NSGA-III.h>
 #include <OTL/Optimizer/AR/AR.h>
 #include <OTL/Optimizer/AR+CD'/AR+CD'.h>
