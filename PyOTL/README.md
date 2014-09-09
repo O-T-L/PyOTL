@@ -12,5 +12,5 @@ This project is released as the open source software with the GNU Lesser General
 
 The following tool and library are used in this project:
 
-* [CMake](http://www.cmake.org/).
-* [Boost](http://www.boost.org/).
+* [CMake](http://www.cmake.org).
+* [Boost](http://www.boost.org).
