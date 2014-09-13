@@ -78,6 +78,12 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_pickle(VectorPickleSuite<size_t>())
 	;
 
+	typedef std::vector<bool> TVector_bool;
+	boost::python::class_<TVector_bool>("Vector_bool")
+		.def(boost::python::vector_indexing_suite<TVector_bool>())
+		.def_pickle(VectorPickleSuite<bool>())
+	;
+
 	typedef std::vector<std::vector<TReal> > TVectorVector_Real;
 	boost::python::class_<TVectorVector_Real>("VectorVector_Real")
 		.def(boost::python::vector_indexing_suite<TVectorVector_Real>())
@@ -137,6 +143,8 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	boost::python::def("PyList2Vector_Integer", &PyList2Vector<TInteger>);
 	boost::python::def("PyTuple2Vector_size_t", &PyTuple2Vector<size_t>);
 	boost::python::def("PyList2Vector_size_t", &PyList2Vector<size_t>);
+	boost::python::def("PyTuple2Vector_bool", &PyTuple2Vector<bool>);
+	boost::python::def("PyList2Vector_bool", &PyList2Vector<bool>);
 	boost::python::def("PyListList2VectorVector_Real", &PyListList2VectorVector<TReal>);
 	boost::python::def("PyList2BlasVector_Real", &PyList2BlasVector<TReal>);
 	boost::python::def("PyTuple2BlasVector_Real", &PyTuple2BlasVector<TReal>);

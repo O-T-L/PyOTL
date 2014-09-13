@@ -16,8 +16,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <boost/python.hpp>
-#include <OTL/Problem/CommunityDiscovery/Metric/Q.h>
-#include <OTL/Problem/CommunityDiscovery/Metric/QLi.h>
 #include "Problem.h"
 
 namespace pyotl
@@ -53,14 +51,12 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def("GetNumberOfCities", &TMOTSP::GetNumberOfCities)
 	;
 
-	boost::python::class_<TONL, boost::python::bases<TProblem> >("ONL", boost::python::init<const TONL::TMatrix &, const std::vector<TONL::TFunction> &, const std::vector<bool> &, TRandom &>())
+	boost::python::class_<TONL, boost::python::bases<TProblem> >("ONL", boost::python::init<const TONL::TMatrix &, const std::vector<TONL::TMetric> &, const std::vector<bool> &, TRandom &>())
 		.def("GetGraph", &TONL::GetGraph, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetList", &TONL::GetList, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 
 	boost::python::def("CorrelateAdjacencyMatrics_Real", &otl::problem::tsp::CorrelateAdjacencyMatrics<TReal>);
-	boost::python::def("Q_Metric_Real", &otl::problem::community_discovery::metric::Q<TReal>);
-	boost::python::def("QLi_Metric_Real", &otl::problem::community_discovery::metric::QLi<TReal>);
 }
 }
 }
