@@ -32,7 +32,8 @@ namespace index
 {
 typedef otl::problem::tsp::TSP<TReal> TTSP;
 typedef otl::problem::tsp::MOTSP<TReal> TMOTSP;
-typedef otl::problem::community_discovery::onl::ONL<TReal, TRandom &> TONL;
+typedef boost::numeric::ublas::symmetric_matrix<TReal> TMatrix;
+typedef otl::problem::community_discovery::onl::ONL<TReal, TMatrix, TRandom &> TONL;
 }
 }
 }

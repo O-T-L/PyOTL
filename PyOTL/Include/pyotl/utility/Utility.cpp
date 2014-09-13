@@ -15,6 +15,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <vector>
+#include <list>
+#include <set>
 #include <boost/python.hpp>
 #include <boost/python/suite/indexing/vector_indexing_suite.hpp>
 #include <boost/serialization/serialization.hpp>
@@ -50,6 +53,12 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readwrite("second", &TPair_Integer::second)
 	;
 
+	typedef std::pair<size_t, size_t> TPair_size_t;
+	boost::python::class_<TPair_size_t>("Pair_size_t")
+		.def_readwrite("first", &TPair_size_t::first)
+		.def_readwrite("second", &TPair_size_t::second)
+	;
+
 	typedef std::vector<std::pair<TReal, TReal> > TVectorPair_Real;
 	boost::python::class_<TVectorPair_Real>("VectorPair_Real")
 		.def(boost::python::vector_indexing_suite<TVectorPair_Real>())
@@ -58,6 +67,11 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	typedef std::vector<std::pair<TInteger, TInteger> > TVectorPair_Integer;
 	boost::python::class_<TVectorPair_Integer>("VectorPair_Integer")
 		.def(boost::python::vector_indexing_suite<TVectorPair_Integer>())
+	;
+
+	typedef std::vector<std::pair<size_t, size_t> > TVectorPair_size_t;
+	boost::python::class_<TVectorPair_size_t>("VectorPair_size_t")
+		.def(boost::python::vector_indexing_suite<TVectorPair_size_t>())
 	;
 
 	typedef std::vector<TReal> TVector_Real;
@@ -72,9 +86,9 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_pickle(VectorPickleSuite<TInteger>())
 	;
 
-	typedef std::vector<size_t> TVector_Index;
-	boost::python::class_<TVector_Index>("Vector_Index")
-		.def(boost::python::vector_indexing_suite<TVector_Index>())
+	typedef std::vector<size_t> TVector_size_t;
+	boost::python::class_<TVector_size_t>("Vector_size_t")
+		.def(boost::python::vector_indexing_suite<TVector_size_t>())
 		.def_pickle(VectorPickleSuite<size_t>())
 	;
 
@@ -83,6 +97,9 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def(boost::python::vector_indexing_suite<TVector_bool>())
 		.def_pickle(VectorPickleSuite<bool>())
 	;
+
+	typedef std::set<size_t> TSet_size_t;
+	boost::python::class_<TSet_size_t>("Set_size_t");
 
 	typedef std::vector<std::vector<TReal> > TVectorVector_Real;
 	boost::python::class_<TVectorVector_Real>("VectorVector_Real")
@@ -94,14 +111,19 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def(boost::python::vector_indexing_suite<TVectorVector_Integer>())
 	;
 
-	typedef std::vector<std::vector<size_t> > TVectorVector_Index;
-	boost::python::class_<TVectorVector_Index>("VectorVector_Index")
-		.def(boost::python::vector_indexing_suite<TVectorVector_Index>())
+	typedef std::vector<std::vector<size_t> > TVectorVector_size_t;
+	boost::python::class_<TVectorVector_size_t>("VectorVector_size_t")
+		.def(boost::python::vector_indexing_suite<TVectorVector_size_t>())
 	;
 
-	typedef std::vector<std::vector<std::vector<size_t> > > TVectorVectorVector_Index;
-	boost::python::class_<TVectorVectorVector_Index>("VectorVectorVector_Index")
-		.def(boost::python::vector_indexing_suite<TVectorVectorVector_Index>())
+	typedef std::vector<std::set<size_t> > TVectorSet_size_t;
+	boost::python::class_<TVectorSet_size_t>("VectorSet_size_t")
+		.def(boost::python::vector_indexing_suite<TVectorSet_size_t>())
+	;
+
+	typedef std::vector<std::vector<std::vector<size_t> > > TVectorVectorVector_size_t;
+	boost::python::class_<TVectorVectorVector_size_t>("VectorVectorVector_size_t")
+		.def(boost::python::vector_indexing_suite<TVectorVectorVector_size_t>())
 	;
 
 	typedef std::list<std::vector<TReal> > TListVector_Real;

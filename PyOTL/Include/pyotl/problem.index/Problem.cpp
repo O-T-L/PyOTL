@@ -51,9 +51,11 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def("GetNumberOfCities", &TMOTSP::GetNumberOfCities)
 	;
 
-	boost::python::class_<TONL, boost::python::bases<TProblem> >("ONL", boost::python::init<const TONL::TMatrix &, const std::vector<TONL::TMetric> &, const std::vector<bool> &, TRandom &>())
+	boost::python::class_<TONL, boost::python::bases<TProblem> >("ONL", boost::python::init<const TONL::TMatrix &, const std::vector<TONL::TMetric *> &, TRandom &>())
+		.def("GetBoundary", &TONL::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetGraph", &TONL::GetGraph, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetList", &TONL::GetList, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("Decode", &TONL::Decode)
 	;
 
 	boost::python::def("CorrelateAdjacencyMatrics_Real", &otl::problem::tsp::CorrelateAdjacencyMatrics<TReal>);
