@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <OTL/Problem/CommunityDiscovery/Metric/Metric.h>
 #include <OTL/Problem/CommunityDiscovery/Metric/Q.h>
 #include <OTL/Problem/CommunityDiscovery/Metric/QLi.h>
+#include <OTL/Problem/CommunityDiscovery/Metric/MinMaxCut.h>
 #include "Global.h"
 
 namespace pyotl
@@ -35,9 +36,10 @@ namespace problem
 namespace community_discovery
 {
 typedef boost::numeric::ublas::symmetric_matrix<TReal> TMatrix;
-typedef otl::problem::community_discovery::metric::Metric<TMatrix> TMetric;
-typedef otl::problem::community_discovery::metric::Q<TMatrix> TQ;
-typedef otl::problem::community_discovery::metric::QLi<TMatrix> TQLi;
+typedef otl::problem::community_discovery::metric::Metric<TReal, TMatrix> TMetric;
+typedef otl::problem::community_discovery::metric::Q<TReal, TMatrix> TQ;
+typedef otl::problem::community_discovery::metric::QLi<TReal, TMatrix> TQLi;
+typedef otl::problem::community_discovery::metric::MinMaxCut<TReal, TMatrix> TMinMaxCut;
 
 template <typename _T>
 std::vector<_T> PyTuple2Vector(boost::python::tuple tuple)

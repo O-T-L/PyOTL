@@ -37,6 +37,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 
 	boost::python::class_<TQ, boost::python::bases<TMetric> >("Q");
 	boost::python::class_<TQLi, boost::python::bases<TMetric> >("QLi");
+	boost::python::class_<TMinMaxCut, boost::python::bases<TMetric> >("MinMaxCut");
 
 	typedef std::vector<TMetric *> TVector_Metric;
 	boost::python::class_<TVector_Metric>("Vector_Metric")
