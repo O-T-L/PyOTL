@@ -17,9 +17,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#define EXPORT_SGA
 #define EXPORT_NSGA_II
-#define EXPORT_SPEA2
-#define EXPORT_SPEA2_SDE
+//#define EXPORT_SPEA2
+//#define EXPORT_SPEA2_SDE
 //#define EXPORT_IBEA
 //#define EXPORT_CDAS
 //#define EXPORT_EPSILON_MOEA
@@ -33,6 +34,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define EXPORT_R_NSGA_II
 //#define EXPORT_HYPE
 //#define EXPORT_MSOPS
-//#define EXPORT_GrEA
+#define EXPORT_GrEA
 //#define EXPORT_MOEA_D
 //#define EXPORT_SMS_EMOA

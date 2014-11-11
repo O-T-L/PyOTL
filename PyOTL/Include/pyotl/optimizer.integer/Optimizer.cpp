@@ -34,11 +34,21 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readwrite("decision_", &TSolution::decision_)
 		.def("__call__", &TSolution::operator ())
 	;
+	boost::python::class_<std::vector<TSolution> >("SolutionSet")
+		.def(boost::python::vector_indexing_suite<std::vector<TSolution> >())
+	;
 
 	boost::python::class_<TOptimizer, boost::noncopyable>("Optimizer", boost::python::no_init)
 		.def("__call__", &TOptimizer::operator ())
 		.def("GetProblem", &TOptimizer::GetProblem, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
+#ifdef EXPORT_SGA
+	boost::python::class_<TSGA, boost::python::bases<TOptimizer> >("SGA", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &>())
+		.def("GetSolutionSet", &TSGA::GetSolutionSet, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetCrossover", &TSGA::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetMutation", &TSGA::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())
+	;
+#endif
 #ifdef EXPORT_NSGA_II
 	boost::python::class_<TNSGA_II::TIndividual>("NSGA_II_Individual")
 		.def_readonly("objective_", &TNSGA_II::TIndividual::objective_)
