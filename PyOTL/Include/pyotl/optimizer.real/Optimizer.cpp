@@ -42,11 +42,28 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def("__call__", &TOptimizer::operator ())
 		.def("GetProblem", &TOptimizer::GetProblem, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
-#ifdef EXPORT_SGA
-	boost::python::class_<TSGA, boost::python::bases<TOptimizer> >("SGA", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &>())
-		.def("GetSolutionSet", &TSGA::GetSolutionSet, boost::python::return_value_policy<boost::python::reference_existing_object>())
-		.def("GetCrossover", &TSGA::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
-		.def("GetMutation", &TSGA::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())
+#ifdef EXPORT_ElitismGA
+	boost::python::class_<TElitismGA, boost::python::bases<TOptimizer> >("ElitismGA", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &>())
+		.def("GetSolutionSet", &TElitismGA::GetSolutionSet, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetCrossover", &TElitismGA::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetMutation", &TElitismGA::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())
+	;
+#endif
+#ifdef EXPORT_RWSGA
+	boost::python::class_<TRWSGA::TIndividual>("RWSGA_Individual")
+		.def_readonly("objective_", &TRWSGA::TIndividual::objective_)
+		.def_readonly("inequality_", &TRWSGA::TIndividual::inequality_)
+		.def_readonly("equality_", &TRWSGA::TIndividual::equality_)
+		.def_readwrite("decision_", &TRWSGA::TIndividual::decision_)
+		.def_readonly("fitness_", &TRWSGA::TIndividual::fitness_)
+	;
+	boost::python::class_<TRWSGA::TSolutionSet>("RWSGA_Archive")
+		.def(boost::python::vector_indexing_suite<TRWSGA::TSolutionSet>())
+	;
+	boost::python::class_<TRWSGA, boost::python::bases<TOptimizer> >("RWSGA", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &>())
+		.def("GetSolutionSet", &TRWSGA::GetSolutionSet, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetCrossover", &TRWSGA::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetMutation", &TRWSGA::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 #endif
 #ifdef EXPORT_NSGA_II

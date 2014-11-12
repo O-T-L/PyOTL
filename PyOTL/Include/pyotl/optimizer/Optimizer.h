@@ -17,7 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <OTL/Optimizer/SGA.h>
+#include <OTL/Optimizer/ElitismGA.h>
+#include <OTL/Optimizer/RWSGA/RWSGA.h>
 #include <OTL/Optimizer/NSGA-II/NSGA-II.h>
 #include <OTL/Optimizer/NSGA-II/ConstrainedNSGA-II.h>
 #include <OTL/Optimizer/SPEA2/SPEA2.h>

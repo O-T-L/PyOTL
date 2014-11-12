@@ -26,7 +26,8 @@ namespace optimizer
 {
 namespace dynamic_bitset
 {
-typedef otl::optimizer::SGA<TReal, TDecision, TRandom &> TSGA;
+typedef otl::optimizer::ElitismGA<TReal, TDecision, TRandom &> TElitismGA;
+typedef otl::optimizer::rwsga::RWSGA<TReal, TDecision, TRandom &> TRWSGA;
 typedef otl::optimizer::nsga_ii::NSGA_II<TReal, TDecision, TRandom &> TNSGA_II;
 typedef otl::optimizer::nsga_ii::ConstrainedNSGA_II<TReal, TDecision, TRandom &> TConstrainedNSGA_II;
 typedef otl::optimizer::spea2::SPEA2<TReal, TDecision, TRandom &> TSPEA2;
