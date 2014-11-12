@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#define EXPORT_ElitismGA
+#define EXPORT_SGA
 #define EXPORT_RWSGA
 #define EXPORT_NSGA_II
 //#define EXPORT_SPEA2

@@ -26,7 +26,7 @@ namespace optimizer
 {
 namespace index
 {
-typedef otl::optimizer::ElitismGA<TReal, TDecision, TRandom &> TElitismGA;
+typedef otl::optimizer::SGA<TReal, TDecision, TRandom &> TSGA;
 typedef otl::optimizer::rwsga::RWSGA<TReal, TDecision, TRandom &> TRWSGA;
 typedef otl::optimizer::nsga_ii::NSGA_II<TReal, TDecision, TRandom &> TNSGA_II;
 typedef otl::optimizer::nsga_ii::ConstrainedNSGA_II<TReal, TDecision, TRandom &> TConstrainedNSGA_II;
