@@ -57,7 +57,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readwrite("decision_", &TRWSGA::TIndividual::decision_)
 		.def_readonly("fitness_", &TRWSGA::TIndividual::fitness_)
 	;
-	boost::python::class_<TRWSGA::TSolutionSet>("RWSGA_Archive")
+	boost::python::class_<TRWSGA::TSolutionSet>("RWSGA_Population")
 		.def(boost::python::vector_indexing_suite<TRWSGA::TSolutionSet>())
 	;
 	boost::python::class_<TRWSGA, boost::python::bases<TOptimizer> >("RWSGA", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &>())
@@ -74,7 +74,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readwrite("decision_", &TNSGA_II::TIndividual::decision_)
 		.def_readonly("crowdingDistance_", &TNSGA_II::TIndividual::crowdingDistance_)
 	;
-	boost::python::class_<TNSGA_II::TSolutionSet>("NSGA_II_Archive")
+	boost::python::class_<TNSGA_II::TSolutionSet>("NSGA_II_Population")
 		.def(boost::python::vector_indexing_suite<TNSGA_II::TSolutionSet>())
 	;
 	boost::python::class_<TNSGA_II, boost::python::bases<TOptimizer> >("NSGA_II", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &>())
@@ -98,7 +98,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readonly("density_", &TSPEA2::TIndividual::density_)
 		.def_readonly("fitness_", &TSPEA2::TIndividual::fitness_)
 	;
-	boost::python::class_<TSPEA2::TSolutionSet>("SPEA2_Archive")
+	boost::python::class_<TSPEA2::TSolutionSet>("SPEA2_Population")
 		.def(boost::python::vector_indexing_suite<TSPEA2::TSolutionSet>())
 	;
 	boost::python::class_<TSPEA2, boost::python::bases<TOptimizer> >("SPEA2", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &>())
@@ -122,7 +122,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readwrite("decision_", &TIBEA::TIndividual::decision_)
 		.def_readonly("fitness_", &TIBEA::TIndividual::fitness_)
 	;
-	boost::python::class_<TIBEA::TSolutionSet>("IBEA_Archive")
+	boost::python::class_<TIBEA::TSolutionSet>("IBEA_Population")
 		.def(boost::python::vector_indexing_suite<TIBEA::TSolutionSet>())
 	;
 
@@ -147,7 +147,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readonly("crowdingDistance_", &TCDAS::TIndividual::crowdingDistance_)
 		.def_readonly("convertedObjective_", &TCDAS::TIndividual::convertedObjective_)
 	;
-	boost::python::class_<TCDAS::TSolutionSet>("CDAS_Archive")
+	boost::python::class_<TCDAS::TSolutionSet>("CDAS_Population")
 		.def(boost::python::vector_indexing_suite<TCDAS::TSolutionSet>())
 	;
 	boost::python::class_<TCDAS, boost::python::bases<TOptimizer> >("CDAS", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, const std::vector<TReal> &>())
@@ -165,7 +165,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readwrite("decision_", &TEpsilon_MOEA::TIndividual::decision_)
 		.def_readonly("point_", &TEpsilon_MOEA::TIndividual::point_)
 	;
-	boost::python::class_<TEpsilon_MOEA::TSolutionSet>("Epsilon_MOEA_Archive");
+	boost::python::class_<TEpsilon_MOEA::TSolutionSet>("Epsilon_MOEA_Population");
 	boost::python::class_<TEpsilon_MOEA::TPopulation>("Epsilon_MOEA_Population")
 		.def(boost::python::vector_indexing_suite<TEpsilon_MOEA::TPopulation>())
 	;
@@ -178,7 +178,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readwrite("decision_", &TTDEA::TIndividual::decision_)
 		.def_readonly("scaledObjective_", &TTDEA::TIndividual::scaledObjective_)
 	;
-	boost::python::class_<TTDEA::TSolutionSet>("TDEA_Archive");
+	boost::python::class_<TTDEA::TSolutionSet>("TDEA_Population");
 	boost::python::class_<TTDEA::TPopulation>("TDEA_Population")
 		.def(boost::python::vector_indexing_suite<TTDEA::TPopulation>())
 	;
@@ -192,7 +192,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readonly("convergence_", &TISNPS::TIndividual::convergence_)
 		.def_readonly("distribution_", &TISNPS::TIndividual::distribution_)
 	;
-	boost::python::class_<TISNPS::TSolutionSet>("ISNPS_Archive")
+	boost::python::class_<TISNPS::TSolutionSet>("ISNPS_Population")
 		.def(boost::python::vector_indexing_suite<TISNPS::TSolutionSet>())
 	;
 	boost::python::class_<TISNPS, boost::python::bases<TOptimizer> >("ISNPS", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, const std::vector<TReal> &, const boost::numeric::ublas::vector<TReal> &, TReal, TReal, TReal>())
@@ -212,7 +212,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readwrite("decision_", &TNSGA_III::TIndividual::decision_)
 		.def_readonly("translatedObjective_", &TNSGA_III::TIndividual::translatedObjective_)
 	;
-	boost::python::class_<TNSGA_III::TSolutionSet>("NSGA_III_Archive")
+	boost::python::class_<TNSGA_III::TSolutionSet>("NSGA_III_Population")
 		.def(boost::python::vector_indexing_suite<TNSGA_III::TSolutionSet>())
 	;
 	boost::python::class_<TNSGA_III, boost::python::bases<TOptimizer> >("NSGA_III", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, const std::vector<TNSGA_III::TPoint> &>())
@@ -231,7 +231,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readwrite("decision_", &TAR::TIndividual::decision_)
 		.def_readonly("averageRank_", &TAR::TIndividual::averageRank_)
 	;
-	boost::python::class_<TAR::TSolutionSet>("AR_Archive")
+	boost::python::class_<TAR::TSolutionSet>("AR_Population")
 		.def(boost::python::vector_indexing_suite<TAR::TSolutionSet>())
 	;
 	boost::python::class_<TAR, boost::python::bases<TOptimizer> >("AR", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &>())
@@ -249,7 +249,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readonly("averageRank_", &TAR_CD_::TIndividual::averageRank_)
 		.def_readonly("crowdingDistance_", &TAR_CD_::TIndividual::crowdingDistance_)
 	;
-	boost::python::class_<TAR_CD_::TSolutionSet>("AR_CD__Archive")
+	boost::python::class_<TAR_CD_::TSolutionSet>("AR_CD__Population")
 		.def(boost::python::vector_indexing_suite<TAR_CD_::TSolutionSet>())
 	;
 	boost::python::class_<TAR_CD_, boost::python::bases<TOptimizer> >("AR_CD_", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &>())
@@ -267,7 +267,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readonly("averageRank_", &TAR_DMO::TIndividual::averageRank_)
 		.def_readonly("crowdingDistance_", &TAR_DMO::TIndividual::crowdingDistance_)
 	;
-	boost::python::class_<TAR_DMO::TSolutionSet>("AR_DMO_Archive")
+	boost::python::class_<TAR_DMO::TSolutionSet>("AR_DMO_Population")
 		.def(boost::python::vector_indexing_suite<TAR_DMO::TSolutionSet>())
 	;
 	boost::python::class_<TAR_DMO, boost::python::bases<TOptimizer> >("AR_DMO", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, const TAR_DMO::TBoundary &>())
@@ -301,7 +301,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readwrite("decision_", &THypE::TIndividual::decision_)
 		.def_readonly("fitness_", &THypE::TIndividual::fitness_)
 	;
-	boost::python::class_<THypE::TSolutionSet>("HypE_Archive")
+	boost::python::class_<THypE::TSolutionSet>("HypE_Population")
 		.def(boost::python::vector_indexing_suite<THypE::TSolutionSet>())
 	;
 	boost::python::class_<THypE, boost::python::bases<TOptimizer> >("HypE", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, size_t>())
@@ -318,7 +318,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readwrite("decision_", &TMSOPS::TIndividual::decision_)
 		.def_readonly("fitness_", &TMSOPS::TIndividual::fitness_)
 	;
-	boost::python::class_<TMSOPS::TSolutionSet>("MSOPS_Archive")
+	boost::python::class_<TMSOPS::TSolutionSet>("MSOPS_Population")
 		.def(boost::python::vector_indexing_suite<TMSOPS::TSolutionSet>())
 	;
 	boost::python::class_<TMSOPS, boost::python::bases<TOptimizer> >("MSOPS", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, const TMSOPS::TTargets &, TReal>())
@@ -335,18 +335,15 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readonly("inequality_", &TGrEA::TIndividual::inequality_)
 		.def_readonly("equality_", &TGrEA::TIndividual::equality_)
 		.def_readwrite("decision_", &TGrEA::TIndividual::decision_)
-		.def_readonly("gr_", &TGrEA::TIndividual::gr_)
-		.def_readonly("gcd_", &TGrEA::TIndividual::gcd_)
-		.def_readonly("gcpd_", &TGrEA::TIndividual::gcpd_)
 	;
-	boost::python::class_<TGrEA::TSolutionSet>("GrEA_Archive")
+	boost::python::class_<TGrEA::TSolutionSet>("GrEA_Population")
 		.def(boost::python::vector_indexing_suite<TGrEA::TSolutionSet>())
 	;
 	boost::python::class_<TGrEA, boost::python::bases<TOptimizer> >("GrEA", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, std::vector<size_t> &>())
 		.def("GetSolutionSet", &TGrEA::GetSolutionSet, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetCrossover", &TGrEA::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetMutation", &TGrEA::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())
-		.def("GetDividion", &TGrEA::GetDividion, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetDivision", &TGrEA::GetDivision, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 #endif
 #ifdef EXPORT_MOEA_D
@@ -356,7 +353,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readonly("equality_", &TMOEA_D_Individual::equality_)
 		.def_readwrite("decision_", &TMOEA_D_Individual::decision_)
 	;
-	boost::python::class_<TMOEA_D_Archive>("MOEA_D_Archive")
+	boost::python::class_<TMOEA_D_Archive>("MOEA_D_Population")
 		.def(boost::python::vector_indexing_suite<TMOEA_D_Archive>())
 	;
 #endif
@@ -368,7 +365,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readwrite("decision_", &TSMS_EMOA::TIndividual::decision_)
 		.def_readonly("hvContribution_", &TSMS_EMOA::TIndividual::hvContribution_)
 	;
-	boost::python::class_<TSMS_EMOA::TSolutionSet>("SMS_EMOA_Archive")
+	boost::python::class_<TSMS_EMOA::TSolutionSet>("SMS_EMOA_Population")
 		.def(boost::python::vector_indexing_suite<TSMS_EMOA::TSolutionSet>())
 	;
 #endif

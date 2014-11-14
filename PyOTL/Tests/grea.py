@@ -43,12 +43,12 @@ class TestCase(unittest.TestCase):
 		_crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
 		crossover = pyotl.crossover.real.CoupleCoupleCrossoverAdapter(_crossover, random)
 		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
-		dividion = pyotl.utility.PyList2Vector_size_t([10] * problem.GetNumberOfObjectives())
+		division = pyotl.utility.PyList2Vector_size_t([10] * problem.GetNumberOfObjectives())
 		pfList = []
 		for _ in range(self.repeat):
 			problem = problemGen()
 			initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), 100)
-			optimizer = pyotl.optimizer.real.GrEA(random, problem, initial, crossover, mutation, dividion)
+			optimizer = pyotl.optimizer.real.GrEA(random, problem, initial, crossover, mutation, division)
 			while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
 				optimizer()
 			pf = pyotl.utility.PyListList2VectorVector_Real([list(solution.objective_) for solution in optimizer.GetSolutionSet()])
