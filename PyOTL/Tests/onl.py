@@ -48,7 +48,7 @@ class TestCase(unittest.TestCase):
 		pass
 	
 	def testONL(self):
-		random = pyotl.utility.Random()
+		random = pyotl.utility.Random(0)
 		graph = pyotl.utility.PyListList2BlasSymmetricMatrix_Real(self.graph)
 		metrics = [pyotl.problem.community_discovery.Q(), pyotl.problem.community_discovery.QLi()]
 		_metrics = pyotl.problem.community_discovery.PyList2Vector_Metric(metrics)

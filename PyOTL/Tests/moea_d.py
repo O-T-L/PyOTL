@@ -38,7 +38,7 @@ class TestCase(unittest.TestCase):
 		pass
 	
 	def testMOEA_D_WeightedSum(self):
-		random = pyotl.utility.Random()
+		random = pyotl.utility.Random(0)
 		problemGen = lambda: pyotl.problem.real.DTLZ2(3)
 		problem = problemGen()
 		pathProblem = os.path.join(self.pathData, type(problem).__name__, str(problem.GetNumberOfObjectives()))
@@ -70,7 +70,7 @@ class TestCase(unittest.TestCase):
 		self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
 	
 	def testMOEA_D_Tchebycheff(self):
-		random = pyotl.utility.Random()
+		random = pyotl.utility.Random(0)
 		problemGen = lambda: pyotl.problem.real.DTLZ2(3)
 		problem = problemGen()
 		pathProblem = os.path.join(self.pathData, type(problem).__name__, str(problem.GetNumberOfObjectives()))
@@ -104,7 +104,7 @@ class TestCase(unittest.TestCase):
 		self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
 	
 	def testMOEA_D_PBI(self):
-		random = pyotl.utility.Random()
+		random = pyotl.utility.Random(0)
 		problemGen = lambda: pyotl.problem.real.DTLZ2(3)
 		problem = problemGen()
 		pathProblem = os.path.join(self.pathData, type(problem).__name__, str(problem.GetNumberOfObjectives()))

@@ -37,7 +37,7 @@ class TestCase(unittest.TestCase):
 		pass
 	
 	def testAR_DMO(self):
-		random = pyotl.utility.Random()
+		random = pyotl.utility.Random(0)
 		problemGen = lambda: pyotl.problem.real.DTLZ2(3)
 		problem = problemGen()
 		pathProblem = os.path.join(self.pathData, type(problem).__name__, str(problem.GetNumberOfObjectives()))
