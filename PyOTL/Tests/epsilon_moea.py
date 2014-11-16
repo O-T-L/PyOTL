@@ -38,7 +38,7 @@ class TestCase(unittest.TestCase):
 		pass
 	
 	def testEpsilon_MOEA(self):
-		random = pyotl.utility.Random(0)
+		random = pyotl.utility.Random(1)
 		problemGen = lambda: pyotl.problem.real.DTLZ2(3)
 		problem = problemGen()
 		pathProblem = os.path.join(self.pathData, type(problem).__name__, str(problem.GetNumberOfObjectives()))

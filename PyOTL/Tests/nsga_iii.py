@@ -36,7 +36,7 @@ class TestCase(unittest.TestCase):
 		pass
 	
 	def testNSGA_III(self):
-		random = pyotl.utility.Random(0)
+		random = pyotl.utility.Random(1)
 		problemGen = lambda: pyotl.problem.real.DTLZ2(3)
 		problem = problemGen()
 		pathProblem = os.path.join(self.pathData, type(problem).__name__, str(problem.GetNumberOfObjectives()))
@@ -44,6 +44,9 @@ class TestCase(unittest.TestCase):
 		crossover = pyotl.crossover.real.CoupleCoupleCrossoverAdapter(_crossover, random)
 		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
 		referenceSet = pyotl.utility.NormalBoundaryIntersection_Real(problem.GetNumberOfObjectives(), 12)
+		size = len(referenceSet)
+		while (size % 4):
+			size += 1
 		pfList = []
 		for _ in range(self.repeat):
 			problem = problemGen()
