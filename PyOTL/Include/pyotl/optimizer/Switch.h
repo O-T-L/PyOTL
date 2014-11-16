@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define EXPORT_EPSILON_MOEA
 //#define EXPORT_TDEA
 //#define EXPORT_ISNPS
-//#define EXPORT_NSGA_III
+#define EXPORT_NSGA_III
 //#define EXPORT_AR
 //#define EXPORT_AR_CD_
 //#define EXPORT_AR_DMO
@@ -35,6 +35,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define EXPORT_R_NSGA_II
 //#define EXPORT_HYPE
 //#define EXPORT_MSOPS
-#define EXPORT_GrEA
+//#define EXPORT_GrEA
 //#define EXPORT_MOEA_D
 //#define EXPORT_SMS_EMOA

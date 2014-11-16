@@ -211,6 +211,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readonly("equality_", &TNSGA_III::TIndividual::equality_)
 		.def_readwrite("decision_", &TNSGA_III::TIndividual::decision_)
 		.def_readonly("translatedObjective_", &TNSGA_III::TIndividual::translatedObjective_)
+		.def_readonly("minDistance_", &TNSGA_III::TIndividual::minDistance_)
 	;
 	boost::python::class_<TNSGA_III::TSolutionSet>("NSGA_III_Population")
 		.def(boost::python::vector_indexing_suite<TNSGA_III::TSolutionSet>())
@@ -221,6 +222,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def("GetCrossover", &TNSGA_III::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetMutation", &TNSGA_III::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetReferenceSet", &TNSGA_III::GetReferenceSet, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetEpsilon", &TNSGA_III::GetEpsilon)
 	;
 #endif
 #ifdef EXPORT_AR
