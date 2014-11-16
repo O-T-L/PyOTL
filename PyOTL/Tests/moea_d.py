@@ -44,7 +44,8 @@ class TestCase(unittest.TestCase):
 		pathProblem = os.path.join(self.pathData, type(problem).__name__, str(problem.GetNumberOfObjectives()))
 		crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
 		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
-		weightVectors = pyotl.utility.NormalBoundaryIntersection_Real(problem.GetNumberOfObjectives(), 23)
+		division = pyotl.utility.PyList2Vector_size_t([23] * (problem.GetNumberOfObjectives() - 1))
+		weightVectors = pyotl.utility.NormalBoundaryIntersection_Real(division)
 		neighborRatio = 0.1
 		pfList = []
 		for _ in range(self.repeat):
@@ -76,7 +77,8 @@ class TestCase(unittest.TestCase):
 		pathProblem = os.path.join(self.pathData, type(problem).__name__, str(problem.GetNumberOfObjectives()))
 		crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
 		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
-		weightVectors = pyotl.utility.NormalBoundaryIntersection_Real(problem.GetNumberOfObjectives(), 23)
+		division = pyotl.utility.PyList2Vector_size_t([23] * (problem.GetNumberOfObjectives() - 1))
+		weightVectors = pyotl.utility.NormalBoundaryIntersection_Real(division)
 		for weight in weightVectors:
 			pyotl.optimizer.moea_d.AdjustWeight(weight, 0.00001)
 		neighborRatio = 0.1
@@ -110,7 +112,8 @@ class TestCase(unittest.TestCase):
 		pathProblem = os.path.join(self.pathData, type(problem).__name__, str(problem.GetNumberOfObjectives()))
 		crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
 		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
-		weightVectors = pyotl.utility.NormalBoundaryIntersection_Real(problem.GetNumberOfObjectives(), 23)
+		division = pyotl.utility.PyList2Vector_size_t([23] * (problem.GetNumberOfObjectives() - 1))
+		weightVectors = pyotl.utility.NormalBoundaryIntersection_Real(division)
 		for weight in weightVectors:
 			pyotl.optimizer.moea_d.NormalizeWeight(weight)
 		neighborRatio = 0.1

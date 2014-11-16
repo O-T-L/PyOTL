@@ -210,9 +210,9 @@ std::list<_TIndividual> ExtractParetoNondominate(std::list<_TIndividual> &popula
 }
 
 template <typename _TReal>
-std::vector<std::vector<_TReal> > NormalBoundaryIntersection(const size_t dimension, const size_t division)
+std::vector<std::vector<_TReal> > NormalBoundaryIntersection(const std::vector<size_t> &division)
 {
-	const auto points = otl::utility::weight::NormalBoundaryIntersection<_TReal>(dimension, division);
+	const auto points = otl::utility::weight::NormalBoundaryIntersection<_TReal>(division);
 	return std::vector<std::vector<_TReal> >(points.begin(), points.end());
 }
 

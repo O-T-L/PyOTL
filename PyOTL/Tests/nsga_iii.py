@@ -43,7 +43,8 @@ class TestCase(unittest.TestCase):
 		_crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
 		crossover = pyotl.crossover.real.CoupleCoupleCrossoverAdapter(_crossover, random)
 		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
-		referenceSet = pyotl.utility.NormalBoundaryIntersection_Real(problem.GetNumberOfObjectives(), 12)
+		division = pyotl.utility.PyList2Vector_size_t([12] * (problem.GetNumberOfObjectives() - 1))
+		referenceSet = pyotl.utility.NormalBoundaryIntersection_Real(division)
 		size = len(referenceSet)
 		while (size % 4):
 			size += 1
