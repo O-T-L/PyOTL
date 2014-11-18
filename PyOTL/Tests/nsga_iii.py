@@ -61,12 +61,12 @@ class TestCase(unittest.TestCase):
 		pathOptimizer = os.path.join(pathCrossover, type(optimizer).__name__)
 		pfTrue = pyotl.utility.PyListList2VectorVector_Real(numpy.loadtxt(os.path.join(pathProblem, 'PF.csv')).tolist())
 		#GD
-		indicator = pyotl.indicator.DTLZ2GD()
+		indicator = pyotl.indicator.real.DTLZ2GD()
 		metricList = [indicator(pf) for pf in pfList]
 		rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'GD.csv')).tolist()
 		self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
 		#IGD
-		indicator = pyotl.indicator.InvertedGenerationalDistance(pfTrue)
+		indicator = pyotl.indicator.real.InvertedGenerationalDistance(pfTrue)
 		metricList = [indicator(pf) for pf in pfList]
 		rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'IGD.csv')).tolist()
 		self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])

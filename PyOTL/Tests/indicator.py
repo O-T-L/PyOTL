@@ -45,7 +45,7 @@ class TestCase(unittest.TestCase):
 			division = pyotl.utility.PyList2Vector_size_t(_division.tolist())
 			pfTrue = numpy.loadtxt(os.path.join(pathData, 'PF_100.csv'))
 			pfTrue = pyotl.utility.PyListList2VectorVector_Real(pfTrue.tolist())
-			indicator = pyotl.indicator.DiversityMetric(boundary, division, pfTrue)
+			indicator = pyotl.indicator.real.DiversityMetric(boundary, division, pfTrue)
 			pf = numpy.loadtxt(os.path.join(pathData, 'Front.csv'))
 			pf = pyotl.utility.PyListList2VectorVector_Real(pf.tolist())
 			metric = indicator(pf)
@@ -54,7 +54,7 @@ class TestCase(unittest.TestCase):
 	def testDTLZ1GD(self):
 		nObjectives = 3
 		pathData = os.path.join(os.path.join(self.pathData, 'DTLZ1'), str(nObjectives))
-		indicator = pyotl.indicator.DTLZ1GD()
+		indicator = pyotl.indicator.real.DTLZ1GD()
 		pfMatrix = numpy.loadtxt(os.path.join(pathData, 'Front.csv'))
 		pf = pyotl.utility.PyListList2VectorVector_Real(pfMatrix.tolist())
 		metric = indicator(pf)
@@ -63,7 +63,7 @@ class TestCase(unittest.TestCase):
 	def testDTLZ2GD(self):
 		nObjectives = 3
 		pathData = os.path.join(os.path.join(self.pathData, 'DTLZ2'), str(nObjectives))
-		indicator = pyotl.indicator.DTLZ2GD()
+		indicator = pyotl.indicator.real.DTLZ2GD()
 		pfMatrix = numpy.loadtxt(os.path.join(pathData, 'Front.csv'))
 		pf = pyotl.utility.PyListList2VectorVector_Real(pfMatrix.tolist())
 		metric = indicator(pf)
@@ -74,7 +74,7 @@ class TestCase(unittest.TestCase):
 		pathData = os.path.join(os.path.join(self.pathData, 'DTLZ7'), str(nObjectives))
 		pf = numpy.loadtxt(os.path.join(pathData, 'PF.csv'))
 		pf = pyotl.utility.PyListList2VectorVector_Real(pf.tolist())
-		indicator = pyotl.indicator.FrontGD(pf)
+		indicator = pyotl.indicator.real.FrontGD(pf)
 		pfMatrix = numpy.loadtxt(os.path.join(pathData, 'Front.csv'))
 		pf = pyotl.utility.PyListList2VectorVector_Real(pfMatrix.tolist())
 		metric = indicator(pf)
@@ -87,7 +87,7 @@ class TestCase(unittest.TestCase):
 			pathData = os.path.join(os.path.join(self.pathData, problemName), str(nObjectives))
 			pfTrue = numpy.loadtxt(os.path.join(pathData, 'PF.csv'))
 			pfTrue = pyotl.utility.PyListList2VectorVector_Real(pfTrue.tolist())
-			indicator = pyotl.indicator.InvertedGenerationalDistance(pfTrue)
+			indicator = pyotl.indicator.real.InvertedGenerationalDistance(pfTrue)
 			pf = numpy.loadtxt(os.path.join(pathData, 'Front.csv'))
 			pf = pyotl.utility.PyListList2VectorVector_Real(pf.tolist())
 			metric = indicator(pf)

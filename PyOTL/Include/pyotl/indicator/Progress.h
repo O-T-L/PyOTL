@@ -17,13 +17,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <OTL/Indicator/Indicator.h>
-#include <pyotl/Global.h>
+#include <cstddef>
 
 namespace pyotl
 {
-namespace indicator
+namespace problem
 {
-typedef otl::indicator::Indicator<TReal, TReal> TIndicator;
+struct Progress
+{
+	size_t progress_;
+};
 }
 }
