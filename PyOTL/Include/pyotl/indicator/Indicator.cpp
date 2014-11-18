@@ -25,7 +25,7 @@ namespace indicator
 BOOST_PYTHON_MODULE(PYMODULE_NAME)
 {
 	boost::python::class_<TIndicator, boost::noncopyable>("Indicator", boost::python::no_init)
-		.def("__call__", &TIndicator::operator ())
+		.def("__call__", static_cast<TIndicator::TMetric (TIndicator::*)(const std::vector<TIndicator::TPoint> &)>(&TIndicator::operator ()))
 	;
 
 	boost::python::class_<TDTLZ1GD, boost::python::bases<TIndicator> >("DTLZ1GD")
@@ -44,19 +44,19 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.enable_pickling()
 	;
 
-	boost::python::class_<TFrontGD, boost::python::bases<TIndicator> >("FrontGD", boost::python::init<TFrontGD::TFront &>())
+	boost::python::class_<TFrontGD, boost::python::bases<TIndicator> >("FrontGD", boost::python::init<std::vector<TFrontGD::TPoint> &>())
 		.def("GetFront", &TFrontGD::GetFront, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 
-	boost::python::class_<TInvertedGenerationalDistance, boost::python::bases<TIndicator> >("InvertedGenerationalDistance", boost::python::init<TInvertedGenerationalDistance::TFront &>())
+	boost::python::class_<TInvertedGenerationalDistance, boost::python::bases<TIndicator> >("InvertedGenerationalDistance", boost::python::init<std::vector<TInvertedGenerationalDistance::TPoint> &>())
 		.def("GetFront", &TInvertedGenerationalDistance::GetFront, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 
-	boost::python::class_<TAdditiveEpsilon, boost::python::bases<TIndicator> >("AdditiveEpsilon", boost::python::init<TEpsilon::TFront &>())
+	boost::python::class_<TAdditiveEpsilon, boost::python::bases<TIndicator> >("AdditiveEpsilon", boost::python::init<std::vector<TEpsilon::TPoint> &>())
 		.def("GetFront", &TEpsilon::GetFront, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 
-	boost::python::class_<TMultiplicativeEpsilon, boost::python::bases<TIndicator> >("MultiplicativeEpsilon", boost::python::init<TEpsilon::TFront &>())
+	boost::python::class_<TMultiplicativeEpsilon, boost::python::bases<TIndicator> >("MultiplicativeEpsilon", boost::python::init<std::vector<TEpsilon::TPoint> &>())
 		.def("GetFront", &TEpsilon::GetFront, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 
@@ -76,22 +76,22 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def("GetBoundary", &TMaximumSpread2::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 
-	boost::python::class_<TDiversityMetric, boost::python::bases<TIndicator> >("DiversityMetric", boost::python::init<TDiversityMetric::TBoundary &, std::vector<size_t> &, TDiversityMetric::TFront &>())
+	boost::python::class_<TDiversityMetric, boost::python::bases<TIndicator> >("DiversityMetric", boost::python::init<TDiversityMetric::TBoundary &, std::vector<size_t> &, std::vector<TDiversityMetric::TPoint> &>())
 		.def("GetBoundary", &TDiversityMetric::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetDivision", &TDiversityMetric::GetDivision, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetFront", &TDiversityMetric::GetFront, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 
-	boost::python::class_<TR2, boost::python::bases<TIndicator> >("R2", boost::python::init<TR2::TPoint &, TR2::TFront &>())
+	boost::python::class_<TR2, boost::python::bases<TIndicator> >("R2", boost::python::init<TR2::TPoint &, std::vector<TR2::TPoint> &>())
 		.def("GetReferencePoint", &TR2::GetReferencePoint, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetWeightVectors", &TR2::GetWeightVectors, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 
-	boost::python::class_<TRecursiveHV, boost::python::bases<TIndicator> >("RecursiveHV", boost::python::init<TRecursiveHV::TPoint &>())
+	boost::python::class_<TMonteCarloHV, boost::python::bases<TIndicator> >("MonteCarloHV", boost::python::init<TMonteCarloHV::TPoint &, TRandom &, size_t>())
 		.def("GetReferencePoint", &THypervolume::GetReferencePoint, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 
-	boost::python::class_<TMonteCarloHV, boost::python::bases<TIndicator> >("MonteCarloHV", boost::python::init<TMonteCarloHV::TPoint &, TRandom &, size_t>())
+	boost::python::class_<TRecursiveHV, boost::python::bases<TIndicator> >("RecursiveHV", boost::python::init<TRecursiveHV::TPoint &>())
 		.def("GetReferencePoint", &THypervolume::GetReferencePoint, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 }

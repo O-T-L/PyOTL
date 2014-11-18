@@ -22,18 +22,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <OTL/Indicator/GD/WFG3GD.h>
 #include <OTL/Indicator/GD/WFG4GD.h>
 #include <OTL/Indicator/GD/FrontGD.h>
-#include <OTL/Indicator/InvertedGenerationalDistance.h>
+#include <OTL/Indicator/IGD/InvertedGenerationalDistance.h>
 #include <OTL/Indicator/Epsilon/AdditiveEpsilon.h>
 #include <OTL/Indicator/Epsilon/MultiplicativeEpsilon.h>
 #include <OTL/Indicator/Spacing.h>
-#include <OTL/Indicator/MaximumSpread.h>
-#include <OTL/Indicator/MaximumSpread1.h>
-#include <OTL/Indicator/MaximumSpread2.h>
-#include <OTL/Indicator/DiversityMetric.h>
+#include <OTL/Indicator/MS/MaximumSpread.h>
+#include <OTL/Indicator/MS/MaximumSpread1.h>
+#include <OTL/Indicator/MS/MaximumSpread2.h>
+#include <OTL/Indicator/DM/DiversityMetric.h>
 #include <OTL/Indicator/R2.h>
 #include "Global.h"
-#include "Hypervolume/RecursiveHV.h"
 #include "Hypervolume/MonteCarloHV.h"
+#include "Hypervolume/RecursiveHV.h"
 
 namespace pyotl
 {
@@ -44,15 +44,15 @@ typedef otl::indicator::gd::DTLZ2GD<TReal> TDTLZ2GD;
 typedef otl::indicator::gd::WFG3GD<TReal> TWFG3GD;
 typedef otl::indicator::gd::WFG4GD<TReal> TWFG4GD;
 typedef otl::indicator::gd::FrontGD<TReal> TFrontGD;
-typedef otl::indicator::InvertedGenerationalDistance<TReal> TInvertedGenerationalDistance;
+typedef otl::indicator::igd::InvertedGenerationalDistance<TReal> TInvertedGenerationalDistance;
 typedef otl::indicator::epsilon::Epsilon<TReal> TEpsilon;
 typedef otl::indicator::epsilon::AdditiveEpsilon<TReal> TAdditiveEpsilon;
 typedef otl::indicator::epsilon::MultiplicativeEpsilon<TReal> TMultiplicativeEpsilon;
 typedef otl::indicator::Spacing<TReal> TSpacing;
-typedef otl::indicator::MaximumSpread<TReal> TMaximumSpread;
-typedef otl::indicator::MaximumSpread1<TReal> TMaximumSpread1;
-typedef otl::indicator::MaximumSpread2<TReal> TMaximumSpread2;
-typedef otl::indicator::DiversityMetric<TReal> TDiversityMetric;
+typedef otl::indicator::ms::MaximumSpread<TReal> TMaximumSpread;
+typedef otl::indicator::ms::MaximumSpread1<TReal> TMaximumSpread1;
+typedef otl::indicator::ms::MaximumSpread2<TReal> TMaximumSpread2;
+typedef otl::indicator::dm::DiversityMetric<TReal> TDiversityMetric;
 typedef otl::indicator::R2<TReal> TR2;
 typedef otl::indicator::hypervolume::Hypervolume<TReal> THypervolume;
 typedef pyotl::indicator::hypervolume::RecursiveHV<TReal> TRecursiveHV;
