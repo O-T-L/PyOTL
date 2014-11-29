@@ -17,9 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <OTL/Indicator/GD/DTLZ1GD.h>
 #include <OTL/Indicator/GD/DTLZ2GD.h>
-#include <OTL/Indicator/GD/WFG3GD.h>
 #include <OTL/Indicator/GD/WFG4GD.h>
 #include <OTL/Indicator/GD/FrontGD.h>
 #include <OTL/Indicator/IGD/InvertedGenerationalDistance.h>
@@ -39,9 +37,7 @@ namespace pyotl
 {
 namespace indicator
 {
-typedef otl::indicator::gd::DTLZ1GD<TReal> TDTLZ1GD;
 typedef otl::indicator::gd::DTLZ2GD<TReal> TDTLZ2GD;
-typedef otl::indicator::gd::WFG3GD<TReal> TWFG3GD;
 typedef otl::indicator::gd::WFG4GD<TReal> TWFG4GD;
 typedef otl::indicator::gd::FrontGD<TReal> TFrontGD;
 typedef otl::indicator::igd::InvertedGenerationalDistance<TReal> TInvertedGenerationalDistance;

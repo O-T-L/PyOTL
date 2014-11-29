@@ -28,15 +28,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def("__call__", static_cast<TIndicator::TMetric (TIndicator::*)(const std::vector<TIndicator::TPoint> &)>(&TIndicator::operator ()))
 	;
 
-	boost::python::class_<TDTLZ1GD, boost::python::bases<TIndicator> >("DTLZ1GD")
-		.enable_pickling()
-	;
-
 	boost::python::class_<TDTLZ2GD, boost::python::bases<TIndicator> >("DTLZ2GD")
-		.enable_pickling()
-	;
-
-	boost::python::class_<TWFG3GD, boost::python::bases<TIndicator> >("WFG3GD")
 		.enable_pickling()
 	;
 
