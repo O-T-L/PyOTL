@@ -19,7 +19,7 @@ import os
 import unittest
 import numpy
 import pyotl.utility
-import pyotl.indicator
+import pyotl.indicator.real
 
 def readline(path):
 	f = open(path)
@@ -34,7 +34,7 @@ class TestCase(unittest.TestCase):
 	def tearDown(self):
 		pass
 	
-	def testDiversitymetric(self):
+	def testDiversityMetric(self):
 		nObjectives = 3
 		problemNameList = ['DTLZ1', 'DTLZ2', 'DTLZ7']
 		for problemName in problemNameList:
@@ -50,15 +50,6 @@ class TestCase(unittest.TestCase):
 			pf = pyotl.utility.PyListList2VectorVector_Real(pf.tolist())
 			metric = indicator(pf)
 			self.assertAlmostEqual(float(readline(os.path.join(pathData, 'DM'))), metric)
-	
-	def testDTLZ1GD(self):
-		nObjectives = 3
-		pathData = os.path.join(os.path.join(self.pathData, 'DTLZ1'), str(nObjectives))
-		indicator = pyotl.indicator.real.DTLZ1GD()
-		pfMatrix = numpy.loadtxt(os.path.join(pathData, 'Front.csv'))
-		pf = pyotl.utility.PyListList2VectorVector_Real(pfMatrix.tolist())
-		metric = indicator(pf)
-		self.assertAlmostEqual(float(readline(os.path.join(pathData, 'GD'))), metric)
 	
 	def testDTLZ2GD(self):
 		nObjectives = 3
@@ -92,6 +83,19 @@ class TestCase(unittest.TestCase):
 			pf = pyotl.utility.PyListList2VectorVector_Real(pf.tolist())
 			metric = indicator(pf)
 			self.assertAlmostEqual(float(readline(os.path.join(pathData, 'IGD'))), metric)
+	
+	def testHypervolume(self):
+		nObjectives = 3
+		problemNameList = ['DTLZ1', 'DTLZ2', 'DTLZ7']
+		referencePointList = ([1] * nObjectives, [2] * nObjectives, [2, 2, 7])
+		for problemName, referencePoint in zip(problemNameList, referencePointList):
+			pathData = os.path.join(os.path.join(self.pathData, problemName), str(nObjectives))
+			_referencePoint = pyotl.utility.PyList2Vector_Real(referencePoint)
+			indicator = pyotl.indicator.real.RecursiveHV(_referencePoint)
+			pf = numpy.loadtxt(os.path.join(pathData, 'Front.csv'))
+			pf = pyotl.utility.PyListList2VectorVector_Real(pf.tolist())
+			metric = indicator(pf)
+			self.assertAlmostEqual(float(readline(os.path.join(pathData, 'HV'))), metric)
 
 if __name__ == '__main__':
 	unittest.main()
