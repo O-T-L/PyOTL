@@ -49,7 +49,7 @@ typedef otl::optimizer::hype::HypE<TReal, TDecision, TRandom &> THypE;
 typedef otl::optimizer::msops::MSOPS<TReal, TDecision, TRandom &> TMSOPS;
 typedef otl::optimizer::grea::GrEA<TReal, TDecision, TRandom &> TGrEA;
 typedef otl::optimizer::moea_d::Individual<TReal, TDecision> TMOEA_D_Individual;
-typedef std::vector<TMOEA_D_Individual> TMOEA_D_Archive;
+typedef std::vector<TMOEA_D_Individual> TMOEA_D_Population;
 typedef pyotl::optimizer::sms_emoa::SMS_EMOA<TReal, TDecision, TRandom &> TSMS_EMOA;
 }
 }

@@ -165,7 +165,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readwrite("decision_", &TEpsilon_MOEA::TIndividual::decision_)
 		.def_readonly("point_", &TEpsilon_MOEA::TIndividual::point_)
 	;
-	boost::python::class_<TEpsilon_MOEA::TSolutionSet>("Epsilon_MOEA_Population");
+	boost::python::class_<TEpsilon_MOEA::TSolutionSet>("Epsilon_MOEA_Archive");
 	boost::python::class_<TEpsilon_MOEA::TPopulation>("Epsilon_MOEA_Population")
 		.def(boost::python::vector_indexing_suite<TEpsilon_MOEA::TPopulation>())
 	;
@@ -178,7 +178,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readwrite("decision_", &TTDEA::TIndividual::decision_)
 		.def_readonly("scaledObjective_", &TTDEA::TIndividual::scaledObjective_)
 	;
-	boost::python::class_<TTDEA::TSolutionSet>("TDEA_Population");
+	boost::python::class_<TTDEA::TSolutionSet>("TDEA_Archive");
 	boost::python::class_<TTDEA::TPopulation>("TDEA_Population")
 		.def(boost::python::vector_indexing_suite<TTDEA::TPopulation>())
 	;
@@ -355,8 +355,8 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def_readonly("equality_", &TMOEA_D_Individual::equality_)
 		.def_readwrite("decision_", &TMOEA_D_Individual::decision_)
 	;
-	boost::python::class_<TMOEA_D_Archive>("MOEA_D_Population")
-		.def(boost::python::vector_indexing_suite<TMOEA_D_Archive>())
+	boost::python::class_<TMOEA_D_Population>("MOEA_D_Population")
+		.def(boost::python::vector_indexing_suite<TMOEA_D_Population>())
 	;
 #endif
 #ifdef EXPORT_SMS_EMOA
