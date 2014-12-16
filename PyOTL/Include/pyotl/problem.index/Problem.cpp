@@ -24,6 +24,12 @@ namespace problem
 {
 namespace index
 {
+template <typename _TProblem>
+size_t GetNumberOfDecisions(const _TProblem &problem)
+{
+	return problem.GetBoundary().size();
+}
+
 BOOST_PYTHON_MODULE(PYMODULE_NAME)
 {
 	boost::python::class_<TProblem, boost::noncopyable>("Problem", boost::python::no_init)
@@ -44,11 +50,13 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	boost::python::class_<TTSP, boost::python::bases<TProblem> >("TSP", boost::python::init<const TTSP::TAdjacencyMatrix &>())
 		.def("GetAdjacencyMatrix", &TTSP::GetAdjacencyMatrix, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetNumberOfCities", &TTSP::GetNumberOfCities)
+		.def("GetNumberOfDecisions", &TTSP::GetNumberOfCities)
 	;
 
 	boost::python::class_<TMOTSP, boost::python::bases<TProblem> >("MOTSP", boost::python::init<const TMOTSP::TAdjacencyMatrics &>())
 		.def("GetAdjacencyMatrics", &TMOTSP::GetAdjacencyMatrics, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetNumberOfCities", &TMOTSP::GetNumberOfCities)
+		.def("GetNumberOfDecisions", &TMOTSP::GetNumberOfCities)
 	;
 
 	boost::python::class_<TONL, boost::python::bases<TProblem> >("ONL", boost::python::init<const TONL::TMatrix &, const std::vector<TONL::TMetric *> &, TRandom &>())
@@ -56,6 +64,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def("GetGraph", &TONL::GetGraph, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetList", &TONL::GetList, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("Decode", &TONL::Decode)
+		.def("GetNumberOfDecisions", &GetNumberOfDecisions<TONL>)
 	;
 
 	boost::python::def("CorrelateAdjacencyMatrics_Real", &otl::problem::tsp::CorrelateAdjacencyMatrics<TReal>);
