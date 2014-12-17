@@ -80,7 +80,7 @@ class TestCase(unittest.TestCase):
 		division = pyotl.utility.PyList2Vector_size_t([23] * (problem.GetNumberOfObjectives() - 1))
 		weightVectors = pyotl.utility.NormalBoundaryIntersection_Real(division)
 		for weight in weightVectors:
-			pyotl.optimizer.moea_d.AdjustWeight(weight, 0.00001)
+			pyotl.optimizer.moea_d.AdjustWeight_Real(weight, 0.00001)
 		neighborRatio = 0.1
 		pfList = []
 		for _ in range(self.repeat):
@@ -115,7 +115,7 @@ class TestCase(unittest.TestCase):
 		division = pyotl.utility.PyList2Vector_size_t([23] * (problem.GetNumberOfObjectives() - 1))
 		weightVectors = pyotl.utility.NormalBoundaryIntersection_Real(division)
 		for weight in weightVectors:
-			pyotl.optimizer.moea_d.NormalizeWeight(weight)
+			pyotl.optimizer.moea_d.NormalizeWeight_Real(weight)
 		neighborRatio = 0.1
 		penaltyParameter = 5
 		pfList = []

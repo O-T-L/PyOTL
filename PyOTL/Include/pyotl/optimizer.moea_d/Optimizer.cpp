@@ -28,8 +28,8 @@ namespace moea_d
 {
 BOOST_PYTHON_MODULE(PYMODULE_NAME)
 {
-	boost::python::def("AdjustWeight", &otl::optimizer::moea_d::weight::AdjustWeight<TReal>);
-	boost::python::def("NormalizeWeight", &otl::optimizer::moea_d::weight::NormalizeWeight<TReal>);
+	boost::python::def("AdjustWeight_Real", &otl::optimizer::moea_d::weight::AdjustWeight<TReal>);
+	boost::python::def("NormalizeWeight_Real", &otl::optimizer::moea_d::weight::NormalizeWeight<TReal>);
 }
 }
 }
