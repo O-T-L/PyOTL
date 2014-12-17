@@ -23,7 +23,6 @@ import pyotl.initial.real
 import pyotl.crossover.real
 import pyotl.mutation.real
 import pyotl.optimizer.real
-import pyotl.indicator
 
 def run_nsga_ii(problem, nEvaluations):
 	random = pyotl.utility.Random()

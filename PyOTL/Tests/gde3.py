@@ -24,7 +24,7 @@ import pyotl.problem.real
 import pyotl.initial.real
 import pyotl.crossover.real
 import pyotl.mutation.real
-import pyotl.indicator
+import pyotl.indicator.real
 import pyotl.optimizer.real
 import pyotl.optimizer.xtriple.real
 

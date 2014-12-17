@@ -27,7 +27,7 @@ import pyotl.mutation.real
 import pyotl.optimizer.real
 import pyotl.optimizer.couple_couple.real
 import pyotl.optimizer.triple.real
-import pyotl.indicator
+import pyotl.indicator.real
 
 class TestCase(unittest.TestCase):
 	def setUp(self):

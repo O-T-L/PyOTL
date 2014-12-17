@@ -27,7 +27,7 @@ import pyotl.initial.index
 import pyotl.crossover.index
 import pyotl.mutation.index
 import pyotl.optimizer.index
-import pyotl.indicator
+import pyotl.indicator.real
 
 class TestCase(unittest.TestCase):
 	def setUp(self):

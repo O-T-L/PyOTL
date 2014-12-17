@@ -26,7 +26,7 @@ import pyotl.initial.real
 import pyotl.crossover.real
 import pyotl.mutation.real
 import pyotl.optimizer.real
-import pyotl.indicator
+import pyotl.indicator.real
 
 class TestCase(unittest.TestCase):
 	def setUp(self):

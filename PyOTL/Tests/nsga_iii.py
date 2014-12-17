@@ -25,7 +25,7 @@ import pyotl.initial.real
 import pyotl.crossover.real
 import pyotl.mutation.real
 import pyotl.optimizer.real
-import pyotl.indicator
+import pyotl.indicator.real
 
 class TestCase(unittest.TestCase):
 	def setUp(self):
@@ -35,7 +35,7 @@ class TestCase(unittest.TestCase):
 	def tearDown(self):
 		pass
 	
-	def testNSGA_III(self):
+	def testNSGA_III_NBI(self):
 		random = pyotl.utility.Random(1)
 		problemGen = lambda: pyotl.problem.real.DTLZ2(3)
 		problem = problemGen()
@@ -43,17 +43,55 @@ class TestCase(unittest.TestCase):
 		_crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
 		crossover = pyotl.crossover.real.CoupleCoupleCrossoverAdapter(_crossover, random)
 		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
-		division = pyotl.utility.PyList2Vector_size_t([12] * (problem.GetNumberOfObjectives() - 1))
-		referenceSet = pyotl.utility.NormalBoundaryIntersection_Real(division)
-		size = len(referenceSet)
+		_referenceSet = pyotl.utility.NormalBoundaryIntersection_Real(problem.GetNumberOfObjectives(), 12)
+		size = len(_referenceSet)
 		while (size % 4):
 			size += 1
 		pfList = []
 		for _ in range(self.repeat):
 			problem = problemGen()
-			initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), 100)
-			optimizer = pyotl.optimizer.real.NSGA_III(random, problem, initial, crossover, mutation, referenceSet)
-			while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
+			initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), size)
+			optimizer = pyotl.optimizer.real.NSGA_III(random, problem, initial, crossover, mutation, _referenceSet)
+			for _ in range(300):
+				optimizer()
+			pf = pyotl.utility.PyListList2VectorVector_Real([list(solution.objective_) for solution in optimizer.GetSolutionSet()])
+			pfList.append(pf)
+		pathCrossover = os.path.join(pathProblem, type(crossover.GetCrossover()).__name__)
+		pathOptimizer = os.path.join(pathCrossover, type(optimizer).__name__)
+		pfTrue = pyotl.utility.PyListList2VectorVector_Real(numpy.loadtxt(os.path.join(pathProblem, 'PF.csv')).tolist())
+		#GD
+		indicator = pyotl.indicator.real.DTLZ2GD()
+		metricList = [indicator(pf) for pf in pfList]
+		rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'GD.csv')).tolist()
+		self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
+		#IGD
+		indicator = pyotl.indicator.real.InvertedGenerationalDistance(pfTrue)
+		metricList = [indicator(pf) for pf in pfList]
+		rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'IGD.csv')).tolist()
+		self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
+	
+	def testNSGA_III_NBI2(self):
+		random = pyotl.utility.Random(1)
+		problemGen = lambda: pyotl.problem.real.DTLZ2(8)
+		problem = problemGen()
+		pathProblem = os.path.join(self.pathData, type(problem).__name__, str(problem.GetNumberOfObjectives()))
+		_crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
+		crossover = pyotl.crossover.real.CoupleCoupleCrossoverAdapter(_crossover, random)
+		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
+		_referenceSet1 = pyotl.utility.NormalBoundaryIntersection_Real(problem.GetNumberOfObjectives(), 3)
+		_referenceSet2 = pyotl.utility.NormalBoundaryIntersection_Real(problem.GetNumberOfObjectives(), 2)
+		referenceSet2 = [[value / 2 for value in _point] for _point in _referenceSet2]
+		referenceSet = list(_referenceSet1) + referenceSet2
+		_referenceSet = pyotl.utility.PyListList2VectorVector_Real(referenceSet)
+		size = len(_referenceSet)
+		while (size % 4):
+			size += 1
+		pfList = []
+		for _ in range(self.repeat):
+			problem = problemGen()
+			initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), size)
+			optimizer = pyotl.optimizer.real.NSGA_III(random, problem, initial, crossover, mutation, _referenceSet)
+			for _ in range(300):
 				optimizer()
 			pf = pyotl.utility.PyListList2VectorVector_Real([list(solution.objective_) for solution in optimizer.GetSolutionSet()])
 			pfList.append(pf)
