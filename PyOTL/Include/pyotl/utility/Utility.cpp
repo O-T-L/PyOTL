@@ -181,7 +181,6 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	boost::python::def("PyList2Boundary_Integer", &PyList2Boundary<TInteger>);
 	boost::python::def("ExtractParetoNondominate_Vector_Real", &ExtractParetoNondominate<TVector_Real>);
 	boost::python::def("NormalBoundaryIntersection_Real", &NormalBoundaryIntersection<TReal>);
-	boost::python::def("BoundaryNBI_Real", &BoundaryNBI<TReal>);
 	boost::python::def("SPEA2Truncation_Real", &SPEA2Truncation<TReal>);
 }
 }

@@ -28,7 +28,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <OTL/Utility/Nondominate.h>
 #include <OTL/Utility/Weight/NormalBoundaryIntersection.h>
 #include <OTL/Optimizer/SPEA2/Truncation.h>
-#include <OTL/Utility/Weight/BoundaryNBI.h>
 #include <pyotl/Global.h>
 
 namespace pyotl
@@ -214,13 +213,6 @@ template <typename _TReal>
 std::vector<std::vector<_TReal> > NormalBoundaryIntersection(const size_t dimension, const size_t division)
 {
 	const auto points = otl::utility::weight::NormalBoundaryIntersection<_TReal>(dimension, division);
-	return std::vector<std::vector<_TReal> >(points.begin(), points.end());
-}
-
-template <typename _TReal>
-std::vector<std::vector<_TReal> > BoundaryNBI(const size_t dimension, const size_t division)
-{
-	const auto points = otl::utility::weight::BoundaryNBI<_TReal>(dimension, division);
 	return std::vector<std::vector<_TReal> >(points.begin(), points.end());
 }
 
