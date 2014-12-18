@@ -37,7 +37,7 @@ class TestCase(unittest.TestCase):
 		pass
 	
 	def testNSGA_III_NBI(self):
-		random = pyotl.utility.Random()
+		random = pyotl.utility.Random(1)
 		problemGen = lambda: pyotl.problem.real.DTLZ2(3)
 		problem = problemGen()
 		pathProblem = os.path.join(self.pathData, type(problem).__name__, str(problem.GetNumberOfObjectives()))
@@ -72,7 +72,7 @@ class TestCase(unittest.TestCase):
 		self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
 	
 	def testNSGA_III_NBI2(self):
-		random = pyotl.utility.Random()
+		random = pyotl.utility.Random(1)
 		problemGen = lambda: pyotl.problem.real.DTLZ2(8)
 		problem = problemGen()
 		pathProblem = os.path.join(self.pathData, type(problem).__name__, str(problem.GetNumberOfObjectives()))
