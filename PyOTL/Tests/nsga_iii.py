@@ -25,6 +25,7 @@ import pyotl.initial.real
 import pyotl.crossover.real
 import pyotl.mutation.real
 import pyotl.optimizer.real
+import pyotl.optimizer.nsga_iii
 import pyotl.indicator.real
 
 class TestCase(unittest.TestCase):
@@ -35,7 +36,7 @@ class TestCase(unittest.TestCase):
 	def tearDown(self):
 		pass
 	
-	def testNSGA_III_NBI(self):
+	def _testNSGA_III_NBI(self):
 		random = pyotl.utility.Random(1)
 		problemGen = lambda: pyotl.problem.real.DTLZ2(3)
 		problem = problemGen()
@@ -78,11 +79,7 @@ class TestCase(unittest.TestCase):
 		_crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
 		crossover = pyotl.crossover.real.CoupleCoupleCrossoverAdapter(_crossover, random)
 		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
-		_referenceSet1 = pyotl.utility.NormalBoundaryIntersection_Real(problem.GetNumberOfObjectives(), 3)
-		_referenceSet2 = pyotl.utility.NormalBoundaryIntersection_Real(problem.GetNumberOfObjectives(), 2)
-		referenceSet2 = [[value / 2 for value in _point] for _point in _referenceSet2]
-		referenceSet = list(_referenceSet1) + referenceSet2
-		_referenceSet = pyotl.utility.PyListList2VectorVector_Real(referenceSet)
+		_referenceSet = pyotl.optimizer.nsga_iii.NBI2_Real(problem.GetNumberOfObjectives(), 3, 2)
 		size = len(_referenceSet)
 		while (size % 4):
 			size += 1
