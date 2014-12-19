@@ -38,7 +38,9 @@ typedef otl::optimizer::ibea::IBEA_HD<TReal, TDecision, TRandom &> TIBEA_HD;
 typedef otl::optimizer::cdas::CDAS<TReal, TDecision, TRandom &> TCDAS;
 typedef otl::optimizer::epsilon_moea::Epsilon_MOEA<TReal, TDecision, TRandom &> TEpsilon_MOEA;
 typedef otl::optimizer::tdea::TDEA<TReal, TDecision, TRandom &> TTDEA;
-//typedef otl::optimizer::isnps::ISNPS<TReal, TDecision, TRandom &> TISNPS;
+#ifdef EXPORT_ISNPS
+typedef otl::optimizer::isnps::ISNPS<TReal, TDecision, TRandom &> TISNPS;
+#endif
 typedef otl::optimizer::nsga_iii::NSGA_III<TReal, TDecision, TRandom &> TNSGA_III;
 typedef otl::optimizer::ar::AR<TReal, TDecision, TRandom &> TAR;
 typedef otl::optimizer::ar_cd_::AR_CD_<TReal, TDecision, TRandom &> TAR_CD_;
