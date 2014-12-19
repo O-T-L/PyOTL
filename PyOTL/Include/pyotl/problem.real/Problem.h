@@ -57,6 +57,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <OTL/Problem/DTLZ/ConvexDTLZ5I.h>
 #include <OTL/Problem/DTLZ/ConvexDTLZ6I.h>
 #include <OTL/Problem/DTLZ/ScaledDTLZ2.h>
+#include <OTL/Problem/DTLZ/NegativeDTLZ2.h>
 #include <OTL/Problem/WFG/WFG1.h>
 #include <OTL/Problem/WFG/WFG2.h>
 #include <OTL/Problem/WFG/WFG3.h>
@@ -121,6 +122,7 @@ typedef otl::problem::dtlz::ConvexDTLZ6<TReal> TConvexDTLZ6;
 typedef otl::problem::dtlz::ConvexDTLZ5I<TReal> TConvexDTLZ5I;
 typedef otl::problem::dtlz::ConvexDTLZ6I<TReal> TConvexDTLZ6I;
 typedef otl::problem::dtlz::ScaledDTLZ2<TReal> TScaledDTLZ2;
+typedef otl::problem::dtlz::NegativeDTLZ2<TReal> TNegativeDTLZ2;
 
 typedef otl::problem::wfg::WFG<TReal> TWFG;
 typedef otl::problem::wfg::StdWFG<TReal> TStdWFG;

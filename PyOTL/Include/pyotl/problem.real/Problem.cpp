@@ -247,6 +247,11 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def("GetBoundary", &TDTLZ::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 
+	boost::python::class_<TNegativeDTLZ2, boost::python::bases<TProblem> >("NegativeDTLZ2", boost::python::init<size_t>())
+		.def(boost::python::init<size_t, size_t>())
+		.def("GetBoundary", &TDTLZ::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
+	;
+
 	boost::python::class_<TWFG1, boost::python::bases<TProblem> >("WFG1", boost::python::init<size_t>())
 		.def(boost::python::init<size_t, size_t, size_t>())
 		.def("GetBoundary", &TWFG::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
