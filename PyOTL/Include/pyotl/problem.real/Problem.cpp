@@ -250,6 +250,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	boost::python::class_<TNegativeDTLZ2, boost::python::bases<TProblem> >("NegativeDTLZ2", boost::python::init<size_t>())
 		.def(boost::python::init<size_t, size_t>())
 		.def("GetBoundary", &TDTLZ::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetMaxDistance", &TNegativeDTLZ2::GetMaxDistance)
 	;
 
 	boost::python::class_<TWFG1, boost::python::bases<TProblem> >("WFG1", boost::python::init<size_t>())
