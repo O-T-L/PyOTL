@@ -40,8 +40,8 @@ class TestCase(unittest.TestCase):
 		assert(len(capacity.shape) == 1)
 		assert(priceMatrix.shape[0] == weightMatrix.shape[0] == nObjectives)
 		assert(priceMatrix.shape[1] == weightMatrix.shape[1] == nPacks)
-		priceMatrix = pyotl.problem.dynamic_bitset.pylistlist2matrix(priceMatrix.tolist())
-		weightMatrix = pyotl.problem.dynamic_bitset.pylistlist2matrix(weightMatrix.tolist())
+		priceMatrix = pyotl.utility.PyListList2BlasMatrix_Real(priceMatrix.tolist())
+		weightMatrix = pyotl.utility.PyListList2BlasMatrix_Real(weightMatrix.tolist())
 		capacity = pyotl.utility.PyList2Vector_Real(capacity.tolist())
 		problem = pyotl.problem.dynamic_bitset.Knapsack(priceMatrix, weightMatrix, capacity)
 
