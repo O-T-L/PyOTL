@@ -37,7 +37,7 @@ class TestCase(unittest.TestCase):
 	def tearDown(self):
 		pass
 	
-	def testTDEA(self):
+	def testTDEA_DTLZ2(self):
 		random = pyotl.utility.Random(1)
 		problemGen = lambda: pyotl.problem.real.DTLZ2(3)
 		problem = problemGen()
@@ -55,6 +55,41 @@ class TestCase(unittest.TestCase):
 			while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
 				optimizer()
 			pf = pyotl.utility.PyListList2VectorVector_Real([list(solution.objective_) for solution in optimizer.GetSolutionSet()])
+			pfList.append(pf)
+		pathCrossover = os.path.join(pathProblem, type(crossover).__name__)
+		pathOptimizer = os.path.join(pathCrossover, type(optimizer).__name__)
+		pfTrue = pyotl.utility.PyListList2VectorVector_Real(numpy.loadtxt(os.path.join(pathProblem, 'PF.csv')).tolist())
+		#GD
+		indicator = pyotl.indicator.real.DTLZ2GD()
+		metricList = [indicator(pf) for pf in pfList]
+		rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'GD.csv')).tolist()
+		self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
+		#IGD
+		indicator = pyotl.indicator.real.InvertedGenerationalDistance(pfTrue)
+		metricList = [indicator(pf) for pf in pfList]
+		rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'IGD.csv')).tolist()
+		self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
+	
+	def testTDEA_NegativeDTLZ2(self):
+		random = pyotl.utility.Random(1)
+		problemGen = lambda: pyotl.problem.real.NegativeDTLZ2(3)
+		problem = problemGen()
+		pathProblem = os.path.join(self.pathData, type(problem).__name__.replace('Negative', ''), str(problem.GetNumberOfObjectives()))
+		crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
+		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
+		boundary = numpy.loadtxt(os.path.join(pathProblem, 'Boundary.csv'))
+		boundary = pyotl.utility.PyList2Boundary_Real(boundary.tolist())
+		territorySize = 0.1
+		pfList = []
+		for _ in range(self.repeat):
+			problem = problemGen()
+			initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), 100)
+			optimizer = pyotl.optimizer.couple_couple.real.TDEA(random, problem, initial, crossover, mutation, boundary, territorySize)
+			while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
+				optimizer()
+			pf = pyotl.utility.PyListList2VectorVector_Real([list(solution.objective_) for solution in optimizer.GetSolutionSet()])
+			for objective in pf:
+				problem.Fix(objective)
 			pfList.append(pf)
 		pathCrossover = os.path.join(pathProblem, type(crossover).__name__)
 		pathOptimizer = os.path.join(pathCrossover, type(optimizer).__name__)
