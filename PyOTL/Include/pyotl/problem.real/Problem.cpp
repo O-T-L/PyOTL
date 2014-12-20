@@ -218,6 +218,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def(boost::python::init<size_t, size_t>())
 		.def(boost::python::init<size_t, size_t, TReal>())
 		.def("GetBoundary", &TDTLZ::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetBiasFactor", &TDTLZ4::GetBiasFactor)
 	;
 
 	boost::python::class_<TConvexDTLZ5, boost::python::bases<TProblem> >("ConvexDTLZ5", boost::python::init<size_t>())
