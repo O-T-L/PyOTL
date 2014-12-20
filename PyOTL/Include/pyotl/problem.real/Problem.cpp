@@ -216,7 +216,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 
 	boost::python::class_<TConvexDTLZ4, boost::python::bases<TProblem> >("ConvexDTLZ4", boost::python::init<size_t>())
 		.def(boost::python::init<size_t, size_t>())
-		.def(boost::python::init<size_t, size_t, size_t>())
+		.def(boost::python::init<size_t, size_t, TReal>())
 		.def("GetBoundary", &TDTLZ::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 
