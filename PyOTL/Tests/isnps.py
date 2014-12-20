@@ -84,7 +84,8 @@ class TestCase(unittest.TestCase):
 		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
 		boundaryMatrix = numpy.loadtxt(os.path.join(pathProblem, 'Boundary.csv'))
 		lower, _ = boundaryMatrix.T
-		lower = pyotl.utility.PyList2Vector_Real(lower.tolist())
+		lower = [value - problem.GetMaxDistance() for value in lower]
+		lower = pyotl.utility.PyList2Vector_Real(lower)
 		angle1 = 2.3 * math.pi / 180
 		angle2 = 45 * math.pi / 180
 		amplification = 3
