@@ -35,7 +35,7 @@ class TestCase(unittest.TestCase):
 	def tearDown(self):
 		pass
 	
-	def testAR(self):
+	def testAR_DTLZ2(self):
 		random = pyotl.utility.Random(1)
 		problemGen = lambda: pyotl.problem.real.DTLZ2(3)
 		problem = problemGen()
@@ -51,6 +51,39 @@ class TestCase(unittest.TestCase):
 			while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
 				optimizer()
 			pf = pyotl.utility.PyListList2VectorVector_Real([list(solution.objective_) for solution in optimizer.GetSolutionSet()])
+			pfList.append(pf)
+		pathCrossover = os.path.join(pathProblem, type(crossover.GetCrossover()).__name__)
+		pathOptimizer = os.path.join(pathCrossover, type(optimizer).__name__)
+		pfTrue = pyotl.utility.PyListList2VectorVector_Real(numpy.loadtxt(os.path.join(pathProblem, 'PF.csv')).tolist())
+		#GD
+		indicator = pyotl.indicator.real.DTLZ2GD()
+		metricList = [indicator(pf) for pf in pfList]
+		rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'GD.csv')).tolist()
+		self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
+		#IGD
+		indicator = pyotl.indicator.real.InvertedGenerationalDistance(pfTrue)
+		metricList = [indicator(pf) for pf in pfList]
+		rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'IGD.csv')).tolist()
+		self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
+	
+	def testAR_NegativeDTLZ2(self):
+		random = pyotl.utility.Random(1)
+		problemGen = lambda: pyotl.problem.real.NegativeDTLZ2(3)
+		problem = problemGen()
+		pathProblem = os.path.join(self.pathData, type(problem).__name__.replace('Negative', ''), str(problem.GetNumberOfObjectives()))
+		_crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
+		crossover = pyotl.crossover.real.CoupleCoupleCrossoverAdapter(_crossover, random)
+		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
+		pfList = []
+		for _ in range(self.repeat):
+			problem = problemGen()
+			initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), 100)
+			optimizer = pyotl.optimizer.real.AR(random, problem, initial, crossover, mutation)
+			while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
+				optimizer()
+			pf = pyotl.utility.PyListList2VectorVector_Real([list(solution.objective_) for solution in optimizer.GetSolutionSet()])
+			for objective in pf:
+				problem.Fix(objective)
 			pfList.append(pf)
 		pathCrossover = os.path.join(pathProblem, type(crossover.GetCrossover()).__name__)
 		pathOptimizer = os.path.join(pathCrossover, type(optimizer).__name__)
