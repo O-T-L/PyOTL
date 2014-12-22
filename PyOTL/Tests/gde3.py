@@ -42,12 +42,11 @@ class TestCase(unittest.TestCase):
 		problem = problemGen()
 		pathProblem = os.path.join(self.pathData, type(problem).__name__, str(problem.GetNumberOfObjectives()))
 		crossover = pyotl.crossover.real.DifferentialEvolution(random, 0.5, problem.GetBoundary(), 0.5)
-		mutation = pyotl.mutation.real.PolynomialMutation(random, 0, problem.GetBoundary(), 20)
 		pfList = []
 		for _ in range(self.repeat):
 			problem = problemGen()
 			initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), 100)
-			optimizer = pyotl.optimizer.xtriple.real.GDE3(random, problem, initial, crossover, mutation)
+			optimizer = pyotl.optimizer.xtriple.real.GDE3(random, problem, initial, crossover)
 			while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
 				optimizer()
 			pf = pyotl.utility.PyListList2VectorVector_Real([list(solution.objective_) for solution in optimizer.GetSolutionSet()])

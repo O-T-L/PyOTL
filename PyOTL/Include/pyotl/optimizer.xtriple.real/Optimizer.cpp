@@ -29,10 +29,9 @@ namespace real
 BOOST_PYTHON_MODULE(PYMODULE_NAME)
 {
 #ifdef EXPORT_GDE3
-	boost::python::class_<TGDE3, boost::python::bases<TOptimizer> >("GDE3", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &>())
+	boost::python::class_<TGDE3, boost::python::bases<TOptimizer> >("GDE3", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &>())
 		.def("GetSolutionSet", &TGDE3::GetSolutionSet, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetCrossover", &TGDE3::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
-		.def("GetMutation", &TGDE3::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 #endif
 #ifdef EXPORT_MOEA_D
