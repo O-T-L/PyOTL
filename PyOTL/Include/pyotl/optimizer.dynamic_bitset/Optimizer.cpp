@@ -195,7 +195,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	boost::python::class_<TISNPS::TSolutionSet>("ISNPS_Population")
 		.def(boost::python::vector_indexing_suite<TISNPS::TSolutionSet>())
 	;
-	boost::python::class_<TISNPS, boost::python::bases<TOptimizer> >("ISNPS", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, const std::vector<TReal> &, const boost::numeric::ublas::vector<TReal> &, TReal, TReal, TReal>())
+	boost::python::class_<TISNPS, boost::python::bases<TOptimizer> >("ISNPS", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, const boost::numeric::ublas::vector<TReal> &, TReal, TReal, TReal>())
 		.def("GetSolutionSet", &TISNPS::GetSolutionSet, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetCrossover", &TISNPS::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetMutation", &TISNPS::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())

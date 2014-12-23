@@ -44,9 +44,6 @@ class TestCase(unittest.TestCase):
 		_crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
 		crossover = pyotl.crossover.real.CoupleCoupleCrossoverAdapter(_crossover, random)
 		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
-		boundaryMatrix = numpy.loadtxt(os.path.join(pathProblem, 'Boundary.csv'))
-		lower, _ = boundaryMatrix.T
-		lower = pyotl.utility.PyList2Vector_Real(lower.tolist())
 		angle1 = 2.3 * math.pi / 180
 		angle2 = 45 * math.pi / 180
 		amplification = 3
@@ -55,7 +52,7 @@ class TestCase(unittest.TestCase):
 			problem = problemGen()
 			initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), 100)
 			convergenceDirection = pyotl.utility.PyList2BlasVector_Real([1] * problem.GetNumberOfObjectives())
-			optimizer = pyotl.optimizer.real.ISNPS(random, problem, initial, crossover, mutation, lower, convergenceDirection, angle1, angle2, amplification)
+			optimizer = pyotl.optimizer.real.ISNPS(random, problem, initial, crossover, mutation, convergenceDirection, angle1, angle2, amplification)
 			while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
 				optimizer()
 			pf = pyotl.utility.PyListList2VectorVector_Real([list(solution.objective_) for solution in optimizer.GetSolutionSet()])
@@ -82,10 +79,6 @@ class TestCase(unittest.TestCase):
 		_crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
 		crossover = pyotl.crossover.real.CoupleCoupleCrossoverAdapter(_crossover, random)
 		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
-		boundaryMatrix = numpy.loadtxt(os.path.join(pathProblem, 'Boundary.csv'))
-		lower, _ = boundaryMatrix.T
-		lower = [value - problem.GetMaxDistance() for value in lower]
-		lower = pyotl.utility.PyList2Vector_Real(lower)
 		angle1 = 2.3 * math.pi / 180
 		angle2 = 45 * math.pi / 180
 		amplification = 3
@@ -94,7 +87,7 @@ class TestCase(unittest.TestCase):
 			problem = problemGen()
 			initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), 100)
 			convergenceDirection = pyotl.utility.PyList2BlasVector_Real([1] * problem.GetNumberOfObjectives())
-			optimizer = pyotl.optimizer.real.ISNPS(random, problem, initial, crossover, mutation, lower, convergenceDirection, angle1, angle2, amplification)
+			optimizer = pyotl.optimizer.real.ISNPS(random, problem, initial, crossover, mutation, convergenceDirection, angle1, angle2, amplification)
 			while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
 				optimizer()
 			pf = pyotl.utility.PyListList2VectorVector_Real([list(solution.objective_) for solution in optimizer.GetSolutionSet()])
