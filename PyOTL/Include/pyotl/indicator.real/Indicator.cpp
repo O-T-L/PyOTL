@@ -83,7 +83,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def("GetReferencePoint", &THypervolume::GetReferencePoint, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 
-	boost::python::class_<TRecursiveHV, boost::python::bases<TIndicator> >("RecursiveHV", boost::python::init<TRecursiveHV::TPoint &>())
+	boost::python::class_<TKMP_HV, boost::python::bases<TIndicator> >("KMP_HV", boost::python::init<TKMP_HV::TPoint &>())
 		.def("GetReferencePoint", &THypervolume::GetReferencePoint, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 }

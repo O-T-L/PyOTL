@@ -91,7 +91,7 @@ class TestCase(unittest.TestCase):
 		for problemName, referencePoint in zip(problemNameList, referencePointList):
 			pathData = os.path.join(os.path.join(self.pathData, problemName), str(nObjectives))
 			_referencePoint = pyotl.utility.PyList2Vector_Real(referencePoint)
-			indicator = pyotl.indicator.real.RecursiveHV(_referencePoint)
+			indicator = pyotl.indicator.real.KMP_HV(_referencePoint)
 			pf = numpy.loadtxt(os.path.join(pathData, 'Front.csv'))
 			pf = pyotl.utility.PyListList2VectorVector_Real(pf.tolist())
 			metric = indicator(pf)

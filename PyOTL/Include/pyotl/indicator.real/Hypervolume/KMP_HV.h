@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <OTL/Indicator/Hypervolume/RecursiveHV.h>
+#include <OTL/Indicator/Hypervolume/KMP_HV.h>
 #include <OTL/Indicator/Hypervolume/FilterAdapter.h>
 
 namespace pyotl
@@ -27,28 +27,28 @@ namespace indicator
 namespace hypervolume
 {
 template <typename _TReal>
-class RecursiveHV : public otl::indicator::hypervolume::FilterAdapter<otl::indicator::hypervolume::RecursiveHV<_TReal> >
+class KMP_HV : public otl::indicator::hypervolume::FilterAdapter<otl::indicator::hypervolume::KMP_HV<_TReal> >
 {
 public:
 	typedef _TReal TReal;
-	typedef otl::indicator::hypervolume::RecursiveHV<TReal> THypervolume;
+	typedef otl::indicator::hypervolume::KMP_HV<TReal> THypervolume;
 	typedef otl::indicator::hypervolume::FilterAdapter<THypervolume> TSuper;
 	typedef typename TSuper::TMetric TMetric;
 	typedef typename TSuper::TPoint TPoint;
 	typedef typename TSuper::TFront TFront;
 
-	RecursiveHV(const TPoint &referencePoint);
-	~RecursiveHV(void);
+	KMP_HV(const TPoint &referencePoint);
+	~KMP_HV(void);
 };
 
 template <typename _TReal>
-RecursiveHV<_TReal>::RecursiveHV(const TPoint &referencePoint)
+KMP_HV<_TReal>::KMP_HV(const TPoint &referencePoint)
 	: TSuper(THypervolume(referencePoint))
 {
 }
 
 template <typename _TReal>
-RecursiveHV<_TReal>::~RecursiveHV(void)
+KMP_HV<_TReal>::~KMP_HV(void)
 {
 }
 }

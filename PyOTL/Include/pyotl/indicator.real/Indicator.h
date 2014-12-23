@@ -31,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <OTL/Indicator/R2.h>
 #include "Global.h"
 #include "Hypervolume/MonteCarloHV.h"
-#include "Hypervolume/RecursiveHV.h"
+#include "Hypervolume/KMP_HV.h"
 
 namespace pyotl
 {
@@ -51,7 +51,7 @@ typedef otl::indicator::ms::MaximumSpread2<TReal> TMaximumSpread2;
 typedef otl::indicator::dm::DiversityMetric<TReal> TDiversityMetric;
 typedef otl::indicator::R2<TReal> TR2;
 typedef otl::indicator::hypervolume::Hypervolume<TReal> THypervolume;
-typedef pyotl::indicator::hypervolume::RecursiveHV<TReal> TRecursiveHV;
+typedef pyotl::indicator::hypervolume::KMP_HV<TReal> TKMP_HV;
 typedef pyotl::indicator::hypervolume::MonteCarloHV<TReal, TRandom &> TMonteCarloHV;
 }
 }

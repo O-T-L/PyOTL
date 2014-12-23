@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <OTL/Indicator/Hypervolume/RecursiveHV.h>
+#include <OTL/Indicator/Hypervolume/KMP_HV.h>
 #include <OTL/Optimizer/SMS-EMOA/MakeHypervolume.h>
 
 namespace pyotl
@@ -27,7 +27,7 @@ namespace optimizer
 namespace sms_emoa
 {
 template <typename _TReal>
-class MakeHypervolume : public otl::optimizer::sms_emoa::MakeHypervolume<otl::indicator::hypervolume::RecursiveHV<_TReal> >
+class MakeHypervolume : public otl::optimizer::sms_emoa::MakeHypervolume<otl::indicator::hypervolume::KMP_HV<_TReal> >
 {
 };
 }
