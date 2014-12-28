@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <OTL/Problem/Camel.h>
 #include <OTL/Problem/ShafferF6.h>
 #include <OTL/Problem/Shubert.h>
+#include <OTL/Problem/Binh.h>
 #include <OTL/Problem/ParetoBox.h>
 #include <OTL/Problem/Water.h>
 #include <OTL/Problem/Rectangle.h>
@@ -80,6 +81,7 @@ typedef otl::problem::XSinX<TReal> TXSinX;
 typedef otl::problem::Camel<TReal> TCamel;
 typedef otl::problem::ShafferF6<TReal> TShafferF6;
 typedef otl::problem::Shubert<TReal> TShubert;
+typedef otl::problem::Binh<TReal> TBinh;
 typedef otl::problem::ParetoBox<TReal> TParetoBox;
 typedef otl::problem::Water<TReal> TWater;
 typedef otl::problem::Rectangle<TReal> TRectangle;

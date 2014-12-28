@@ -46,8 +46,7 @@ class TestCase(unittest.TestCase):
 		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
 		_referenceSet = pyotl.utility.NormalBoundaryIntersection_Real(problem.GetNumberOfObjectives(), 12)
 		size = len(_referenceSet)
-		while (size % 4):
-			size += 1
+		size += (4 - size % 4) % 4
 		pfList = []
 		for _ in range(self.repeat):
 			problem = problemGen()
@@ -81,8 +80,7 @@ class TestCase(unittest.TestCase):
 		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
 		_referenceSet = pyotl.utility.NormalBoundaryIntersection_Real(problem.GetNumberOfObjectives(), 12)
 		size = len(_referenceSet)
-		while (size % 4):
-			size += 1
+		size += (4 - size % 4) % 4
 		pfList = []
 		for _ in range(self.repeat):
 			problem = problemGen()
@@ -118,8 +116,7 @@ class TestCase(unittest.TestCase):
 		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
 		_referenceSet = pyotl.optimizer.nsga_iii.NBI2_Real(problem.GetNumberOfObjectives(), 3, 2)
 		size = len(_referenceSet)
-		while (size % 4):
-			size += 1
+		size += (4 - size % 4) % 4
 		pfList = []
 		for _ in range(self.repeat):
 			problem = problemGen()

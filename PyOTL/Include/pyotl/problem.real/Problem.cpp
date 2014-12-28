@@ -57,6 +57,10 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def("GetBoundary", &TShubert::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 
+	boost::python::class_<TBinh, boost::python::bases<TProblem> >("Binh")
+		.def("GetBoundary", &TBinh::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
+	;
+
 	boost::python::class_<TParetoBox, boost::python::bases<TProblem> >("ParetoBox")
 		.def("GetBoundary", &TParetoBox::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
