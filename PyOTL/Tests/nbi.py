@@ -33,7 +33,6 @@ class TestCase(unittest.TestCase):
 			for division in self.divisions:
 				_points = pyotl.utility.NormalBoundaryIntersection_Real(dimension, division)
 				self.assertEqual(len(_points), ncr(dimension + _division - 1, _division))
-		
 
 if __name__ == '__main__':
 	unittest.main()
