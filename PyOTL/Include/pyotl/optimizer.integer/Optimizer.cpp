@@ -50,11 +50,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	;
 #endif
 #ifdef EXPORT_RWSGA
-	boost::python::class_<TRWSGA::TIndividual>("RWSGA_Individual")
-		.def_readonly("objective_", &TRWSGA::TIndividual::objective_)
-		.def_readonly("inequality_", &TRWSGA::TIndividual::inequality_)
-		.def_readonly("equality_", &TRWSGA::TIndividual::equality_)
-		.def_readwrite("decision_", &TRWSGA::TIndividual::decision_)
+	boost::python::class_<TRWSGA::TIndividual, boost::python::bases<TSolution> >("RWSGA_Individual")
 		.def_readonly("fitness_", &TRWSGA::TIndividual::fitness_)
 	;
 	boost::python::class_<TRWSGA::TSolutionSet>("RWSGA_Population")
@@ -67,11 +63,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	;
 #endif
 #ifdef EXPORT_NSGA_II
-	boost::python::class_<TNSGA_II::TIndividual>("NSGA_II_Individual")
-		.def_readonly("objective_", &TNSGA_II::TIndividual::objective_)
-		.def_readonly("inequality_", &TNSGA_II::TIndividual::inequality_)
-		.def_readonly("equality_", &TNSGA_II::TIndividual::equality_)
-		.def_readwrite("decision_", &TNSGA_II::TIndividual::decision_)
+	boost::python::class_<TNSGA_II::TIndividual, boost::python::bases<TSolution> >("NSGA_II_Individual")
 		.def_readonly("crowdingDistance_", &TNSGA_II::TIndividual::crowdingDistance_)
 	;
 	boost::python::class_<TNSGA_II::TSolutionSet>("NSGA_II_Population")
@@ -89,11 +81,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	;
 #endif
 #ifdef EXPORT_SPEA2
-	boost::python::class_<TSPEA2::TIndividual>("SPEA2_Individual")
-		.def_readonly("objective_", &TSPEA2::TIndividual::objective_)
-		.def_readonly("inequality_", &TSPEA2::TIndividual::inequality_)
-		.def_readonly("equality_", &TSPEA2::TIndividual::equality_)
-		.def_readwrite("decision_", &TSPEA2::TIndividual::decision_)
+	boost::python::class_<TSPEA2::TIndividual, boost::python::bases<TSolution> >("SPEA2_Individual")
 		.def_readonly("rawFitness_", &TSPEA2::TIndividual::rawFitness_)
 		.def_readonly("density_", &TSPEA2::TIndividual::density_)
 		.def_readonly("fitness_", &TSPEA2::TIndividual::fitness_)
@@ -115,11 +103,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	;
 #endif
 #ifdef EXPORT_IBEA
-	boost::python::class_<TIBEA::TIndividual>("IBEA_Individual")
-		.def_readonly("objective_", &TIBEA::TIndividual::objective_)
-		.def_readonly("inequality_", &TIBEA::TIndividual::inequality_)
-		.def_readonly("equality_", &TIBEA::TIndividual::equality_)
-		.def_readwrite("decision_", &TIBEA::TIndividual::decision_)
+	boost::python::class_<TIBEA::TIndividual, boost::python::bases<TSolution> >("IBEA_Individual")
 		.def_readonly("fitness_", &TIBEA::TIndividual::fitness_)
 	;
 	boost::python::class_<TIBEA::TSolutionSet>("IBEA_Population")
@@ -139,11 +123,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	;
 #endif
 #ifdef EXPORT_CDAS
-	boost::python::class_<TCDAS::TIndividual>("CDAS_Individual")
-		.def_readonly("objective_", &TCDAS::TIndividual::objective_)
-		.def_readonly("inequality_", &TCDAS::TIndividual::inequality_)
-		.def_readonly("equality_", &TCDAS::TIndividual::equality_)
-		.def_readwrite("decision_", &TCDAS::TIndividual::decision_)
+	boost::python::class_<TCDAS::TIndividual, boost::python::bases<TSolution> >("CDAS_Individual")
 		.def_readonly("crowdingDistance_", &TCDAS::TIndividual::crowdingDistance_)
 		.def_readonly("convertedObjective_", &TCDAS::TIndividual::convertedObjective_)
 	;
@@ -158,11 +138,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	;
 #endif
 #ifdef EXPORT_EPSILON_MOEA
-	boost::python::class_<TEpsilon_MOEA::TIndividual>("Epsilon_MOEA_Individual")
-		.def_readonly("objective_", &TEpsilon_MOEA::TIndividual::objective_)
-		.def_readonly("inequality_", &TEpsilon_MOEA::TIndividual::inequality_)
-		.def_readonly("equality_", &TEpsilon_MOEA::TIndividual::equality_)
-		.def_readwrite("decision_", &TEpsilon_MOEA::TIndividual::decision_)
+	boost::python::class_<TEpsilon_MOEA::TIndividual, boost::python::bases<TSolution> >("Epsilon_MOEA_Individual")
 		.def_readonly("point_", &TEpsilon_MOEA::TIndividual::point_)
 	;
 	boost::python::class_<TEpsilon_MOEA::TSolutionSet>("Epsilon_MOEA_Archive");
@@ -171,11 +147,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	;
 #endif
 #ifdef EXPORT_TDEA
-	boost::python::class_<TTDEA::TIndividual>("TDEA_Individual")
-		.def_readonly("objective_", &TTDEA::TIndividual::objective_)
-		.def_readonly("inequality_", &TTDEA::TIndividual::inequality_)
-		.def_readonly("equality_", &TTDEA::TIndividual::equality_)
-		.def_readwrite("decision_", &TTDEA::TIndividual::decision_)
+	boost::python::class_<TTDEA::TIndividual, boost::python::bases<TSolution> >("TDEA_Individual")
 		.def_readonly("scaledObjective_", &TTDEA::TIndividual::scaledObjective_)
 	;
 	boost::python::class_<TTDEA::TSolutionSet>("TDEA_Archive");
@@ -184,11 +156,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	;
 #endif
 #ifdef EXPORT_ISNPS
-	boost::python::class_<TISNPS::TIndividual>("ISNPS_Individual")
-		.def_readonly("objective_", &TISNPS::TIndividual::objective_)
-		.def_readonly("inequality_", &TISNPS::TIndividual::inequality_)
-		.def_readonly("equality_", &TISNPS::TIndividual::equality_)
-		.def_readwrite("decision_", &TISNPS::TIndividual::decision_)
+	boost::python::class_<TISNPS::TIndividual, boost::python::bases<TSolution> >("ISNPS_Individual")
 		.def_readonly("convergence_", &TISNPS::TIndividual::convergence_)
 		.def_readonly("distribution_", &TISNPS::TIndividual::distribution_)
 	;
@@ -205,11 +173,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	;
 #endif
 #ifdef EXPORT_NSGA_III
-	boost::python::class_<TNSGA_III::TIndividual>("NSGA_III_Individual")
-		.def_readonly("objective_", &TNSGA_III::TIndividual::objective_)
-		.def_readonly("inequality_", &TNSGA_III::TIndividual::inequality_)
-		.def_readonly("equality_", &TNSGA_III::TIndividual::equality_)
-		.def_readwrite("decision_", &TNSGA_III::TIndividual::decision_)
+	boost::python::class_<TNSGA_III::TIndividual, boost::python::bases<TSolution> >("NSGA_III_Individual")
 		.def_readonly("translatedObjective_", &TNSGA_III::TIndividual::translatedObjective_)
 		.def_readonly("minDistance_", &TNSGA_III::TIndividual::minDistance_)
 	;
@@ -226,11 +190,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	;
 #endif
 #ifdef EXPORT_AR
-	boost::python::class_<TAR::TIndividual>("AR_Individual")
-		.def_readonly("objective_", &TAR::TIndividual::objective_)
-		.def_readonly("inequality_", &TAR::TIndividual::inequality_)
-		.def_readonly("equality_", &TAR::TIndividual::equality_)
-		.def_readwrite("decision_", &TAR::TIndividual::decision_)
+	boost::python::class_<TAR::TIndividual, boost::python::bases<TSolution> >("AR_Individual")
 		.def_readonly("averageRank_", &TAR::TIndividual::averageRank_)
 	;
 	boost::python::class_<TAR::TSolutionSet>("AR_Population")
@@ -243,11 +203,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	;
 #endif
 #ifdef EXPORT_AR_CD_
-	boost::python::class_<TAR_CD_::TIndividual>("AR_CD__Individual")
-		.def_readonly("objective_", &TAR_CD_::TIndividual::objective_)
-		.def_readonly("inequality_", &TAR_CD_::TIndividual::inequality_)
-		.def_readonly("equality_", &TAR_CD_::TIndividual::equality_)
-		.def_readwrite("decision_", &TAR_CD_::TIndividual::decision_)
+	boost::python::class_<TAR_CD_::TIndividual, boost::python::bases<TSolution> >("AR_CD__Individual")
 		.def_readonly("averageRank_", &TAR_CD_::TIndividual::averageRank_)
 		.def_readonly("crowdingDistance_", &TAR_CD_::TIndividual::crowdingDistance_)
 	;
@@ -261,11 +217,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	;
 #endif
 #ifdef EXPORT_AR_DMO
-	boost::python::class_<TAR_DMO::TIndividual>("AR_DMO_Individual")
-		.def_readonly("objective_", &TAR_DMO::TIndividual::objective_)
-		.def_readonly("inequality_", &TAR_DMO::TIndividual::inequality_)
-		.def_readonly("equality_", &TAR_DMO::TIndividual::equality_)
-		.def_readwrite("decision_", &TAR_DMO::TIndividual::decision_)
+	boost::python::class_<TAR_DMO::TIndividual, boost::python::bases<TSolution> >("AR_DMO_Individual")
 		.def_readonly("averageRank_", &TAR_DMO::TIndividual::averageRank_)
 		.def_readonly("crowdingDistance_", &TAR_DMO::TIndividual::crowdingDistance_)
 	;
@@ -296,11 +248,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	;
 #endif
 #ifdef EXPORT_HYPE
-	boost::python::class_<THypE::TIndividual>("HypE_Individual")
-		.def_readonly("objective_", &THypE::TIndividual::objective_)
-		.def_readonly("inequality_", &THypE::TIndividual::inequality_)
-		.def_readonly("equality_", &THypE::TIndividual::equality_)
-		.def_readwrite("decision_", &THypE::TIndividual::decision_)
+	boost::python::class_<THypE::TIndividual, boost::python::bases<TSolution> >("HypE_Individual")
 		.def_readonly("fitness_", &THypE::TIndividual::fitness_)
 	;
 	boost::python::class_<THypE::TSolutionSet>("HypE_Population")
@@ -313,11 +261,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	;
 #endif
 #ifdef EXPORT_MSOPS
-	boost::python::class_<TMSOPS::TIndividual>("MSOPS_Individual")
-		.def_readonly("objective_", &TMSOPS::TIndividual::objective_)
-		.def_readonly("inequality_", &TMSOPS::TIndividual::inequality_)
-		.def_readonly("equality_", &TMSOPS::TIndividual::equality_)
-		.def_readwrite("decision_", &TMSOPS::TIndividual::decision_)
+	boost::python::class_<TMSOPS::TIndividual, boost::python::bases<TSolution> >("MSOPS_Individual")
 		.def_readonly("fitness_", &TMSOPS::TIndividual::fitness_)
 	;
 	boost::python::class_<TMSOPS::TSolutionSet>("MSOPS_Population")
@@ -332,11 +276,10 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	;
 #endif
 #ifdef EXPORT_GrEA
-	boost::python::class_<TGrEA::TIndividual>("GrEA_Individual")
-		.def_readonly("objective_", &TGrEA::TIndividual::objective_)
-		.def_readonly("inequality_", &TGrEA::TIndividual::inequality_)
-		.def_readonly("equality_", &TGrEA::TIndividual::equality_)
-		.def_readwrite("decision_", &TGrEA::TIndividual::decision_)
+	boost::python::class_<TGrEA::TIndividual, boost::python::bases<TSolution> >("GrEA_Individual")
+		.def_readonly("gr_", &TGrEA::TIndividual::gr_)
+		.def_readonly("gcd_", &TGrEA::TIndividual::gcd_)
+		.def_readonly("gcpd_", &TGrEA::TIndividual::gcpd_)
 	;
 	boost::python::class_<TGrEA::TSolutionSet>("GrEA_Population")
 		.def(boost::python::vector_indexing_suite<TGrEA::TSolutionSet>())
@@ -349,22 +292,13 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	;
 #endif
 #ifdef EXPORT_MOEA_D
-	boost::python::class_<TMOEA_D_Individual>("MOEA_D_Individual")
-		.def_readonly("objective_", &TMOEA_D_Individual::objective_)
-		.def_readonly("inequality_", &TMOEA_D_Individual::inequality_)
-		.def_readonly("equality_", &TMOEA_D_Individual::equality_)
-		.def_readwrite("decision_", &TMOEA_D_Individual::decision_)
-	;
+	boost::python::class_<TMOEA_D_Individual, boost::python::bases<TSolution> >("MOEA_D_Individual");
 	boost::python::class_<TMOEA_D_Population>("MOEA_D_Population")
 		.def(boost::python::vector_indexing_suite<TMOEA_D_Population>())
 	;
 #endif
 #ifdef EXPORT_SMS_EMOA
-	boost::python::class_<TSMS_EMOA::TIndividual>("SMS_EMOA_Individual")
-		.def_readonly("objective_", &TSMS_EMOA::TIndividual::objective_)
-		.def_readonly("inequality_", &TSMS_EMOA::TIndividual::inequality_)
-		.def_readonly("equality_", &TSMS_EMOA::TIndividual::equality_)
-		.def_readwrite("decision_", &TSMS_EMOA::TIndividual::decision_)
+	boost::python::class_<TSMS_EMOA::TIndividual, boost::python::bases<TSolution> >("SMS_EMOA_Individual")
 		.def_readonly("hvContribution_", &TSMS_EMOA::TIndividual::hvContribution_)
 	;
 	boost::python::class_<TSMS_EMOA::TSolutionSet>("SMS_EMOA_Population")
