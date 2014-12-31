@@ -48,6 +48,7 @@ typedef otl::optimizer::ar_dmo::AR_DMO<TReal, TDecision, TRandom &> TAR_DMO;
 typedef otl::optimizer::g_nsga_ii::G_NSGA_II<TReal, TDecision, TRandom &> TG_NSGA_II;
 typedef otl::optimizer::r_nsga_ii::R_NSGA_II<TReal, TDecision, TRandom &> TR_NSGA_II;
 typedef otl::optimizer::hype::HypE<TReal, TDecision, TRandom &> THypE;
+typedef otl::optimizer::hype::FastHypE<TReal, TDecision, TRandom &> TFastHypE;
 typedef otl::optimizer::msops::MSOPS<TReal, TDecision, TRandom &> TMSOPS;
 typedef otl::optimizer::grea::GrEA<TReal, TDecision, TRandom &> TGrEA;
 typedef otl::optimizer::moea_d::Individual<TReal, TDecision> TMOEA_D_Individual;

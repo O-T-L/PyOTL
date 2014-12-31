@@ -259,6 +259,11 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def("GetCrossover", &THypE::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetMutation", &THypE::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
+	boost::python::class_<TFastHypE, boost::python::bases<TOptimizer> >("FastHypE", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, size_t>())
+		.def("GetSolutionSet", &THypE::GetSolutionSet, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetCrossover", &THypE::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetMutation", &THypE::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())
+	;
 #endif
 #ifdef EXPORT_MSOPS
 	boost::python::class_<TMSOPS::TIndividual, boost::python::bases<TSolution> >("MSOPS_Individual")
