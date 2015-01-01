@@ -248,9 +248,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	;
 #endif
 #ifdef EXPORT_HYPE
-	boost::python::class_<THypE::TIndividual, boost::python::bases<TSolution> >("HypE_Individual")
-		.def_readonly("fitness_", &THypE::TIndividual::fitness_)
-	;
+	boost::python::class_<THypE::TIndividual, boost::python::bases<TSolution> >("HypE_Individual");
 	boost::python::class_<THypE::TSolutionSet>("HypE_Population")
 		.def(boost::python::vector_indexing_suite<THypE::TSolutionSet>())
 	;
@@ -258,11 +256,13 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def("GetSolutionSet", &THypE::GetSolutionSet, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetCrossover", &THypE::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetMutation", &THypE::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetSampleSize", &THypE::GetSampleSize)
 	;
 	boost::python::class_<TFastHypE, boost::python::bases<TOptimizer> >("FastHypE", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, size_t>())
 		.def("GetSolutionSet", &THypE::GetSolutionSet, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetCrossover", &THypE::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetMutation", &THypE::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetSampleSize", &THypE::GetSampleSize)
 	;
 #endif
 #ifdef EXPORT_MSOPS
@@ -303,9 +303,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	;
 #endif
 #ifdef EXPORT_SMS_EMOA
-	boost::python::class_<TSMS_EMOA::TIndividual, boost::python::bases<TSolution> >("SMS_EMOA_Individual")
-		.def_readonly("hvContribution_", &TSMS_EMOA::TIndividual::hvContribution_)
-	;
+	boost::python::class_<TSMS_EMOA::TIndividual, boost::python::bases<TSolution> >("SMS_EMOA_Individual");
 	boost::python::class_<TSMS_EMOA::TSolutionSet>("SMS_EMOA_Population")
 		.def(boost::python::vector_indexing_suite<TSMS_EMOA::TSolutionSet>())
 	;
