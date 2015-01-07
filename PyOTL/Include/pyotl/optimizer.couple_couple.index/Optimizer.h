@@ -30,6 +30,7 @@ namespace index
 {
 typedef otl::optimizer::epsilon_moea::couple_couple::Epsilon_MOEA<TReal, TDecision, TRandom &> TEpsilon_MOEA;
 typedef otl::optimizer::tdea::couple_couple::TDEA<TReal, TDecision, TRandom &> TTDEA;
+typedef otl::optimizer::moea_d::MOEA_D<TReal, TDecision, TRandom &> TMOEA_D;
 typedef otl::optimizer::moea_d::couple_couple::MOEA_D_WeightedSum<TReal, TDecision, TRandom &> TMOEA_D_WeightedSum;
 typedef otl::optimizer::moea_d::couple_couple::MOEA_D_Tchebycheff<TReal, TDecision, TRandom &> TMOEA_D_Tchebycheff;
 typedef otl::optimizer::moea_d::couple_couple::NormMOEA_D_Tchebycheff<TReal, TDecision, TRandom &> TNormMOEA_D_Tchebycheff;

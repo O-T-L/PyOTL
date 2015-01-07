@@ -29,6 +29,7 @@ namespace xtriple
 namespace integer
 {
 typedef otl::optimizer::gde3::GDE3<TReal, TDecision, TRandom &> TGDE3;
+typedef otl::optimizer::moea_d::MOEA_D<TReal, TDecision, TRandom &> TMOEA_D;
 typedef otl::optimizer::moea_d::xtriple::MOEA_D_WeightedSum<TReal, TDecision, TRandom &> TMOEA_D_WeightedSum;
 typedef otl::optimizer::moea_d::xtriple::MOEA_D_Tchebycheff<TReal, TDecision, TRandom &> TMOEA_D_Tchebycheff;
 typedef otl::optimizer::moea_d::xtriple::NormMOEA_D_Tchebycheff<TReal, TDecision, TRandom &> TNormMOEA_D_Tchebycheff;

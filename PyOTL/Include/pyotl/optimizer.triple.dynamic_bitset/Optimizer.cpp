@@ -30,38 +30,39 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 {
 #ifdef EXPORT_MOEA_D
 	boost::python::class_<TMOEA_D_WeightedSum, boost::python::bases<TOptimizer> >("MOEA_D_WeightedSum", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, std::vector<TMOEA_D_WeightedSum::TPoint> &, size_t>())
+		.def("GetWeightVectors", &TMOEA_D::GetWeightVectors, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetReferencePoint", &TMOEA_D::GetReferencePoint, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetNeighbors", &TMOEA_D::GetNeighbors, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetSolutionSet", &TMOEA_D_WeightedSum::GetSolutionSet, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetCrossover", &TMOEA_D_WeightedSum::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetMutation", &TMOEA_D_WeightedSum::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())
-		.def("GetWeightVectors", &TMOEA_D_WeightedSum::GetWeightVectors, boost::python::return_value_policy<boost::python::reference_existing_object>())
-		.def("GetReferencePoint", &TMOEA_D_WeightedSum::GetReferencePoint, boost::python::return_value_policy<boost::python::reference_existing_object>())
-		.def("GetNeighbors", &TMOEA_D_WeightedSum::GetNeighbors, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 
 	boost::python::class_<TMOEA_D_Tchebycheff, boost::python::bases<TOptimizer> >("MOEA_D_Tchebycheff", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, std::vector<TMOEA_D_Tchebycheff::TPoint> &, size_t>())
+		.def("GetWeightVectors", &TMOEA_D::GetWeightVectors, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetReferencePoint", &TMOEA_D::GetReferencePoint, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetNeighbors", &TMOEA_D::GetNeighbors, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetSolutionSet", &TMOEA_D_Tchebycheff::GetSolutionSet, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetCrossover", &TMOEA_D_Tchebycheff::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetMutation", &TMOEA_D_Tchebycheff::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())
-		.def("GetWeightVectors", &TMOEA_D_Tchebycheff::GetWeightVectors, boost::python::return_value_policy<boost::python::reference_existing_object>())
-		.def("GetReferencePoint", &TMOEA_D_Tchebycheff::GetReferencePoint, boost::python::return_value_policy<boost::python::reference_existing_object>())
-		.def("GetNeighbors", &TMOEA_D_Tchebycheff::GetNeighbors, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 
 	boost::python::class_<TNormMOEA_D_Tchebycheff, boost::python::bases<TOptimizer> >("NormMOEA_D_Tchebycheff", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, std::vector<TNormMOEA_D_Tchebycheff::TPoint> &, size_t>())
+		.def("GetWeightVectors", &TMOEA_D::GetWeightVectors, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetReferencePoint", &TMOEA_D::GetReferencePoint, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetNeighbors", &TMOEA_D::GetNeighbors, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetSolutionSet", &TNormMOEA_D_Tchebycheff::GetSolutionSet, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetCrossover", &TNormMOEA_D_Tchebycheff::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetMutation", &TNormMOEA_D_Tchebycheff::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())
-		.def("GetWeightVectors", &TNormMOEA_D_Tchebycheff::GetWeightVectors, boost::python::return_value_policy<boost::python::reference_existing_object>())
-		.def("GetReferencePoint", &TNormMOEA_D_Tchebycheff::GetReferencePoint, boost::python::return_value_policy<boost::python::reference_existing_object>())
-		.def("GetNeighbors", &TNormMOEA_D_Tchebycheff::GetNeighbors, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 
 	boost::python::class_<TMOEA_D_PBI, boost::python::bases<TOptimizer> >("MOEA_D_PBI", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, std::vector<TMOEA_D_PBI::TPoint> &, size_t, TReal>())
+		.def("GetWeightVectors", &TMOEA_D::GetWeightVectors, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetReferencePoint", &TMOEA_D::GetReferencePoint, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetNeighbors", &TMOEA_D::GetNeighbors, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetSolutionSet", &TMOEA_D_PBI::GetSolutionSet, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetCrossover", &TMOEA_D_PBI::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetMutation", &TMOEA_D_PBI::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())
-		.def("GetWeightVectors", &TMOEA_D_PBI::GetWeightVectors, boost::python::return_value_policy<boost::python::reference_existing_object>())
-		.def("GetReferencePoint", &TMOEA_D_PBI::GetReferencePoint, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetPenalty", &TMOEA_D_PBI::GetPenalty)
 	;
 #endif

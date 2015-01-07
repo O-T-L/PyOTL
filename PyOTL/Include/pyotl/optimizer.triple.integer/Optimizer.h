@@ -28,6 +28,7 @@ namespace triple
 {
 namespace integer
 {
+typedef otl::optimizer::moea_d::MOEA_D<TReal, TDecision, TRandom &> TMOEA_D;
 typedef otl::optimizer::moea_d::triple::MOEA_D_WeightedSum<TReal, TDecision, TRandom &> TMOEA_D_WeightedSum;
 typedef otl::optimizer::moea_d::triple::MOEA_D_Tchebycheff<TReal, TDecision, TRandom &> TMOEA_D_Tchebycheff;
 typedef otl::optimizer::moea_d::triple::NormMOEA_D_Tchebycheff<TReal, TDecision, TRandom &> TNormMOEA_D_Tchebycheff;
