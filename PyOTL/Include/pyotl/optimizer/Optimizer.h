@@ -35,10 +35,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <OTL/Optimizer/AR+DMO/AR+DMO.h>
 #include <OTL/Optimizer/G-NSGA-II/G-NSGA-II.h>
 #include <OTL/Optimizer/R-NSGA-II/R-NSGA-II.h>
-#include <OTL/Optimizer/HypE/HypE.h>
-#include <OTL/Optimizer/HypE/FastHypE.h>
 #include <OTL/Optimizer/MSOPS/MSOPS.h>
 #include <OTL/Optimizer/GrEA/GrEA.h>
+#include <OTL/Optimizer/HypE/FastMonteCarloHypE.h>
+#include <OTL/Optimizer/HypE/MonteCarloHypE.h>
 #include <OTL/Optimizer/MOEA-D/Individual.h>
 #include <OTL/Optimizer/SMS-EMOA/MonteCarloSMS-EMOA.h>
 #include <pyotl/Global.h>

@@ -36,7 +36,7 @@ class TestCase(unittest.TestCase):
 	def tearDown(self):
 		pass
 	
-	def testHypE_DTLZ2(self):
+	def testMonteCarloHypE_DTLZ2(self):
 		random = pyotl.utility.Random(1)
 		problemGen = lambda: pyotl.problem.real.DTLZ2(3)
 		problem = problemGen()
@@ -48,7 +48,7 @@ class TestCase(unittest.TestCase):
 		for _ in range(self.repeat):
 			problem = problemGen()
 			initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), 100)
-			optimizer = pyotl.optimizer.real.HypE(random, problem, initial, crossover, mutation, self.nSamples)
+			optimizer = pyotl.optimizer.real.MonteCarloHypE(random, problem, initial, crossover, mutation, self.nSamples)
 			while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
 				optimizer()
 			pf = pyotl.utility.PyListList2VectorVector_Real([list(solution.objective_) for solution in optimizer.GetSolutionSet()])
@@ -67,7 +67,7 @@ class TestCase(unittest.TestCase):
 		rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'IGD.csv')).tolist()
 		self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
 	
-	def testHypE_NegativeDTLZ2(self):
+	def testMonteCarloHypE_NegativeDTLZ2(self):
 		random = pyotl.utility.Random(1)
 		problemGen = lambda: pyotl.problem.real.NegativeDTLZ2(3)
 		problem = problemGen()
@@ -79,7 +79,7 @@ class TestCase(unittest.TestCase):
 		for _ in range(self.repeat):
 			problem = problemGen()
 			initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), 100)
-			optimizer = pyotl.optimizer.real.HypE(random, problem, initial, crossover, mutation, self.nSamples)
+			optimizer = pyotl.optimizer.real.MonteCarloHypE(random, problem, initial, crossover, mutation, self.nSamples)
 			while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
 				optimizer()
 			pf = pyotl.utility.PyListList2VectorVector_Real([list(solution.objective_) for solution in optimizer.GetSolutionSet()])
@@ -100,7 +100,7 @@ class TestCase(unittest.TestCase):
 		rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'IGD.csv')).tolist()
 		self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
 	
-	def testFastHypE_DTLZ2(self):
+	def testFastMonteCarloHypE_DTLZ2(self):
 		random = pyotl.utility.Random(1)
 		problemGen = lambda: pyotl.problem.real.DTLZ2(3)
 		problem = problemGen()
@@ -112,7 +112,7 @@ class TestCase(unittest.TestCase):
 		for _ in range(self.repeat):
 			problem = problemGen()
 			initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), 100)
-			optimizer = pyotl.optimizer.real.FastHypE(random, problem, initial, crossover, mutation, self.nSamples)
+			optimizer = pyotl.optimizer.real.FastMonteCarloHypE(random, problem, initial, crossover, mutation, self.nSamples)
 			while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
 				optimizer()
 			pf = pyotl.utility.PyListList2VectorVector_Real([list(solution.objective_) for solution in optimizer.GetSolutionSet()])

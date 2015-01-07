@@ -248,21 +248,21 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	;
 #endif
 #ifdef EXPORT_HYPE
-	boost::python::class_<THypE::TIndividual, boost::python::bases<TSolution> >("HypE_Individual");
-	boost::python::class_<THypE::TSolutionSet>("HypE_Population")
-		.def(boost::python::vector_indexing_suite<THypE::TSolutionSet>())
+	boost::python::class_<TMonteCarloHypE::TIndividual, boost::python::bases<TSolution> >("MonteCarloHypE_Individual");
+	boost::python::class_<TMonteCarloHypE::TSolutionSet>("MonteCarloHypE_Population")
+		.def(boost::python::vector_indexing_suite<TMonteCarloHypE::TSolutionSet>())
 	;
-	boost::python::class_<THypE, boost::python::bases<TOptimizer> >("HypE", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, size_t>())
-		.def("GetSolutionSet", &THypE::GetSolutionSet, boost::python::return_value_policy<boost::python::reference_existing_object>())
-		.def("GetCrossover", &THypE::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
-		.def("GetMutation", &THypE::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())
-		.def("GetSampleSize", &THypE::GetSampleSize)
+	boost::python::class_<TMonteCarloHypE, boost::python::bases<TOptimizer> >("MonteCarloHypE", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, size_t>())
+		.def("GetSolutionSet", &TMonteCarloHypE::GetSolutionSet, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetCrossover", &TMonteCarloHypE::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetMutation", &TMonteCarloHypE::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetSampleSize", &TMonteCarloHypE::GetSampleSize)
 	;
-	boost::python::class_<TFastHypE, boost::python::bases<TOptimizer> >("FastHypE", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, size_t>())
-		.def("GetSolutionSet", &THypE::GetSolutionSet, boost::python::return_value_policy<boost::python::reference_existing_object>())
-		.def("GetCrossover", &THypE::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
-		.def("GetMutation", &THypE::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())
-		.def("GetSampleSize", &THypE::GetSampleSize)
+	boost::python::class_<TFastMonteCarloHypE, boost::python::bases<TOptimizer> >("FastMonteCarloHypE", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, size_t>())
+		.def("GetSolutionSet", &TMonteCarloHypE::GetSolutionSet, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetCrossover", &TMonteCarloHypE::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetMutation", &TMonteCarloHypE::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetSampleSize", &TMonteCarloHypE::GetSampleSize)
 	;
 #endif
 #ifdef EXPORT_MSOPS
