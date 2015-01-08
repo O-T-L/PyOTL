@@ -19,8 +19,8 @@ import os
 import unittest
 import numpy
 import pyotl.utility
-import pyotl.optimizer.tsp
-import pyotl.problem.tsp
+import pyotl.optimizer.index
+import pyotl.problem.index
 import scipy.spatial
 
 def make_adjacency_matrix(citiesMatrix):
@@ -45,9 +45,9 @@ class TestCase(unittest.TestCase):
 		pathData = os.path.join(self.pathData, 'MOTSP')
 		pathCities = os.path.join(pathData, 'Cities')
 		citiesMatrics = [numpy.loadtxt(os.path.join(pathCities, 'kro%c%u.csv' % (chr(ord('A') + i), nCities))) for i in range(nObjectives)]
-		_adjacencyMatrics = [make_adjacency_matrix(citiesMatrix).tolist() for citiesMatrix in citiesMatrics]
-		adjacencyMatrics = pyotl.problem.tsp.pylistlistlist2matrics(_adjacencyMatrics)
-		problem = pyotl.problem.tsp.MOTSP(adjacencyMatrics)
+		matrics = [make_adjacency_matrix(citiesMatrix).tolist() for citiesMatrix in citiesMatrics]
+		_matrics = pyotl.utility.PyListListList2VectorBlasSymmetricMatrix_Real(matrics)
+		problem = pyotl.problem.index.MOTSP(_matrics)
 		filename = '%u_%u' % (problem.GetNumberOfObjectives(), nCities)
 		ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'), dtype = int)
 		pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
@@ -57,7 +57,7 @@ class TestCase(unittest.TestCase):
 		self.assertEqual(ps.shape[1], nCities)
 		self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
 		for decision, objective in zip(ps, pf):
-			solution = pyotl.optimizer.tsp.Solution()
+			solution = pyotl.optimizer.index.Solution()
 			solution.decision_ = pyotl.utility.PyList2Vector_size_t(decision.tolist())
 			problem(solution)
 			for f1, f2 in zip(objective, solution.objective_):
@@ -79,11 +79,11 @@ class TestCase(unittest.TestCase):
 		correlationList = [0, 1]
 		for _correlation in correlationList:
 			correlation = [_correlation] * (len(adjacencyMatrics) - 1)
-			correlation = pyotl.utility.PyList2Vector_Real(correlation)
-			_adjacencyMatrics = pyotl.problem.tsp.pylistlistlist2matrics(adjacencyMatrics)
-			pyotl.problem.tsp.correlate_adjacency_matrics(correlation, _adjacencyMatrics)
-			problem = pyotl.problem.tsp.MOTSP(_adjacencyMatrics)
-			correlationPath = os.path.join(os.path.join(pathData, 'Correlation'), str(_correlation))
+			_correlation = pyotl.utility.PyList2Vector_Real(correlation)
+			_matrics = pyotl.utility.PyListListList2VectorBlasSymmetricMatrix_Real(adjacencyMatrics)
+			pyotl.problem.index.CorrelateAdjacencyMatrics_Real(_correlation, _matrics)
+			problem = pyotl.problem.index.MOTSP(_matrics)
+			correlationPath = os.path.join(pathData, 'Correlation', str(correlation[0]))
 			filename = '%u_%u' % (problem.GetNumberOfObjectives(), nCities)
 			ps = numpy.loadtxt(os.path.join(correlationPath, filename + '.ps.csv'), dtype = int)
 			pf = numpy.loadtxt(os.path.join(correlationPath, filename + '.pf.csv'))
@@ -93,7 +93,7 @@ class TestCase(unittest.TestCase):
 			self.assertEqual(ps.shape[1], nCities)
 			self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
 			for decision, objective in zip(ps, pf):
-				solution = pyotl.optimizer.tsp.Solution()
+				solution = pyotl.optimizer.index.Solution()
 				solution.decision_ = pyotl.utility.PyList2Vector_size_t(decision.tolist())
 				problem(solution)
 				for f1, f2 in zip(objective, solution.objective_):
