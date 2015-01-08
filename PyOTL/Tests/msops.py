@@ -41,18 +41,18 @@ class TestCase(unittest.TestCase):
 		problemGen = lambda: pyotl.problem.real.DTLZ2(3)
 		problem = problemGen()
 		pathProblem = os.path.join(self.pathData, type(problem).__name__, str(problem.GetNumberOfObjectives()))
-		_crossover = pyotl.crossover.real.DifferentialEvolution(random, 0.7, problem.GetBoundary(), 0.7)
-		crossover = pyotl.crossover.real.XTripleCrossoverAdapter(_crossover, random)
-		mutation = pyotl.mutation.real.PolynomialMutation(random, 0, problem.GetBoundary(), 20)
+		_crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
+		crossover = pyotl.crossover.real.CoupleCoupleCrossoverAdapter(_crossover, random)
+		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
 		population = 100
-		path = os.path.join(pathProblem, 'PF_%u.csv' % (population / 2))
-		targets = numpy.loadtxt(os.path.splitext(__file__)[0] + '.csv')
-		targets = pyotl.utility.PyListList2VectorVector_Real(targets.tolist())
+		pathTargets = os.path.join(self.pathData, 'MSOPS', str(problem.GetNumberOfObjectives()) + '.csv')
+		targets = numpy.loadtxt(pathTargets)
+		_targets = pyotl.utility.PyListList2VectorVector_Real(targets.tolist())
 		pfList = []
 		for _ in range(self.repeat):
 			problem = problemGen()
 			initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), population)
-			optimizer = pyotl.optimizer.real.MSOPS(random, problem, initial, crossover, mutation, targets, 100)
+			optimizer = pyotl.optimizer.real.MSOPS(random, problem, initial, crossover, mutation, _targets, 100)
 			while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
 				optimizer()
 			pf = pyotl.utility.PyListList2VectorVector_Real([list(solution.objective_) for solution in optimizer.GetSolutionSet()])
