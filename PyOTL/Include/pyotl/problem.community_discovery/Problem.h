@@ -39,7 +39,7 @@ typedef boost::numeric::ublas::symmetric_matrix<TReal> TMatrix;
 typedef otl::problem::community_discovery::metric::Metric<TReal, TMatrix> TMetric;
 typedef otl::problem::community_discovery::metric::Q<TReal, TMatrix> TQ;
 typedef otl::problem::community_discovery::metric::QLi<TReal, TMatrix> TQLi;
-typedef otl::problem::community_discovery::metric::MinMaxCut<TReal, TMatrix> TMinMaxCut;
+typedef otl::problem::community_discovery::metric::MinMaxCut<TReal, TMatrix> TRangeCut;
 
 template <typename _T>
 std::vector<_T> PyTuple2Vector(boost::python::tuple tuple)
