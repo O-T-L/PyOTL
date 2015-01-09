@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
 import timeit
+import numpy
 import pyotl.utility
 import pyotl.problem.real
 import pyotl.initial.real
@@ -49,15 +50,13 @@ def main():
 				timer = timeit.Timer(lambda: run_nsga_ii(problem, nEvaluations))
 				duration = timer.timeit(1)
 				print(duration)
-				
-				path = os.path.join(os.path.expanduser('~'), 'PyOTL', type(problem).__name__, str(nObjectives))
+				path = os.path.join(os.path.expanduser('~'), 'NSGA-II', type(problem).__name__, str(nObjectives))
 				try:
 					os.makedirs(path, exist_ok = True)
 				except:
 					pass
-				path = os.path.join(path, '%u.duration' % repeat)
-				f = open(path, 'w')
-				f.write(duration)
+				f = open(os.path.join(path, '%u.duration' % repeat), 'w')
+				f.write(str(duration))
 				f.close()
 
 if __name__ == '__main__':
