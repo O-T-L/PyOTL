@@ -16,7 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 import os
-import timeit
+import time
 import numpy
 import pyotl.utility
 import pyotl.problem.real
@@ -24,16 +24,6 @@ import pyotl.initial.real
 import pyotl.crossover.real
 import pyotl.mutation.real
 import pyotl.optimizer.real
-
-def run_nsga_ii(problem, nEvaluations):
-	random = pyotl.utility.Random()
-	_crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
-	crossover = pyotl.crossover.real.CoupleCoupleCrossoverAdapter(_crossover, random)
-	mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
-	initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), 100)
-	optimizer = pyotl.optimizer.real.NSGA_II(random, problem, initial, crossover, mutation)
-	while optimizer.GetProblem().GetNumberOfEvaluations() < nEvaluations:
-		optimizer()
 
 def main():
 	for repeat in range(30):
@@ -47,14 +37,26 @@ def main():
 			]
 			nEvaluationsList = [100000, 30000, 100000, 30000, 30000]
 			for problem, nEvaluations in zip(problems, nEvaluationsList):
-				timer = timeit.Timer(lambda: run_nsga_ii(problem, nEvaluations))
-				duration = timer.timeit(1)
+				start = time.clock()
+				random = pyotl.utility.Random()
+				_crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
+				crossover = pyotl.crossover.real.CoupleCoupleCrossoverAdapter(_crossover, random)
+				mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
+				initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), 100)
+				optimizer = pyotl.optimizer.real.NSGA_II(random, problem, initial, crossover, mutation)
+				while optimizer.GetProblem().GetNumberOfEvaluations() < nEvaluations:
+					optimizer()
+				end = time.clock()
+				duration = end - start
 				print(duration)
 				path = os.path.join(os.path.expanduser('~'), 'NSGA-II', type(problem).__name__, str(nObjectives))
 				try:
 					os.makedirs(path, exist_ok = True)
 				except:
 					pass
+				solutions = optimizer.GetSolutionSet()
+				pf = [list(solution.objective_) for solution in solutions]
+				numpy.savetxt(os.path.join(path, '%u.pf' % repeat), pf, delimiter = '\t')
 				f = open(os.path.join(path, '%u.duration' % repeat), 'w')
 				f.write(str(duration))
 				f.close()
