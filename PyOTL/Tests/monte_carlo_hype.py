@@ -118,7 +118,7 @@ class TestCase(unittest.TestCase):
 			pf = pyotl.utility.PyListList2VectorVector_Real([list(solution.objective_) for solution in optimizer.GetSolutionSet()])
 			pfList.append(pf)
 		pathCrossover = os.path.join(pathProblem, type(crossover.GetCrossover()).__name__)
-		pathOptimizer = os.path.join(pathCrossover, type(optimizer).__name__)
+		pathOptimizer = os.path.join(pathCrossover, type(optimizer).__name__.replace('Fast', ''))
 		pfTrue = pyotl.utility.PyListList2VectorVector_Real(numpy.loadtxt(os.path.join(pathProblem, 'PF.csv')).tolist())
 		#GD
 		indicator = pyotl.indicator.real.DTLZ2GD()
