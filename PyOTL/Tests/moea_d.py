@@ -69,7 +69,7 @@ class TestCase(unittest.TestCase):
 		rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'IGD.csv')).tolist()
 		self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
 	
-	def testMOEA_D_WeightedSum_NegativeDTLZ2(self):
+	def _testMOEA_D_WeightedSum_NegativeDTLZ2(self):
 		random = pyotl.utility.Random(1)
 		problemGen = lambda: pyotl.problem.real.NegativeDTLZ2(3)
 		problem = problemGen()
