@@ -73,7 +73,7 @@ class TestCase(unittest.TestCase):
 	
 	def testMSOPS_NegativeDTLZ2(self):
 		random = pyotl.utility.Random(1)
-		problemGen = lambda: pyotl.problem.real.DTLZ2(3)
+		problemGen = lambda: pyotl.problem.real.NegativeDTLZ2(3)
 		problem = problemGen()
 		pathProblem = os.path.join(self.pathData, type(problem).__name__.replace('Negative', ''), str(problem.GetNumberOfObjectives()))
 		_crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
