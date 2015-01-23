@@ -34,11 +34,7 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def("GetNumberOfEvaluations", &TProblem::GetNumberOfEvaluations)
 	;
 
-	boost::python::class_<TDynamicProblem, boost::noncopyable>("DynamicProblem", boost::python::no_init)
-		.def("__call__", &TProblem::operator ())
-		.def("Fix", &TProblem::Fix)
-		.def("GetNumberOfObjectives", &TProblem::GetNumberOfObjectives)
-		.def("GetNumberOfEvaluations", &TProblem::GetNumberOfEvaluations)
+	boost::python::class_<TDynamicProblem, boost::noncopyable, boost::python::bases<TProblem> >("DynamicProblem", boost::python::no_init)
 		.def("GetProgress", &TDynamicProblem::GetProgress)
 	;
 
