@@ -45,7 +45,7 @@ class TestCase(unittest.TestCase):
 		crossover = pyotl.crossover.real.CoupleCoupleCrossoverAdapter(_crossover, random)
 		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
 		boundary = numpy.loadtxt(os.path.join(pathProblem, 'Boundary.csv'))
-		boundary = pyotl.utility.PyList2Boundary_Real(boundary.tolist())
+		boundary = pyotl.utility.PyListList2VectorPair_Real(boundary.tolist())
 		pfList = []
 		for _ in range(self.repeat):
 			problem = problemGen()
@@ -78,7 +78,7 @@ class TestCase(unittest.TestCase):
 		crossover = pyotl.crossover.real.CoupleCoupleCrossoverAdapter(_crossover, random)
 		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
 		boundary = numpy.loadtxt(os.path.join(pathProblem, 'Boundary.csv'))
-		boundary = pyotl.utility.PyList2Boundary_Real(boundary.tolist())
+		boundary = pyotl.utility.PyListList2VectorPair_Real(boundary.tolist())
 		pfList = []
 		for _ in range(self.repeat):
 			problem = problemGen()

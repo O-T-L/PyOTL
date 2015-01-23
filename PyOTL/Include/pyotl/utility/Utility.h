@@ -185,7 +185,7 @@ boost::python::list VectorBlasMatrix2PyListListList(const std::vector<boost::num
 }
 
 template <typename _T>
-std::vector<std::pair<_T, _T> > PyList2Boundary(boost::python::list listlist)
+std::vector<std::pair<_T, _T> > PyListList2VectorPair(boost::python::list listlist)
 {
 	typedef std::pair<_T, _T> TRange;
 	typedef std::vector<TRange> TBoundary;

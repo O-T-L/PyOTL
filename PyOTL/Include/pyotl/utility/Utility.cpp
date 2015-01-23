@@ -168,6 +168,9 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	boost::python::def("PyTuple2Vector_bool", &PyTuple2Vector<bool>);
 	boost::python::def("PyList2Vector_bool", &PyList2Vector<bool>);
 	boost::python::def("PyListList2VectorVector_Real", &PyListList2VectorVector<TReal>);
+	boost::python::def("PyListList2VectorVector_Integer", &PyListList2VectorVector<TInteger>);
+	boost::python::def("PyListList2VectorPair_Real", &PyListList2VectorPair<TReal>);
+	boost::python::def("PyListList2VectorPair_Integer", &PyListList2VectorPair<TInteger>);
 	boost::python::def("PyList2BlasVector_Real", &PyList2BlasVector<TReal>);
 	boost::python::def("PyTuple2BlasVector_Real", &PyTuple2BlasVector<TReal>);
 	boost::python::def("PyListList2BlasMatrix_Real", &PyListList2BlasMatrix<TReal>);
@@ -177,8 +180,6 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	boost::python::def("BlasMatrix2PyListList_Real", &BlasMatrix2PyListList<TReal>);
 	boost::python::def("BlasSymmetricMatrix2PyListList_Real", &BlasSymmetricMatrix2PyListList<TReal>);
 	boost::python::def("VectorBlasMatrix2PyListListList_Real", &VectorBlasMatrix2PyListListList<TReal>);
-	boost::python::def("PyList2Boundary_Real", &PyList2Boundary<TReal>);
-	boost::python::def("PyList2Boundary_Integer", &PyList2Boundary<TInteger>);
 	boost::python::def("ExtractParetoNondominate_Vector_Real", &ExtractParetoNondominate<TVector_Real>);
 	boost::python::def("NormalBoundaryIntersection_Real", &NormalBoundaryIntersection<TReal>);
 	boost::python::def("SPEA2Truncation_Real", &SPEA2Truncation<TReal>);

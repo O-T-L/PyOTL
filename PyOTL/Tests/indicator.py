@@ -40,7 +40,7 @@ class TestCase(unittest.TestCase):
 		for problemName in problemNameList:
 			pathData = os.path.join(os.path.join(self.pathData, problemName), str(nObjectives))
 			boundary = numpy.loadtxt(os.path.join(pathData, 'Boundary.csv'))
-			boundary = pyotl.utility.PyList2Boundary_Real(boundary.tolist())
+			boundary = pyotl.utility.PyListList2VectorPair_Real(boundary.tolist())
 			_division = numpy.loadtxt(os.path.join(pathData, 'Division.csv'), dtype = int)
 			division = pyotl.utility.PyList2Vector_size_t(_division.tolist())
 			pfTrue = numpy.loadtxt(os.path.join(pathData, 'PF_100.csv'))
