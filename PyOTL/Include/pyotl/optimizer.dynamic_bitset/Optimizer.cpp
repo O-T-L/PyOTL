@@ -239,11 +239,12 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 	;
 #endif
 #ifdef EXPORT_R_NSGA_II
-	boost::python::class_<TR_NSGA_II, boost::python::bases<TOptimizer> >("R_NSGA_II", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, const std::vector<TReal> &, TReal>())
+	boost::python::class_<TR_NSGA_II, boost::python::bases<TOptimizer> >("R_NSGA_II", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, const std::vector<TReal> &, const std::vector<TReal> &, TReal>())
 		.def("GetSolutionSet", &TR_NSGA_II::GetSolutionSet, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetCrossover", &TR_NSGA_II::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetMutation", &TR_NSGA_II::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetReferencePoint", &TR_NSGA_II::GetReferencePoint, boost::python::return_value_policy<boost::python::reference_existing_object>())
+		.def("GetWeight", &TR_NSGA_II::GetWeight, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetThreshold", &TR_NSGA_II::GetThreshold)
 	;
 #endif
