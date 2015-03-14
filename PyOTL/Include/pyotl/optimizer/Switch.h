@@ -38,3 +38,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define EXPORT_GrEA
 #define EXPORT_MOEA_D
 #define EXPORT_SMS_EMOA
+#define EXPORT_GDE3

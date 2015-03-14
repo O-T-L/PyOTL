@@ -27,5 +27,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <pyotl/optimizer/GetSolutionSet.h>
 #include <pyotl/optimizer/SMS-EMOA/XTriple/SMS-EMOA.h>
 #include <pyotl/optimizer/SMS-EMOA/XTriple/MonteCarloHV-SMS-EMOA.h>
-
-#define EXPORT_GDE3
