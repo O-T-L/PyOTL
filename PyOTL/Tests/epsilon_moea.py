@@ -44,15 +44,12 @@ class TestCase(unittest.TestCase):
 		pathProblem = os.path.join(self.pathData, type(problem).__name__, str(problem.GetNumberOfObjectives()))
 		crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
 		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
-		boundaryMatrix = numpy.loadtxt(os.path.join(pathProblem, 'Boundary.csv'))
-		lower, _ = boundaryMatrix.T
-		lower = pyotl.utility.PyList2Vector_Real(lower.tolist())
 		epsilon = pyotl.utility.PyList2Vector_Real([0.06] * problem.GetNumberOfObjectives())
 		pfList = []
 		for _ in range(self.repeat):
 			problem = problemGen()
 			initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), 100)
-			optimizer = pyotl.optimizer.couple_couple.real.Epsilon_MOEA(random, problem, initial, crossover, mutation, lower, epsilon)
+			optimizer = pyotl.optimizer.couple_couple.real.Epsilon_MOEA(random, problem, initial, crossover, mutation, epsilon)
 			while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
 				optimizer()
 			pf = pyotl.utility.PyListList2VectorVector_Real([list(solution.objective_) for solution in optimizer.GetSolutionSet()])
@@ -78,16 +75,12 @@ class TestCase(unittest.TestCase):
 		pathProblem = os.path.join(self.pathData, type(problem).__name__.replace('Negative', ''), str(problem.GetNumberOfObjectives()))
 		crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
 		mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
-		boundaryMatrix = numpy.loadtxt(os.path.join(pathProblem, 'Boundary.csv'))
-		lower, _ = boundaryMatrix.T
-		lower = [value - problem.GetMaxDistance() for value in lower]
-		lower = pyotl.utility.PyList2Vector_Real(lower)
 		epsilon = pyotl.utility.PyList2Vector_Real([0.06] * problem.GetNumberOfObjectives())
 		pfList = []
 		for _ in range(self.repeat):
 			problem = problemGen()
 			initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), 100)
-			optimizer = pyotl.optimizer.couple_couple.real.Epsilon_MOEA(random, problem, initial, crossover, mutation, lower, epsilon)
+			optimizer = pyotl.optimizer.couple_couple.real.Epsilon_MOEA(random, problem, initial, crossover, mutation, epsilon)
 			while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
 				optimizer()
 			pf = pyotl.utility.PyListList2VectorVector_Real([list(solution.objective_) for solution in optimizer.GetSolutionSet()])

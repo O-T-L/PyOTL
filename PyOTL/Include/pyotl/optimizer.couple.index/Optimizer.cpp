@@ -29,7 +29,7 @@ namespace index
 BOOST_PYTHON_MODULE(PYMODULE_NAME)
 {
 #ifdef EXPORT_EPSILON_MOEA
-	boost::python::class_<TEpsilon_MOEA, boost::python::bases<TOptimizer> >("Epsilon_MOEA", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, const std::vector<TReal> &, const std::vector<TReal> &>())
+	boost::python::class_<TEpsilon_MOEA, boost::python::bases<TOptimizer> >("Epsilon_MOEA", boost::python::init<TRandom &, TProblem &, const std::vector<TDecision> &, TCrossover &, TMutation &, const std::vector<TReal> &>())
 		.def("GetSolutionSet", &GetSolutionSet<TEpsilon_MOEA>)
 		.def("GetCrossover", &TEpsilon_MOEA::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
 		.def("GetMutation", &TEpsilon_MOEA::GetMutation, boost::python::return_value_policy<boost::python::reference_existing_object>())
