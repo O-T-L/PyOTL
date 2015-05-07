@@ -41,8 +41,7 @@ if(OTL_FOUND)
 	set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${OTL_SOURCE_DIR}/CMake/Modules")
 	include(list_projects)
 	
-	get_filename_component(PROJECT_NAME "${CMAKE_CURRENT_SOURCE_DIR}" NAME)
-	project(${PROJECT_NAME})
+	project(PyOTL) # special project name
 	include_directories("${CMAKE_SOURCE_DIR}/Include")
 	add_subdirectory("${CMAKE_SOURCE_DIR}/Include")
 	
