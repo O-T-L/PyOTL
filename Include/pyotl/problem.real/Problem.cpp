@@ -77,6 +77,35 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def("Transform", &TRotatedRectangle::Transform)
 	;
 
+	boost::python::class_<TKursawe, boost::python::bases<TProblem> >("Kursawe")
+		.def(boost::python::init<size_t>())
+		.def("GetBoundary", &TKursawe::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
+	;
+
+	boost::python::class_<TSCH1, boost::python::bases<TProblem> >("SCH1")
+		.def("GetBoundary", &TSCH1::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
+	;
+
+	boost::python::class_<TSCH2, boost::python::bases<TProblem> >("SCH2")
+		.def("GetBoundary", &TSCH1::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
+	;
+
+	boost::python::class_<TViennet1, boost::python::bases<TProblem> >("Viennet1")
+		.def("GetBoundary", &TViennet1::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
+	;
+
+	boost::python::class_<TViennet2, boost::python::bases<TProblem> >("Viennet2")
+		.def("GetBoundary", &TViennet2::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
+	;
+
+	boost::python::class_<TViennet3, boost::python::bases<TProblem> >("Viennet3")
+		.def("GetBoundary", &TViennet3::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
+	;
+
+	boost::python::class_<TViennet4, boost::python::bases<TProblem> >("Viennet4")
+		.def("GetBoundary", &TViennet4::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
+	;
+
 	boost::python::class_<TZDT1, boost::python::bases<TProblem> >("ZDT1")
 		.def(boost::python::init<size_t>())
 		.def("GetBoundary", &TZDT::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())

@@ -26,6 +26,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <OTL/Problem/Water.h>
 #include <OTL/Problem/Rectangle.h>
 #include <OTL/Problem/RotatedRectangle.h>
+#include <OTL/Problem/Kursawe.h>
+#include <OTL/Problem/SCH1.h>
+#include <OTL/Problem/SCH2.h>
+#include <OTL/Problem/Viennet/Viennet1.h>
+#include <OTL/Problem/Viennet/Viennet2.h>
+#include <OTL/Problem/Viennet/Viennet3.h>
+#include <OTL/Problem/Viennet/Viennet4.h>
 #include <OTL/Problem/ZDT/ZDT1.h>
 #include <OTL/Problem/ZDT/ZDT2.h>
 #include <OTL/Problem/ZDT/ZDT3.h>
@@ -86,6 +93,14 @@ typedef otl::problem::ParetoBox<TReal> TParetoBox;
 typedef otl::problem::Water<TReal> TWater;
 typedef otl::problem::Rectangle<TReal> TRectangle;
 typedef otl::problem::RotatedRectangle<TReal> TRotatedRectangle;
+typedef otl::problem::Kursawe<TReal> TKursawe;
+typedef otl::problem::SCH1<TReal> TSCH1;
+typedef otl::problem::SCH2<TReal> TSCH2;
+
+typedef otl::problem::viennet::Viennet1<TReal> TViennet1;
+typedef otl::problem::viennet::Viennet2<TReal> TViennet2;
+typedef otl::problem::viennet::Viennet3<TReal> TViennet3;
+typedef otl::problem::viennet::Viennet4<TReal> TViennet4;
 
 typedef otl::problem::zdt::ZDT<TReal> TZDT;
 typedef otl::problem::zdt::ZDT1<TReal> TZDT1;
