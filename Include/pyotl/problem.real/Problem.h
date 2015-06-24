@@ -19,7 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <OTL/Problem/XSinX.h>
 #include <OTL/Problem/Camel.h>
-#include <OTL/Problem/ShafferF6.h>
 #include <OTL/Problem/Shubert.h>
 #include <OTL/Problem/Binh.h>
 #include <OTL/Problem/ParetoBox.h>
@@ -27,8 +26,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <OTL/Problem/Rectangle.h>
 #include <OTL/Problem/RotatedRectangle.h>
 #include <OTL/Problem/Kursawe.h>
-#include <OTL/Problem/SCH1.h>
-#include <OTL/Problem/SCH2.h>
+#include <OTL/Problem/Schaffer/Schaffer1.h>
+#include <OTL/Problem/Schaffer/Schaffer2.h>
+#include <OTL/Problem/Schaffer/Schaffer6.h>
 #include <OTL/Problem/Viennet/Viennet1.h>
 #include <OTL/Problem/Viennet/Viennet2.h>
 #include <OTL/Problem/Viennet/Viennet3.h>
@@ -86,7 +86,6 @@ namespace real
 {
 typedef otl::problem::XSinX<TReal> TXSinX;
 typedef otl::problem::Camel<TReal> TCamel;
-typedef otl::problem::ShafferF6<TReal> TShafferF6;
 typedef otl::problem::Shubert<TReal> TShubert;
 typedef otl::problem::Binh<TReal> TBinh;
 typedef otl::problem::ParetoBox<TReal> TParetoBox;
@@ -94,8 +93,9 @@ typedef otl::problem::Water<TReal> TWater;
 typedef otl::problem::Rectangle<TReal> TRectangle;
 typedef otl::problem::RotatedRectangle<TReal> TRotatedRectangle;
 typedef otl::problem::Kursawe<TReal> TKursawe;
-typedef otl::problem::SCH1<TReal> TSCH1;
-typedef otl::problem::SCH2<TReal> TSCH2;
+typedef otl::problem::schaffer::Schaffer1<TReal> TSchaffer1;
+typedef otl::problem::schaffer::Schaffer2<TReal> TSchaffer2;
+typedef otl::problem::schaffer::Schaffer6<TReal> TSchaffer6;
 
 typedef otl::problem::viennet::Viennet1<TReal> TViennet1;
 typedef otl::problem::viennet::Viennet2<TReal> TViennet2;

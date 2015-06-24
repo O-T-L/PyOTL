@@ -45,10 +45,6 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def("GetBoundary", &TCamel::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 
-	boost::python::class_<TShafferF6, boost::python::bases<TProblem> >("ShafferF6")
-		.def("GetBoundary", &TShafferF6::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
-	;
-
 	boost::python::class_<TShubert, boost::python::bases<TProblem> >("Shubert")
 		.def("GetBoundary", &TShubert::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
@@ -82,12 +78,16 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def("GetBoundary", &TKursawe::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 
-	boost::python::class_<TSCH1, boost::python::bases<TProblem> >("SCH1")
-		.def("GetBoundary", &TSCH1::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
+	boost::python::class_<TSchaffer1, boost::python::bases<TProblem> >("Schaffer1")
+		.def("GetBoundary", &TSchaffer1::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 
-	boost::python::class_<TSCH2, boost::python::bases<TProblem> >("SCH2")
-		.def("GetBoundary", &TSCH1::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
+	boost::python::class_<TSchaffer2, boost::python::bases<TProblem> >("Schaffer2")
+		.def("GetBoundary", &TSchaffer2::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
+	;
+
+	boost::python::class_<TSchaffer6, boost::python::bases<TProblem> >("Schaffer6")
+		.def("GetBoundary", &TSchaffer6::GetBoundary, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 
 	boost::python::class_<TViennet1, boost::python::bases<TProblem> >("Viennet1")
