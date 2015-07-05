@@ -29,14 +29,13 @@ def main():
 	for repeat in range(30):
 		for nObjectives in [2, 3]:
 			problems = [
-				pyotl.problem.real.DTLZ1(nObjectives),
-				pyotl.problem.real.DTLZ2(nObjectives),
-				pyotl.problem.real.DTLZ3(nObjectives),
-				pyotl.problem.real.DTLZ4(nObjectives),
-				pyotl.problem.real.DTLZ7(nObjectives),
+				(pyotl.problem.real.DTLZ1(nObjectives), 100000),
+				(pyotl.problem.real.DTLZ2(nObjectives), 30000),
+				(pyotl.problem.real.DTLZ3(nObjectives), 100000),
+				(pyotl.problem.real.DTLZ4(nObjectives), 30000),
+				(pyotl.problem.real.DTLZ7(nObjectives), 30000),
 			]
-			nEvaluationsList = [100000, 30000, 100000, 30000, 30000]
-			for problem, nEvaluations in zip(problems, nEvaluationsList):
+			for problem, nEvaluations in problems:
 				start = time.clock()
 				random = pyotl.utility.Random()
 				_crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
