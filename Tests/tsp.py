@@ -23,81 +23,86 @@ import pyotl.optimizer.index
 import pyotl.problem.index
 import scipy.spatial
 
+
 def make_adjacency_matrix(citiesMatrix):
-	nCities = len(citiesMatrix)
-	adjacencyMatrix = numpy.zeros([nCities, nCities])
-	for cityIndex1, city1 in enumerate(citiesMatrix):
-		for cityIndex2, city2 in enumerate(citiesMatrix[:cityIndex1]):
-			adjacencyMatrix[cityIndex1][cityIndex2] = scipy.spatial.distance.euclidean(city1, city2)
-			adjacencyMatrix[cityIndex2][cityIndex1] = adjacencyMatrix[cityIndex1][cityIndex2]
-	return adjacencyMatrix
+    nCities = len(citiesMatrix)
+    adjacencyMatrix = numpy.zeros([nCities, nCities])
+    for cityIndex1, city1 in enumerate(citiesMatrix):
+        for cityIndex2, city2 in enumerate(citiesMatrix[:cityIndex1]):
+            adjacencyMatrix[cityIndex1][cityIndex2] = scipy.spatial.distance.euclidean(city1, city2)
+            adjacencyMatrix[cityIndex2][cityIndex1] = adjacencyMatrix[cityIndex1][cityIndex2]
+    return adjacencyMatrix
+
 
 class TestCase(unittest.TestCase):
-	def setUp(self):
-		self.pathData = os.path.join(os.path.dirname(__file__), 'Data')
-	
-	def tearDown(self):
-		pass
-	
-	def testMOTSP(self):
-		nObjectives = 2
-		nCities = 150
-		pathData = os.path.join(self.pathData, 'MOTSP')
-		pathCities = os.path.join(pathData, 'Cities')
-		citiesMatrics = [numpy.loadtxt(os.path.join(pathCities, 'kro%c%u.csv' % (chr(ord('A') + i), nCities))) for i in range(nObjectives)]
-		matrics = [make_adjacency_matrix(citiesMatrix).tolist() for citiesMatrix in citiesMatrics]
-		_matrics = pyotl.utility.PyListListList2VectorBlasSymmetricMatrix_Real(matrics)
-		problem = pyotl.problem.index.MOTSP(_matrics)
-		filename = '%u_%u' % (problem.GetNumberOfObjectives(), nCities)
-		ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'), dtype = int)
-		pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
-		self.assertEqual(len(ps.shape), 2)
-		self.assertEqual(len(pf.shape), 2)
-		self.assertEqual(ps.shape[0], pf.shape[0])
-		self.assertEqual(ps.shape[1], nCities)
-		self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
-		for decision, objective in zip(ps, pf):
-			solution = pyotl.optimizer.index.Solution()
-			solution.decision_ = pyotl.utility.PyList2Vector_size_t(decision.tolist())
-			problem(solution)
-			for f1, f2 in zip(objective, solution.objective_):
-				self.assertAlmostEqual(f1, f2)
-	
-	def testCorrelationMOTSP(self):
-		nObjectives = 4
-		nCities = 30
-		pathData = os.path.join(self.pathData, 'MOTSP')
-		adjacencyMatricsPath = os.path.join(os.path.join(pathData, 'AdjacencyMatrics'), '%u_%u.csv' % (nObjectives, nCities))
-		_adjacencyMatrics = numpy.loadtxt(adjacencyMatricsPath)
-		adjacencyMatrics = numpy.split(_adjacencyMatrics, nObjectives)
-		self.assertEqual(len(adjacencyMatrics), nObjectives)
-		for adjacencyMatrix in adjacencyMatrics:
-			self.assertEqual(len(adjacencyMatrix.shape), 2)
-			for shape in adjacencyMatrix.shape:
-				self.assertEqual(shape, nCities)
-		adjacencyMatrics = list(map(lambda adjacencyMatrix: adjacencyMatrix.tolist(), adjacencyMatrics))
-		correlationList = [0, 1]
-		for _correlation in correlationList:
-			correlation = [_correlation] * (len(adjacencyMatrics) - 1)
-			_correlation = pyotl.utility.PyList2Vector_Real(correlation)
-			_matrics = pyotl.utility.PyListListList2VectorBlasSymmetricMatrix_Real(adjacencyMatrics)
-			pyotl.problem.index.CorrelateAdjacencyMatrics_Real(_correlation, _matrics)
-			problem = pyotl.problem.index.MOTSP(_matrics)
-			correlationPath = os.path.join(pathData, 'Correlation', str(correlation[0]))
-			filename = '%u_%u' % (problem.GetNumberOfObjectives(), nCities)
-			ps = numpy.loadtxt(os.path.join(correlationPath, filename + '.ps.csv'), dtype = int)
-			pf = numpy.loadtxt(os.path.join(correlationPath, filename + '.pf.csv'))
-			self.assertEqual(len(ps.shape), 2)
-			self.assertEqual(len(pf.shape), 2)
-			self.assertEqual(ps.shape[0], pf.shape[0])
-			self.assertEqual(ps.shape[1], nCities)
-			self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
-			for decision, objective in zip(ps, pf):
-				solution = pyotl.optimizer.index.Solution()
-				solution.decision_ = pyotl.utility.PyList2Vector_size_t(decision.tolist())
-				problem(solution)
-				for f1, f2 in zip(objective, solution.objective_):
-					self.assertAlmostEqual(f1, f2, 4, correlationPath)
+    def setUp(self):
+        self.pathData = os.path.join(os.path.dirname(__file__), 'Data')
+
+    def tearDown(self):
+        pass
+
+    def testMOTSP(self):
+        nObjectives = 2
+        nCities = 150
+        pathData = os.path.join(self.pathData, 'MOTSP')
+        pathCities = os.path.join(pathData, 'Cities')
+        citiesMatrics = [numpy.loadtxt(os.path.join(pathCities, 'kro%c%u.csv' % (chr(ord('A') + i), nCities))) for i in
+                         range(nObjectives)]
+        matrics = [make_adjacency_matrix(citiesMatrix).tolist() for citiesMatrix in citiesMatrics]
+        _matrics = pyotl.utility.PyListListList2VectorBlasSymmetricMatrix_Real(matrics)
+        problem = pyotl.problem.index.MOTSP(_matrics)
+        filename = '%u_%u' % (problem.GetNumberOfObjectives(), nCities)
+        ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'), dtype=int)
+        pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
+        self.assertEqual(len(ps.shape), 2)
+        self.assertEqual(len(pf.shape), 2)
+        self.assertEqual(ps.shape[0], pf.shape[0])
+        self.assertEqual(ps.shape[1], nCities)
+        self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
+        for decision, objective in zip(ps, pf):
+            solution = pyotl.optimizer.index.Solution()
+            solution.decision_ = pyotl.utility.PyList2Vector_size_t(decision.tolist())
+            problem(solution)
+            for f1, f2 in zip(objective, solution.objective_):
+                self.assertAlmostEqual(f1, f2)
+
+    def testCorrelationMOTSP(self):
+        nObjectives = 4
+        nCities = 30
+        pathData = os.path.join(self.pathData, 'MOTSP')
+        adjacencyMatricsPath = os.path.join(os.path.join(pathData, 'AdjacencyMatrics'),
+                                            '%u_%u.csv' % (nObjectives, nCities))
+        _adjacencyMatrics = numpy.loadtxt(adjacencyMatricsPath)
+        adjacencyMatrics = numpy.split(_adjacencyMatrics, nObjectives)
+        self.assertEqual(len(adjacencyMatrics), nObjectives)
+        for adjacencyMatrix in adjacencyMatrics:
+            self.assertEqual(len(adjacencyMatrix.shape), 2)
+            for shape in adjacencyMatrix.shape:
+                self.assertEqual(shape, nCities)
+        adjacencyMatrics = list(map(lambda adjacencyMatrix: adjacencyMatrix.tolist(), adjacencyMatrics))
+        correlationList = [0, 1]
+        for _correlation in correlationList:
+            correlation = [_correlation] * (len(adjacencyMatrics) - 1)
+            _correlation = pyotl.utility.PyList2Vector_Real(correlation)
+            _matrics = pyotl.utility.PyListListList2VectorBlasSymmetricMatrix_Real(adjacencyMatrics)
+            pyotl.problem.index.CorrelateAdjacencyMatrics_Real(_correlation, _matrics)
+            problem = pyotl.problem.index.MOTSP(_matrics)
+            correlationPath = os.path.join(pathData, 'Correlation', str(correlation[0]))
+            filename = '%u_%u' % (problem.GetNumberOfObjectives(), nCities)
+            ps = numpy.loadtxt(os.path.join(correlationPath, filename + '.ps.csv'), dtype=int)
+            pf = numpy.loadtxt(os.path.join(correlationPath, filename + '.pf.csv'))
+            self.assertEqual(len(ps.shape), 2)
+            self.assertEqual(len(pf.shape), 2)
+            self.assertEqual(ps.shape[0], pf.shape[0])
+            self.assertEqual(ps.shape[1], nCities)
+            self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
+            for decision, objective in zip(ps, pf):
+                solution = pyotl.optimizer.index.Solution()
+                solution.decision_ = pyotl.utility.PyList2Vector_size_t(decision.tolist())
+                problem(solution)
+                for f1, f2 in zip(objective, solution.objective_):
+                    self.assertAlmostEqual(f1, f2, 4, correlationPath)
+
 
 if __name__ == '__main__':
-	unittest.main()
+    unittest.main()

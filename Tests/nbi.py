@@ -20,19 +20,22 @@ import math
 import unittest
 import pyotl.utility
 
+
 def ncr(n, r):
-	return math.factorial(n) / math.factorial(r) / math.factorial(n - r)
+    return math.factorial(n) / math.factorial(r) / math.factorial(n - r)
+
 
 class TestCase(unittest.TestCase):
-	def setUp(self):
-		self.dimensions = [2, 3, 4]
-		self.divisions = [3, 4, 5]
-	
-	def testNBI(self):
-		for dimension in self.dimensions:
-			for division in self.divisions:
-				_points = pyotl.utility.NormalBoundaryIntersection_Real(dimension, division)
-				self.assertEqual(len(_points), ncr(dimension + division - 1, division))
+    def setUp(self):
+        self.dimensions = [2, 3, 4]
+        self.divisions = [3, 4, 5]
+
+    def testNBI(self):
+        for dimension in self.dimensions:
+            for division in self.divisions:
+                _points = pyotl.utility.NormalBoundaryIntersection_Real(dimension, division)
+                self.assertEqual(len(_points), ncr(dimension + division - 1, division))
+
 
 if __name__ == '__main__':
-	unittest.main()
+    unittest.main()

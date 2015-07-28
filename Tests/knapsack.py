@@ -22,28 +22,30 @@ import pyotl.utility
 import pyotl.optimizer.dynamic_bitset
 import pyotl.problem.dynamic_bitset
 
+
 class TestCase(unittest.TestCase):
-	def setUp(self):
-		self.pathData = os.path.join(os.path.dirname(__file__), 'Data')
-	
-	def tearDown(self):
-		pass
-	
-	def testKnapsack(self):
-		nObjectives = 5
-		nPacks = 500
-		pathData = os.path.join(os.path.join(self.pathData, 'Knapsack'), '%u_%u' % (nObjectives, nPacks))
-		priceMatrix = numpy.loadtxt(os.path.join(pathData, 'Price.csv'))
-		weightMatrix = numpy.loadtxt(os.path.join(pathData, 'Weight.csv'))
-		capacity = numpy.loadtxt(os.path.join(pathData, 'Capacity.csv'))
-		assert(len(priceMatrix.shape) == len(weightMatrix.shape) == 2)
-		assert(len(capacity.shape) == 1)
-		assert(priceMatrix.shape[0] == weightMatrix.shape[0] == nObjectives)
-		assert(priceMatrix.shape[1] == weightMatrix.shape[1] == nPacks)
-		priceMatrix = pyotl.utility.PyListList2BlasMatrix_Real(priceMatrix.tolist())
-		weightMatrix = pyotl.utility.PyListList2BlasMatrix_Real(weightMatrix.tolist())
-		capacity = pyotl.utility.PyList2Vector_Real(capacity.tolist())
-		problem = pyotl.problem.dynamic_bitset.Knapsack(priceMatrix, weightMatrix, capacity)
+    def setUp(self):
+        self.pathData = os.path.join(os.path.dirname(__file__), 'Data')
+
+    def tearDown(self):
+        pass
+
+    def testKnapsack(self):
+        nObjectives = 5
+        nPacks = 500
+        pathData = os.path.join(os.path.join(self.pathData, 'Knapsack'), '%u_%u' % (nObjectives, nPacks))
+        priceMatrix = numpy.loadtxt(os.path.join(pathData, 'Price.csv'))
+        weightMatrix = numpy.loadtxt(os.path.join(pathData, 'Weight.csv'))
+        capacity = numpy.loadtxt(os.path.join(pathData, 'Capacity.csv'))
+        assert (len(priceMatrix.shape) == len(weightMatrix.shape) == 2)
+        assert (len(capacity.shape) == 1)
+        assert (priceMatrix.shape[0] == weightMatrix.shape[0] == nObjectives)
+        assert (priceMatrix.shape[1] == weightMatrix.shape[1] == nPacks)
+        priceMatrix = pyotl.utility.PyListList2BlasMatrix_Real(priceMatrix.tolist())
+        weightMatrix = pyotl.utility.PyListList2BlasMatrix_Real(weightMatrix.tolist())
+        capacity = pyotl.utility.PyList2Vector_Real(capacity.tolist())
+        problem = pyotl.problem.dynamic_bitset.Knapsack(priceMatrix, weightMatrix, capacity)
+
 
 if __name__ == '__main__':
-	unittest.main()
+    unittest.main()

@@ -22,219 +22,221 @@ import pyotl.utility
 import pyotl.optimizer.real
 import pyotl.problem.real
 
+
 class TestCase(unittest.TestCase):
-	def setUp(self):
-		self.pathData = os.path.join(os.path.dirname(__file__), 'Data')
-	
-	def tearDown(self):
-		pass
-	
-	def testWFG1(self):
-		nObjectives = 3
-		problem = pyotl.problem.real.WFG1(nObjectives)
-		nDecisions = len(problem.GetBoundary())
-		nPosDecisions = problem.GetPosDecisions()
-		nPosGroups = int(nPosDecisions / (nObjectives - 1))
-		nDistDecisions = nDecisions - nPosDecisions
-		pathData = os.path.join(self.pathData, type(problem).__name__)
-		filename = '%u_%u_%u' % (nObjectives, nPosGroups, nDistDecisions)
-		ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'))
-		pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
-		self.assertEqual(len(ps.shape), 2)
-		self.assertEqual(len(pf.shape), 2)
-		self.assertEqual(ps.shape[0], pf.shape[0])
-		self.assertEqual(ps.shape[1], nDecisions)
-		self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
-		for decision, objective in zip(ps, pf):
-			solution = pyotl.optimizer.real.Solution()
-			solution.decision_ = pyotl.utility.PyList2Vector_Real(decision.tolist())
-			problem(solution)
-			for f1, f2 in zip(objective, solution.objective_):
-				self.assertAlmostEqual(f1, f2)
-	
-	def testWFG2(self):
-		nObjectives = 3
-		problem = pyotl.problem.real.WFG2(nObjectives)
-		nDecisions = len(problem.GetBoundary())
-		nPosDecisions = problem.GetPosDecisions()
-		nPosGroups = int(nPosDecisions / (nObjectives - 1))
-		nDistDecisions = nDecisions - nPosDecisions
-		pathData = os.path.join(self.pathData, type(problem).__name__)
-		filename = '%u_%u_%u' % (nObjectives, nPosGroups, nDistDecisions)
-		ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'))
-		pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
-		self.assertEqual(len(ps.shape), 2)
-		self.assertEqual(len(pf.shape), 2)
-		self.assertEqual(ps.shape[0], pf.shape[0])
-		self.assertEqual(ps.shape[1], nDecisions)
-		self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
-		for decision, objective in zip(ps, pf):
-			solution = pyotl.optimizer.real.Solution()
-			solution.decision_ = pyotl.utility.PyList2Vector_Real(decision.tolist())
-			problem(solution)
-			for f1, f2 in zip(objective, solution.objective_):
-				self.assertAlmostEqual(f1, f2)
-	
-	def testWFG3(self):
-		nObjectives = 3
-		problem = pyotl.problem.real.WFG3(nObjectives)
-		nDecisions = len(problem.GetBoundary())
-		nPosDecisions = problem.GetPosDecisions()
-		nPosGroups = int(nPosDecisions / (nObjectives - 1))
-		nDistDecisions = nDecisions - nPosDecisions
-		pathData = os.path.join(self.pathData, type(problem).__name__)
-		filename = '%u_%u_%u' % (nObjectives, nPosGroups, nDistDecisions)
-		ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'))
-		pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
-		self.assertEqual(len(ps.shape), 2)
-		self.assertEqual(len(pf.shape), 2)
-		self.assertEqual(ps.shape[0], pf.shape[0])
-		self.assertEqual(ps.shape[1], nDecisions)
-		self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
-		for decision, objective in zip(ps, pf):
-			solution = pyotl.optimizer.real.Solution()
-			solution.decision_ = pyotl.utility.PyList2Vector_Real(decision.tolist())
-			problem(solution)
-			for f1, f2 in zip(objective, solution.objective_):
-				self.assertAlmostEqual(f1, f2)
-	
-	def testWFG4(self):
-		nObjectives = 3
-		problem = pyotl.problem.real.WFG4(nObjectives)
-		nDecisions = len(problem.GetBoundary())
-		nPosDecisions = problem.GetPosDecisions()
-		nPosGroups = int(nPosDecisions / (nObjectives - 1))
-		nDistDecisions = nDecisions - nPosDecisions
-		pathData = os.path.join(self.pathData, type(problem).__name__)
-		filename = '%u_%u_%u' % (nObjectives, nPosGroups, nDistDecisions)
-		ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'))
-		pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
-		self.assertEqual(len(ps.shape), 2)
-		self.assertEqual(len(pf.shape), 2)
-		self.assertEqual(ps.shape[0], pf.shape[0])
-		self.assertEqual(ps.shape[1], nDecisions)
-		self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
-		for decision, objective in zip(ps, pf):
-			solution = pyotl.optimizer.real.Solution()
-			solution.decision_ = pyotl.utility.PyList2Vector_Real(decision.tolist())
-			problem(solution)
-			for f1, f2 in zip(objective, solution.objective_):
-				self.assertAlmostEqual(f1, f2)
-	
-	def testWFG5(self):
-		nObjectives = 3
-		problem = pyotl.problem.real.WFG5(nObjectives)
-		nDecisions = len(problem.GetBoundary())
-		nPosDecisions = problem.GetPosDecisions()
-		nPosGroups = int(nPosDecisions / (nObjectives - 1))
-		nDistDecisions = nDecisions - nPosDecisions
-		pathData = os.path.join(self.pathData, type(problem).__name__)
-		filename = '%u_%u_%u' % (nObjectives, nPosGroups, nDistDecisions)
-		ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'))
-		pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
-		self.assertEqual(len(ps.shape), 2)
-		self.assertEqual(len(pf.shape), 2)
-		self.assertEqual(ps.shape[0], pf.shape[0])
-		self.assertEqual(ps.shape[1], nDecisions)
-		self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
-		for decision, objective in zip(ps, pf):
-			solution = pyotl.optimizer.real.Solution()
-			solution.decision_ = pyotl.utility.PyList2Vector_Real(decision.tolist())
-			problem(solution)
-			for f1, f2 in zip(objective, solution.objective_):
-				self.assertAlmostEqual(f1, f2)
-	
-	def testWFG6(self):
-		nObjectives = 3
-		problem = pyotl.problem.real.WFG6(nObjectives)
-		nDecisions = len(problem.GetBoundary())
-		nPosDecisions = problem.GetPosDecisions()
-		nPosGroups = int(nPosDecisions / (nObjectives - 1))
-		nDistDecisions = nDecisions - nPosDecisions
-		pathData = os.path.join(self.pathData, type(problem).__name__)
-		filename = '%u_%u_%u' % (nObjectives, nPosGroups, nDistDecisions)
-		ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'))
-		pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
-		self.assertEqual(len(ps.shape), 2)
-		self.assertEqual(len(pf.shape), 2)
-		self.assertEqual(ps.shape[0], pf.shape[0])
-		self.assertEqual(ps.shape[1], nDecisions)
-		self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
-		for decision, objective in zip(ps, pf):
-			solution = pyotl.optimizer.real.Solution()
-			solution.decision_ = pyotl.utility.PyList2Vector_Real(decision.tolist())
-			problem(solution)
-			for f1, f2 in zip(objective, solution.objective_):
-				self.assertAlmostEqual(f1, f2)
-	
-	def testWFG7(self):
-		nObjectives = 3
-		problem = pyotl.problem.real.WFG7(nObjectives)
-		nDecisions = len(problem.GetBoundary())
-		nPosDecisions = problem.GetPosDecisions()
-		nPosGroups = int(nPosDecisions / (nObjectives - 1))
-		nDistDecisions = nDecisions - nPosDecisions
-		pathData = os.path.join(self.pathData, type(problem).__name__)
-		filename = '%u_%u_%u' % (nObjectives, nPosGroups, nDistDecisions)
-		ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'))
-		pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
-		self.assertEqual(len(ps.shape), 2)
-		self.assertEqual(len(pf.shape), 2)
-		self.assertEqual(ps.shape[0], pf.shape[0])
-		self.assertEqual(ps.shape[1], nDecisions)
-		self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
-		for decision, objective in zip(ps, pf):
-			solution = pyotl.optimizer.real.Solution()
-			solution.decision_ = pyotl.utility.PyList2Vector_Real(decision.tolist())
-			problem(solution)
-			for f1, f2 in zip(objective, solution.objective_):
-				self.assertAlmostEqual(f1, f2)
-	
-	def testWFG8(self):
-		nObjectives = 3
-		problem = pyotl.problem.real.WFG8(nObjectives)
-		nDecisions = len(problem.GetBoundary())
-		nPosDecisions = problem.GetPosDecisions()
-		nPosGroups = int(nPosDecisions / (nObjectives - 1))
-		nDistDecisions = nDecisions - nPosDecisions
-		pathData = os.path.join(self.pathData, type(problem).__name__)
-		filename = '%u_%u_%u' % (nObjectives, nPosGroups, nDistDecisions)
-		ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'))
-		pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
-		self.assertEqual(len(ps.shape), 2)
-		self.assertEqual(len(pf.shape), 2)
-		self.assertEqual(ps.shape[0], pf.shape[0])
-		self.assertEqual(ps.shape[1], nDecisions)
-		self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
-		for decision, objective in zip(ps, pf):
-			solution = pyotl.optimizer.real.Solution()
-			solution.decision_ = pyotl.utility.PyList2Vector_Real(decision.tolist())
-			problem(solution)
-			for f1, f2 in zip(objective, solution.objective_):
-				self.assertAlmostEqual(f1, f2)
-	
-	def testWFG9(self):
-		nObjectives = 3
-		problem = pyotl.problem.real.WFG9(nObjectives)
-		nDecisions = len(problem.GetBoundary())
-		nPosDecisions = problem.GetPosDecisions()
-		nPosGroups = int(nPosDecisions / (nObjectives - 1))
-		nDistDecisions = nDecisions - nPosDecisions
-		pathData = os.path.join(self.pathData, type(problem).__name__)
-		filename = '%u_%u_%u' % (nObjectives, nPosGroups, nDistDecisions)
-		ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'))
-		pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
-		self.assertEqual(len(ps.shape), 2)
-		self.assertEqual(len(pf.shape), 2)
-		self.assertEqual(ps.shape[0], pf.shape[0])
-		self.assertEqual(ps.shape[1], nDecisions)
-		self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
-		for decision, objective in zip(ps, pf):
-			solution = pyotl.optimizer.real.Solution()
-			solution.decision_ = pyotl.utility.PyList2Vector_Real(decision.tolist())
-			problem(solution)
-			for f1, f2 in zip(objective, solution.objective_):
-				self.assertAlmostEqual(f1, f2)
+    def setUp(self):
+        self.pathData = os.path.join(os.path.dirname(__file__), 'Data')
+
+    def tearDown(self):
+        pass
+
+    def testWFG1(self):
+        nObjectives = 3
+        problem = pyotl.problem.real.WFG1(nObjectives)
+        nDecisions = len(problem.GetBoundary())
+        nPosDecisions = problem.GetPosDecisions()
+        nPosGroups = int(nPosDecisions / (nObjectives - 1))
+        nDistDecisions = nDecisions - nPosDecisions
+        pathData = os.path.join(self.pathData, type(problem).__name__)
+        filename = '%u_%u_%u' % (nObjectives, nPosGroups, nDistDecisions)
+        ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'))
+        pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
+        self.assertEqual(len(ps.shape), 2)
+        self.assertEqual(len(pf.shape), 2)
+        self.assertEqual(ps.shape[0], pf.shape[0])
+        self.assertEqual(ps.shape[1], nDecisions)
+        self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
+        for decision, objective in zip(ps, pf):
+            solution = pyotl.optimizer.real.Solution()
+            solution.decision_ = pyotl.utility.PyList2Vector_Real(decision.tolist())
+            problem(solution)
+            for f1, f2 in zip(objective, solution.objective_):
+                self.assertAlmostEqual(f1, f2)
+
+    def testWFG2(self):
+        nObjectives = 3
+        problem = pyotl.problem.real.WFG2(nObjectives)
+        nDecisions = len(problem.GetBoundary())
+        nPosDecisions = problem.GetPosDecisions()
+        nPosGroups = int(nPosDecisions / (nObjectives - 1))
+        nDistDecisions = nDecisions - nPosDecisions
+        pathData = os.path.join(self.pathData, type(problem).__name__)
+        filename = '%u_%u_%u' % (nObjectives, nPosGroups, nDistDecisions)
+        ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'))
+        pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
+        self.assertEqual(len(ps.shape), 2)
+        self.assertEqual(len(pf.shape), 2)
+        self.assertEqual(ps.shape[0], pf.shape[0])
+        self.assertEqual(ps.shape[1], nDecisions)
+        self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
+        for decision, objective in zip(ps, pf):
+            solution = pyotl.optimizer.real.Solution()
+            solution.decision_ = pyotl.utility.PyList2Vector_Real(decision.tolist())
+            problem(solution)
+            for f1, f2 in zip(objective, solution.objective_):
+                self.assertAlmostEqual(f1, f2)
+
+    def testWFG3(self):
+        nObjectives = 3
+        problem = pyotl.problem.real.WFG3(nObjectives)
+        nDecisions = len(problem.GetBoundary())
+        nPosDecisions = problem.GetPosDecisions()
+        nPosGroups = int(nPosDecisions / (nObjectives - 1))
+        nDistDecisions = nDecisions - nPosDecisions
+        pathData = os.path.join(self.pathData, type(problem).__name__)
+        filename = '%u_%u_%u' % (nObjectives, nPosGroups, nDistDecisions)
+        ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'))
+        pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
+        self.assertEqual(len(ps.shape), 2)
+        self.assertEqual(len(pf.shape), 2)
+        self.assertEqual(ps.shape[0], pf.shape[0])
+        self.assertEqual(ps.shape[1], nDecisions)
+        self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
+        for decision, objective in zip(ps, pf):
+            solution = pyotl.optimizer.real.Solution()
+            solution.decision_ = pyotl.utility.PyList2Vector_Real(decision.tolist())
+            problem(solution)
+            for f1, f2 in zip(objective, solution.objective_):
+                self.assertAlmostEqual(f1, f2)
+
+    def testWFG4(self):
+        nObjectives = 3
+        problem = pyotl.problem.real.WFG4(nObjectives)
+        nDecisions = len(problem.GetBoundary())
+        nPosDecisions = problem.GetPosDecisions()
+        nPosGroups = int(nPosDecisions / (nObjectives - 1))
+        nDistDecisions = nDecisions - nPosDecisions
+        pathData = os.path.join(self.pathData, type(problem).__name__)
+        filename = '%u_%u_%u' % (nObjectives, nPosGroups, nDistDecisions)
+        ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'))
+        pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
+        self.assertEqual(len(ps.shape), 2)
+        self.assertEqual(len(pf.shape), 2)
+        self.assertEqual(ps.shape[0], pf.shape[0])
+        self.assertEqual(ps.shape[1], nDecisions)
+        self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
+        for decision, objective in zip(ps, pf):
+            solution = pyotl.optimizer.real.Solution()
+            solution.decision_ = pyotl.utility.PyList2Vector_Real(decision.tolist())
+            problem(solution)
+            for f1, f2 in zip(objective, solution.objective_):
+                self.assertAlmostEqual(f1, f2)
+
+    def testWFG5(self):
+        nObjectives = 3
+        problem = pyotl.problem.real.WFG5(nObjectives)
+        nDecisions = len(problem.GetBoundary())
+        nPosDecisions = problem.GetPosDecisions()
+        nPosGroups = int(nPosDecisions / (nObjectives - 1))
+        nDistDecisions = nDecisions - nPosDecisions
+        pathData = os.path.join(self.pathData, type(problem).__name__)
+        filename = '%u_%u_%u' % (nObjectives, nPosGroups, nDistDecisions)
+        ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'))
+        pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
+        self.assertEqual(len(ps.shape), 2)
+        self.assertEqual(len(pf.shape), 2)
+        self.assertEqual(ps.shape[0], pf.shape[0])
+        self.assertEqual(ps.shape[1], nDecisions)
+        self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
+        for decision, objective in zip(ps, pf):
+            solution = pyotl.optimizer.real.Solution()
+            solution.decision_ = pyotl.utility.PyList2Vector_Real(decision.tolist())
+            problem(solution)
+            for f1, f2 in zip(objective, solution.objective_):
+                self.assertAlmostEqual(f1, f2)
+
+    def testWFG6(self):
+        nObjectives = 3
+        problem = pyotl.problem.real.WFG6(nObjectives)
+        nDecisions = len(problem.GetBoundary())
+        nPosDecisions = problem.GetPosDecisions()
+        nPosGroups = int(nPosDecisions / (nObjectives - 1))
+        nDistDecisions = nDecisions - nPosDecisions
+        pathData = os.path.join(self.pathData, type(problem).__name__)
+        filename = '%u_%u_%u' % (nObjectives, nPosGroups, nDistDecisions)
+        ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'))
+        pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
+        self.assertEqual(len(ps.shape), 2)
+        self.assertEqual(len(pf.shape), 2)
+        self.assertEqual(ps.shape[0], pf.shape[0])
+        self.assertEqual(ps.shape[1], nDecisions)
+        self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
+        for decision, objective in zip(ps, pf):
+            solution = pyotl.optimizer.real.Solution()
+            solution.decision_ = pyotl.utility.PyList2Vector_Real(decision.tolist())
+            problem(solution)
+            for f1, f2 in zip(objective, solution.objective_):
+                self.assertAlmostEqual(f1, f2)
+
+    def testWFG7(self):
+        nObjectives = 3
+        problem = pyotl.problem.real.WFG7(nObjectives)
+        nDecisions = len(problem.GetBoundary())
+        nPosDecisions = problem.GetPosDecisions()
+        nPosGroups = int(nPosDecisions / (nObjectives - 1))
+        nDistDecisions = nDecisions - nPosDecisions
+        pathData = os.path.join(self.pathData, type(problem).__name__)
+        filename = '%u_%u_%u' % (nObjectives, nPosGroups, nDistDecisions)
+        ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'))
+        pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
+        self.assertEqual(len(ps.shape), 2)
+        self.assertEqual(len(pf.shape), 2)
+        self.assertEqual(ps.shape[0], pf.shape[0])
+        self.assertEqual(ps.shape[1], nDecisions)
+        self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
+        for decision, objective in zip(ps, pf):
+            solution = pyotl.optimizer.real.Solution()
+            solution.decision_ = pyotl.utility.PyList2Vector_Real(decision.tolist())
+            problem(solution)
+            for f1, f2 in zip(objective, solution.objective_):
+                self.assertAlmostEqual(f1, f2)
+
+    def testWFG8(self):
+        nObjectives = 3
+        problem = pyotl.problem.real.WFG8(nObjectives)
+        nDecisions = len(problem.GetBoundary())
+        nPosDecisions = problem.GetPosDecisions()
+        nPosGroups = int(nPosDecisions / (nObjectives - 1))
+        nDistDecisions = nDecisions - nPosDecisions
+        pathData = os.path.join(self.pathData, type(problem).__name__)
+        filename = '%u_%u_%u' % (nObjectives, nPosGroups, nDistDecisions)
+        ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'))
+        pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
+        self.assertEqual(len(ps.shape), 2)
+        self.assertEqual(len(pf.shape), 2)
+        self.assertEqual(ps.shape[0], pf.shape[0])
+        self.assertEqual(ps.shape[1], nDecisions)
+        self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
+        for decision, objective in zip(ps, pf):
+            solution = pyotl.optimizer.real.Solution()
+            solution.decision_ = pyotl.utility.PyList2Vector_Real(decision.tolist())
+            problem(solution)
+            for f1, f2 in zip(objective, solution.objective_):
+                self.assertAlmostEqual(f1, f2)
+
+    def testWFG9(self):
+        nObjectives = 3
+        problem = pyotl.problem.real.WFG9(nObjectives)
+        nDecisions = len(problem.GetBoundary())
+        nPosDecisions = problem.GetPosDecisions()
+        nPosGroups = int(nPosDecisions / (nObjectives - 1))
+        nDistDecisions = nDecisions - nPosDecisions
+        pathData = os.path.join(self.pathData, type(problem).__name__)
+        filename = '%u_%u_%u' % (nObjectives, nPosGroups, nDistDecisions)
+        ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'))
+        pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
+        self.assertEqual(len(ps.shape), 2)
+        self.assertEqual(len(pf.shape), 2)
+        self.assertEqual(ps.shape[0], pf.shape[0])
+        self.assertEqual(ps.shape[1], nDecisions)
+        self.assertEqual(pf.shape[1], problem.GetNumberOfObjectives())
+        for decision, objective in zip(ps, pf):
+            solution = pyotl.optimizer.real.Solution()
+            solution.decision_ = pyotl.utility.PyList2Vector_Real(decision.tolist())
+            problem(solution)
+            for f1, f2 in zip(objective, solution.objective_):
+                self.assertAlmostEqual(f1, f2)
+
 
 if __name__ == '__main__':
-	unittest.main()
+    unittest.main()
