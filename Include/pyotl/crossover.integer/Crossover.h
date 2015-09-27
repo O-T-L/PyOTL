@@ -19,10 +19,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <OTL/Crossover/CoupleCrossoverAdapter.h>
 #include <OTL/Crossover/CoupleCoupleCrossoverAdapter.h>
+#include <OTL/Crossover/Integer/SinglePointCrossover.h>
 #include <OTL/Crossover/TripleCrossoverAdapter.h>
 #include <OTL/Crossover/TripleTripleCrossoverAdapter.h>
 #include <OTL/Crossover/XTripleCrossoverAdapter.h>
-#include <OTL/Crossover/SinglePointCrossover.h>
 #include "Global.h"
 
 namespace pyotl
@@ -37,7 +37,7 @@ typedef otl::crossover::CoupleCoupleCrossoverAdapter<TReal, TDecision, TRandom &
 typedef otl::crossover::TripleCrossoverAdapter<TReal, TDecision, TRandom &> TTripleCrossoverAdapter;
 typedef otl::crossover::TripleTripleCrossoverAdapter<TReal, TDecision, TRandom &> TTripleTripleCrossoverAdapter;
 typedef otl::crossover::XTripleCrossoverAdapter<TReal, TDecision, TRandom &> TXTripleCrossoverAdapter;
-typedef otl::crossover::SinglePointCrossover<TReal, TInteger, TRandom &> TSinglePointCrossover;
+typedef otl::crossover::integer::SinglePointCrossover<TReal, TInteger, TRandom &> TSinglePointCrossover;
 }
 }
 }

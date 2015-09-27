@@ -17,13 +17,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <OTL/Crossover/Bitset/SinglePointCrossover.h>
 #include <OTL/Crossover/CoupleCrossoverAdapter.h>
 #include <OTL/Crossover/CoupleCoupleCrossoverAdapter.h>
+#include <OTL/Crossover/DynamicBitset/UniformCrossover.h>
 #include <OTL/Crossover/TripleCrossoverAdapter.h>
 #include <OTL/Crossover/TripleTripleCrossoverAdapter.h>
 #include <OTL/Crossover/XTripleCrossoverAdapter.h>
-#include <OTL/Crossover/BitsetSinglePointCrossover.h>
-#include <OTL/Crossover/DynamicBitsetUniformCrossover.h>
 #include "Global.h"
 
 namespace pyotl
@@ -38,8 +38,8 @@ typedef otl::crossover::CoupleCoupleCrossoverAdapter<TReal, TDecision, TRandom &
 typedef otl::crossover::TripleCrossoverAdapter<TReal, TDecision, TRandom &> TTripleCrossoverAdapter;
 typedef otl::crossover::TripleTripleCrossoverAdapter<TReal, TDecision, TRandom &> TTripleTripleCrossoverAdapter;
 typedef otl::crossover::XTripleCrossoverAdapter<TReal, TDecision, TRandom &> TXTripleCrossoverAdapter;
-typedef otl::crossover::BitsetSinglePointCrossover<TReal, TDecision, TRandom &> TBitsetSinglePointCrossover;
-typedef otl::crossover::DynamicBitsetUniformCrossover<TReal, TRandom &> TDynamicBitsetUniformCrossover;
+typedef otl::crossover::bitset::SinglePointCrossover<TReal, TDecision, TRandom &> TSinglePointCrossover;
+typedef otl::crossover::dynamic_bitset::UniformCrossover<TReal, TRandom &> TUniformCrossover;
 }
 }
 }

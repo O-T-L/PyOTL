@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/python.hpp>
 #include <pyotl/Global.h>
-#include <OTL/Initial/DynamicBitset.h>
+#include <OTL/Initial/DynamicBitset/Uniform.h>
 
 namespace pyotl
 {
@@ -27,8 +27,8 @@ namespace dynamic_bitset
 {
 BOOST_PYTHON_MODULE(PYMODULE_NAME)
 {
-	boost::python::def("Uniform", &otl::initial::UniformDynamicBitset<TRandom>);
-	boost::python::def("PopulationUniform", &otl::initial::PopulationUniformDynamicBitset<TRandom>);
+	boost::python::def("Uniform", &otl::initial::dynamic_bitset::Uniform<TRandom>);
+	boost::python::def("BatchUniform", &otl::initial::dynamic_bitset::BatchUniform<TRandom>);
 }
 }
 }

@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <OTL/Mutation/BitsetBitwiseMutation.h>
+#include <OTL/Mutation/Bitset/BitwiseMutation.h>
 #include "Global.h"
 
 namespace pyotl
@@ -26,7 +26,7 @@ namespace mutation
 {
 namespace dynamic_bitset
 {
-typedef otl::mutation::BitsetBitwiseMutation<TReal, TDecision, TRandom &> TBitsetBitwiseMutation;
+typedef otl::mutation::bitset::BitwiseMutation<TReal, TDecision, TRandom &> TBitwiseMutation;
 }
 }
 }

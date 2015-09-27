@@ -16,7 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <boost/python.hpp>
-#include <OTL/Initial/UniformInteger.h>
+#include <OTL/Initial/Integer/Uniform.h>
 #include <pyotl/Global.h>
 #include "Initial.h"
 
@@ -28,8 +28,8 @@ namespace integer
 {
 BOOST_PYTHON_MODULE(PYMODULE_NAME)
 {
-	boost::python::def("Uniform", &otl::initial::UniformInteger<TRandom, TInteger>);
-	boost::python::def("PopulationUniform", &otl::initial::PopulationUniformInteger<TRandom, TInteger>);
+	boost::python::def("Uniform", &otl::initial::integer::Uniform<TRandom, TInteger>);
+	boost::python::def("BatchUniform", &otl::initial::integer::BatchUniform<TRandom, TInteger>);
 }
 }
 }

@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <OTL/Mutation/BitwiseMutation.h>
+#include <OTL/Mutation/Integer/BitwiseMutation.h>
 #include "Global.h"
 
 namespace pyotl
@@ -26,7 +26,7 @@ namespace mutation
 {
 namespace integer
 {
-typedef otl::mutation::BitwiseMutation<TReal, TInteger, TRandom &> TBitwiseMutation;
+typedef otl::mutation::integer::BitwiseMutation<TReal, TInteger, TRandom &> TBitwiseMutation;
 }
 }
 }

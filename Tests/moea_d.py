@@ -51,7 +51,7 @@ class TestCase(unittest.TestCase):
         pfList = []
         for _ in range(self.repeat):
             problem = problemGen()
-            initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), len(weightVectors))
+            initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), len(weightVectors))
             optimizer = pyotl.optimizer.couple_couple.real.MOEA_D_WeightedSum(random, problem, initial, crossover,
                                                                               mutation, weightVectors,
                                                                               int(len(weightVectors) * neighborRatio))
@@ -90,7 +90,7 @@ class TestCase(unittest.TestCase):
         pfList = []
         for _ in range(self.repeat):
             problem = problemGen()
-            initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), len(weightVectors))
+            initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), len(weightVectors))
             optimizer = pyotl.optimizer.couple_couple.real.MOEA_D_WeightedSum(random, problem, initial, crossover,
                                                                               mutation, weightVectors,
                                                                               int(len(weightVectors) * neighborRatio))
@@ -132,7 +132,7 @@ class TestCase(unittest.TestCase):
         pfList = []
         for _ in range(self.repeat):
             problem = problemGen()
-            initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), len(weightVectors))
+            initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), len(weightVectors))
             optimizer = pyotl.optimizer.couple_couple.real.MOEA_D_Tchebycheff(random, problem, initial, crossover,
                                                                               mutation, weightVectors,
                                                                               int(len(weightVectors) * neighborRatio))
@@ -173,7 +173,7 @@ class TestCase(unittest.TestCase):
         pfList = []
         for _ in range(self.repeat):
             problem = problemGen()
-            initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), len(weightVectors))
+            initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), len(weightVectors))
             optimizer = pyotl.optimizer.couple_couple.real.MOEA_D_Tchebycheff(random, problem, initial, crossover,
                                                                               mutation, weightVectors,
                                                                               int(len(weightVectors) * neighborRatio))
@@ -216,7 +216,7 @@ class TestCase(unittest.TestCase):
         pfList = []
         for _ in range(self.repeat):
             problem = problemGen()
-            initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), len(weightVectors))
+            initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), len(weightVectors))
             optimizer = pyotl.optimizer.couple_couple.real.MOEA_D_PBI(random, problem, initial, crossover, mutation,
                                                                       weightVectors,
                                                                       int(len(weightVectors) * neighborRatio),
@@ -259,7 +259,7 @@ class TestCase(unittest.TestCase):
         pfList = []
         for _ in range(self.repeat):
             problem = problemGen()
-            initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), len(weightVectors))
+            initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), len(weightVectors))
             optimizer = pyotl.optimizer.couple_couple.real.MOEA_D_PBI(random, problem, initial, crossover, mutation,
                                                                       weightVectors,
                                                                       int(len(weightVectors) * neighborRatio),

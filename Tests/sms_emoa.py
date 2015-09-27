@@ -49,7 +49,7 @@ class TestCase(unittest.TestCase):
         pfList = []
         for _ in range(self.repeat):
             problem = problemGen()
-            initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), 100)
+            initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), 100)
             optimizer = pyotl.optimizer.couple_couple.real.SMS_EMOA(random, problem, initial, crossover, mutation)
             while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
                 optimizer()
@@ -84,7 +84,7 @@ class TestCase(unittest.TestCase):
         pfList = []
         for _ in range(self.repeat):
             problem = problemGen()
-            initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), 100)
+            initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), 100)
             optimizer = pyotl.optimizer.couple_couple.real.SMS_EMOA(random, problem, initial, crossover, mutation)
             while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
                 optimizer()

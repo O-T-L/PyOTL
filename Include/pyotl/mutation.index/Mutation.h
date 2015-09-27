@@ -17,12 +17,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <OTL/Mutation/DisplacementMutation.h>
-#include <OTL/Mutation/ExchangeMutation.h>
-#include <OTL/Mutation/InsertionMutation.h>
-#include <OTL/Mutation/InversionMutation.h>
-#include <OTL/Mutation/SpreadMutation.h>
-#include <OTL/Mutation/BitwiseMutation.h>
+#include <OTL/Mutation/Integer/BitwiseMutation.h>
+#include <OTL/Mutation/TSP/DisplacementMutation.h>
+#include <OTL/Mutation/TSP/ExchangeMutation.h>
+#include <OTL/Mutation/TSP/InsertionMutation.h>
+#include <OTL/Mutation/TSP/InversionMutation.h>
+#include <OTL/Mutation/TSP/SpreadMutation.h>
 #include "Global.h"
 
 namespace pyotl
@@ -36,7 +36,7 @@ typedef otl::mutation::ExchangeMutation<TReal, TRandom &> TExchangeMutation;
 typedef otl::mutation::InsertionMutation<TReal, TRandom &> TInsertionMutation;
 typedef otl::mutation::InversionMutation<TReal, TRandom &> TInversionMutation;
 typedef otl::mutation::SpreadMutation<TReal, TRandom &> TSpreadMutation;
-typedef otl::mutation::BitwiseMutation<TReal, size_t, TRandom &> TBitwiseMutation;
+typedef otl::mutation::integer::BitwiseMutation<TReal, size_t, TRandom &> TBitwiseMutation;
 }
 }
 }

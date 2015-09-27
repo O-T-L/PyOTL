@@ -52,7 +52,7 @@ class TestCase(unittest.TestCase):
         pfList = []
         for _ in range(self.repeat):
             problem = problemGen()
-            initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), 100)
+            initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), 100)
             convergenceDirection = pyotl.utility.PyList2BlasVector_Real([1] * problem.GetNumberOfObjectives())
             optimizer = pyotl.optimizer.real.ISNPS(random, problem, initial, crossover, mutation, convergenceDirection,
                                                    angle1, angle2, amplification)
@@ -93,7 +93,7 @@ class TestCase(unittest.TestCase):
         pfList = []
         for _ in range(self.repeat):
             problem = problemGen()
-            initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), 100)
+            initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), 100)
             convergenceDirection = pyotl.utility.PyList2BlasVector_Real([1] * problem.GetNumberOfObjectives())
             optimizer = pyotl.optimizer.real.ISNPS(random, problem, initial, crossover, mutation, convergenceDirection,
                                                    angle1, angle2, amplification)

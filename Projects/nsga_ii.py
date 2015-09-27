@@ -43,7 +43,7 @@ def main():
                 crossover = pyotl.crossover.real.CoupleCoupleCrossoverAdapter(_crossover, random)
                 mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())),
                                                                   problem.GetBoundary(), 20)
-                initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), 100)
+                initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), 100)
                 optimizer = pyotl.optimizer.real.NSGA_II(random, problem, initial, crossover, mutation)
                 while optimizer.GetProblem().GetNumberOfEvaluations() < nEvaluations:
                     optimizer()

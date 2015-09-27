@@ -52,7 +52,7 @@ class TestCase(unittest.TestCase):
         pfList = []
         for _ in range(self.repeat):
             problem = problemGen()
-            initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), size)
+            initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), size)
             optimizer = pyotl.optimizer.real.NSGA_III(random, problem, initial, crossover, mutation, _referenceSet)
             for _ in range(300):
                 optimizer()
@@ -91,7 +91,7 @@ class TestCase(unittest.TestCase):
         pfList = []
         for _ in range(self.repeat):
             problem = problemGen()
-            initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), size)
+            initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), size)
             optimizer = pyotl.optimizer.real.NSGA_III(random, problem, initial, crossover, mutation, _referenceSet)
             for _ in range(300):
                 optimizer()
@@ -131,7 +131,7 @@ class TestCase(unittest.TestCase):
         pfList = []
         for _ in range(self.repeat):
             problem = problemGen()
-            initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), size)
+            initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), size)
             optimizer = pyotl.optimizer.real.NSGA_III(random, problem, initial, crossover, mutation, _referenceSet)
             for _ in range(300):
                 optimizer()

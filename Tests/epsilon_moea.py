@@ -50,7 +50,7 @@ class TestCase(unittest.TestCase):
         pfList = []
         for _ in range(self.repeat):
             problem = problemGen()
-            initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), 100)
+            initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), 100)
             optimizer = pyotl.optimizer.couple_couple.real.Epsilon_MOEA(random, problem, initial, crossover, mutation,
                                                                         epsilon)
             while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
@@ -87,7 +87,7 @@ class TestCase(unittest.TestCase):
         pfList = []
         for _ in range(self.repeat):
             problem = problemGen()
-            initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), 100)
+            initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), 100)
             optimizer = pyotl.optimizer.couple_couple.real.Epsilon_MOEA(random, problem, initial, crossover, mutation,
                                                                         epsilon)
             while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:

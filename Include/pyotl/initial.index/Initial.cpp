@@ -16,9 +16,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <boost/python.hpp>
+#include <OTL/Initial/Integer/Uniform.h>
+#include <OTL/Initial/TSP/Shuffle.h>
 #include <pyotl/Global.h>
-#include <OTL/Initial/ShuffleTSP.h>
-#include <OTL/Initial/UniformInteger.h>
 #include "Initial.h"
 
 namespace pyotl
@@ -29,10 +29,10 @@ namespace index
 {
 BOOST_PYTHON_MODULE(PYMODULE_NAME)
 {
-	boost::python::def("Shuffle", &otl::initial::ShuffleTSP<TRandom>);
-	boost::python::def("PopulationShuffle", &otl::initial::PopulationShuffleTSP<TRandom>);
-	boost::python::def("Uniform", &otl::initial::UniformInteger<TRandom, size_t>);
-	boost::python::def("PopulationUniform", &otl::initial::PopulationUniformInteger<TRandom, size_t>);
+	boost::python::def("Shuffle", &otl::initial::tsp::Shuffle<TRandom>);
+	boost::python::def("BatchShuffle", &otl::initial::tsp::BatchShuffle<TRandom>);
+	boost::python::def("Uniform", &otl::initial::integer::Uniform<TRandom, size_t>);
+	boost::python::def("BatchUniform", &otl::initial::integer::BatchUniform<TRandom, size_t>);
 }
 }
 }

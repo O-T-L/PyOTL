@@ -53,7 +53,7 @@ class TestCase(unittest.TestCase):
         pfList = []
         for _ in range(self.repeat):
             problem = problemGen()
-            initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), population)
+            initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), population)
             optimizer = pyotl.optimizer.real.MSOPS(random, problem, initial, crossover, mutation, _targets, 100)
             while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
                 optimizer()
@@ -93,7 +93,7 @@ class TestCase(unittest.TestCase):
         pfList = []
         for _ in range(self.repeat):
             problem = problemGen()
-            initial = pyotl.initial.real.PopulationUniform(random, problem.GetBoundary(), population)
+            initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), population)
             optimizer = pyotl.optimizer.real.MSOPS(random, problem, initial, crossover, mutation, _targets, 100)
             while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
                 optimizer()

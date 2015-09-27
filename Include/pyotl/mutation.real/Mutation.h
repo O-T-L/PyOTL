@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <OTL/Mutation/PolynomialMutation.h>
+#include <OTL/Mutation/Real/PM/PolynomialMutation.h>
 #include "Global.h"
 
 namespace pyotl
@@ -26,7 +26,7 @@ namespace mutation
 {
 namespace real
 {
-typedef otl::mutation::PolynomialMutation<TReal, TRandom &> TPolynomialMutation;
+typedef otl::mutation::real::pm::PolynomialMutation<TReal, TRandom &> TPolynomialMutation;
 }
 }
 }

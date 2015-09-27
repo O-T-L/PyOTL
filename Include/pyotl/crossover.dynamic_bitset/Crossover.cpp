@@ -75,12 +75,12 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def("GetCrossover", &TXTripleCrossoverAdapter::GetCrossover, boost::python::return_value_policy<boost::python::reference_existing_object>())
 	;
 
-	boost::python::class_<TBitsetSinglePointCrossover, boost::python::bases<TCoupleCoupleCrossover> >("BitsetSinglePointCrossover", boost::python::init<TRandom &, TReal>())
-		.def("GetProbability", &TBitsetSinglePointCrossover::GetProbability)
+	boost::python::class_<TSinglePointCrossover, boost::python::bases<TCoupleCoupleCrossover> >("SinglePointCrossover", boost::python::init<TRandom &, TReal>())
+		.def("GetProbability", &TSinglePointCrossover::GetProbability)
 	;
 
-	boost::python::class_<TDynamicBitsetUniformCrossover, boost::python::bases<TCoupleCoupleCrossover> >("DynamicBitsetUniformCrossover", boost::python::init<TRandom &, TReal>())
-		.def("GetProbability", &TBitsetSinglePointCrossover::GetProbability)
+	boost::python::class_<TUniformCrossover, boost::python::bases<TCoupleCoupleCrossover> >("UniformCrossover", boost::python::init<TRandom &, TReal>())
+		.def("GetProbability", &TUniformCrossover::GetProbability)
 	;
 }
 }

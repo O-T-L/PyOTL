@@ -19,11 +19,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <OTL/Crossover/CoupleCrossoverAdapter.h>
 #include <OTL/Crossover/CoupleCoupleCrossoverAdapter.h>
+#include <OTL/Crossover/Real/DifferentialEvolution.h>
 #include <OTL/Crossover/TripleCrossoverAdapter.h>
 #include <OTL/Crossover/TripleTripleCrossoverAdapter.h>
 #include <OTL/Crossover/XTripleCrossoverAdapter.h>
-#include <OTL/Crossover/SimulatedBinaryCrossover.h>
-#include <OTL/Crossover/DifferentialEvolution.h>
+#include <OTL/Crossover/Real/SBX/SimulatedBinaryCrossover.h>
 #include "Global.h"
 
 namespace pyotl
@@ -38,8 +38,8 @@ typedef otl::crossover::CoupleCoupleCrossoverAdapter<TReal, TDecision, TRandom &
 typedef otl::crossover::TripleCrossoverAdapter<TReal, TDecision, TRandom &> TTripleCrossoverAdapter;
 typedef otl::crossover::TripleTripleCrossoverAdapter<TReal, TDecision, TRandom &> TTripleTripleCrossoverAdapter;
 typedef otl::crossover::XTripleCrossoverAdapter<TReal, TDecision, TRandom &> TXTripleCrossoverAdapter;
-typedef otl::crossover::SimulatedBinaryCrossover<TReal, TRandom &> TSimulatedBinaryCrossover;
-typedef otl::crossover::DifferentialEvolution<TReal, TRandom &> TDifferentialEvolution;
+typedef otl::crossover::real::sbx::SimulatedBinaryCrossover<TReal, TRandom &> TSimulatedBinaryCrossover;
+typedef otl::crossover::real::DifferentialEvolution<TReal, TRandom &> TDifferentialEvolution;
 }
 }
 }

@@ -16,7 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <boost/python.hpp>
-#include <OTL/Initial/UniformReal.h>
+#include <OTL/Initial/Real/Uniform.h>
 #include <pyotl/Global.h>
 #include "Initial.h"
 
@@ -28,8 +28,8 @@ namespace real
 {
 BOOST_PYTHON_MODULE(PYMODULE_NAME)
 {
-	boost::python::def("Uniform", &otl::initial::UniformReal<TRandom, TReal>);
-	boost::python::def("PopulationUniform", &otl::initial::PopulationUniformReal<TRandom, TReal>);
+	boost::python::def("Uniform", &otl::initial::real::Uniform<TRandom, TReal>);
+	boost::python::def("BatchUniform", &otl::initial::real::BatchUniform<TRandom, TReal>);
 }
 }
 }

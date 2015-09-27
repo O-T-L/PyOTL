@@ -30,8 +30,8 @@ BOOST_PYTHON_MODULE(PYMODULE_NAME)
 		.def("__call__", &TMutation::operator ())
 	;
 
-	boost::python::class_<TBitsetBitwiseMutation, boost::python::bases<TMutation> >("BitsetBitwiseMutation", boost::python::init<TRandom &, TReal>())
-		.def("GetProbability", &TBitsetBitwiseMutation::GetProbability)
+	boost::python::class_<TBitwiseMutation, boost::python::bases<TMutation> >("BitwiseMutation", boost::python::init<TRandom &, TReal>())
+		.def("GetProbability", &TBitwiseMutation::GetProbability)
 	;
 }
 }
