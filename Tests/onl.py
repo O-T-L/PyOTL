@@ -55,8 +55,7 @@ class TestCase(unittest.TestCase):
         _metrics = pyotl.problem.community_discovery.PyList2Vector_Metric(metrics)
         problemGen = lambda: pyotl.problem.index.ONL(graph, _metrics, random)
         problem = problemGen()
-        pathProblem = os.path.join(self.pathData, type(problem).__name__,
-                                   '+'.join([type(metric).__name__ for metric in metrics]))
+        pathProblem = os.path.join(self.pathData, type(problem).__name__, '+'.join([type(metric).__name__ for metric in metrics]))
         nDecisions = len(problem.GetBoundary())
         decisionBits = math.ceil(math.log2(nDecisions))
         decisionBits = [decisionBits] * nDecisions
@@ -81,14 +80,12 @@ class TestCase(unittest.TestCase):
         indicator = pyotl.indicator.real.DTLZ2GD()
         metricList = [indicator(pf) for pf in pfList]
         rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'GD.csv')).tolist()
-        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05,
-                           [numpy.mean(rightList), numpy.mean(metricList), metricList])
+        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
         # IGD
         indicator = pyotl.indicator.real.InvertedGenerationalDistance(pfTrue)
         metricList = [indicator(pf) for pf in pfList]
         rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'IGD.csv')).tolist()
-        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05,
-                           [numpy.mean(rightList), numpy.mean(metricList), metricList])
+        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
 
 
 if __name__ == '__main__':

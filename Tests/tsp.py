@@ -70,8 +70,7 @@ class TestCase(unittest.TestCase):
         nObjectives = 4
         nCities = 30
         pathData = os.path.join(self.pathData, 'MOTSP')
-        adjacencyMatricsPath = os.path.join(os.path.join(pathData, 'AdjacencyMatrics'),
-                                            '%u_%u.csv' % (nObjectives, nCities))
+        adjacencyMatricsPath = os.path.join(os.path.join(pathData, 'AdjacencyMatrics'), '%u_%u.csv' % (nObjectives, nCities))
         _adjacencyMatrics = numpy.loadtxt(adjacencyMatricsPath)
         adjacencyMatrics = numpy.split(_adjacencyMatrics, nObjectives)
         self.assertEqual(len(adjacencyMatrics), nObjectives)

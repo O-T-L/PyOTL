@@ -113,8 +113,7 @@ class TestCase(unittest.TestCase):
         nDecisions = len(sroblem.GetDecisionBits())
         pathData = os.path.join(self.pathData, type(sroblem).__name__)
         filename = '%u' % nDecisions
-        ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'), dtype=int,
-                           converters=dict([(nCol, lambda strData: int(strData, 2)) for nCol in range(nDecisions)]))
+        ps = numpy.loadtxt(os.path.join(pathData, filename + '.ps.csv'), dtype=int, converters=dict([(nCol, lambda strData: int(strData, 2)) for nCol in range(nDecisions)]))
         pf = numpy.loadtxt(os.path.join(pathData, filename + '.pf.csv'))
         self.assertEqual(len(ps.shape), 2)
         self.assertEqual(len(pf.shape), 2)

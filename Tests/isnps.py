@@ -44,8 +44,7 @@ class TestCase(unittest.TestCase):
         pathProblem = os.path.join(self.pathData, type(problem).__name__, str(problem.GetNumberOfObjectives()))
         _crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
         crossover = pyotl.crossover.real.CoupleCoupleCrossoverAdapter(_crossover, random)
-        mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())),
-                                                          problem.GetBoundary(), 20)
+        mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
         angle1 = 2.3 * math.pi / 180
         angle2 = 45 * math.pi / 180
         amplification = 3
@@ -54,8 +53,7 @@ class TestCase(unittest.TestCase):
             problem = problemGen()
             initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), 100)
             convergenceDirection = pyotl.utility.PyList2BlasVector_Real([1] * problem.GetNumberOfObjectives())
-            optimizer = pyotl.optimizer.real.ISNPS(random, problem, initial, crossover, mutation, convergenceDirection,
-                                                   angle1, angle2, amplification)
+            optimizer = pyotl.optimizer.real.ISNPS(random, problem, initial, crossover, mutation, convergenceDirection, angle1, angle2, amplification)
             while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
                 optimizer()
             pf = pyotl.utility.PyListList2VectorVector_Real(
@@ -68,25 +66,21 @@ class TestCase(unittest.TestCase):
         indicator = pyotl.indicator.real.DTLZ2GD()
         metricList = [indicator(pf) for pf in pfList]
         rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'GD.csv')).tolist()
-        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05,
-                           [numpy.mean(rightList), numpy.mean(metricList), metricList])
+        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
         # IGD
         indicator = pyotl.indicator.real.InvertedGenerationalDistance(pfTrue)
         metricList = [indicator(pf) for pf in pfList]
         rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'IGD.csv')).tolist()
-        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05,
-                           [numpy.mean(rightList), numpy.mean(metricList), metricList])
+        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
 
     def testISNPS_NegativeDTLZ2(self):
         random = pyotl.utility.Random(1)
         problemGen = lambda: pyotl.problem.real.NegativeDTLZ2(3)
         problem = problemGen()
-        pathProblem = os.path.join(self.pathData, type(problem).__name__.replace('Negative', ''),
-                                   str(problem.GetNumberOfObjectives()))
+        pathProblem = os.path.join(self.pathData, type(problem).__name__.replace('Negative', ''), str(problem.GetNumberOfObjectives()))
         _crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
         crossover = pyotl.crossover.real.CoupleCoupleCrossoverAdapter(_crossover, random)
-        mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())),
-                                                          problem.GetBoundary(), 20)
+        mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
         angle1 = 2.3 * math.pi / 180
         angle2 = 45 * math.pi / 180
         amplification = 3
@@ -95,8 +89,7 @@ class TestCase(unittest.TestCase):
             problem = problemGen()
             initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), 100)
             convergenceDirection = pyotl.utility.PyList2BlasVector_Real([1] * problem.GetNumberOfObjectives())
-            optimizer = pyotl.optimizer.real.ISNPS(random, problem, initial, crossover, mutation, convergenceDirection,
-                                                   angle1, angle2, amplification)
+            optimizer = pyotl.optimizer.real.ISNPS(random, problem, initial, crossover, mutation, convergenceDirection, angle1, angle2, amplification)
             while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
                 optimizer()
             pf = pyotl.utility.PyListList2VectorVector_Real(
@@ -111,14 +104,12 @@ class TestCase(unittest.TestCase):
         indicator = pyotl.indicator.real.DTLZ2GD()
         metricList = [indicator(pf) for pf in pfList]
         rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'GD.csv')).tolist()
-        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05,
-                           [numpy.mean(rightList), numpy.mean(metricList), metricList])
+        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
         # IGD
         indicator = pyotl.indicator.real.InvertedGenerationalDistance(pfTrue)
         metricList = [indicator(pf) for pf in pfList]
         rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'IGD.csv')).tolist()
-        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05,
-                           [numpy.mean(rightList), numpy.mean(metricList), metricList])
+        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
 
 
 if __name__ == '__main__':

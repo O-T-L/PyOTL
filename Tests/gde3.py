@@ -60,14 +60,12 @@ class TestCase(unittest.TestCase):
         indicator = pyotl.indicator.real.DTLZ2GD()
         metricList = [indicator(pf) for pf in pfList]
         rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'GD.csv')).tolist()
-        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05,
-                           [numpy.mean(rightList), numpy.mean(metricList), metricList])
+        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
         # IGD
         indicator = pyotl.indicator.real.InvertedGenerationalDistance(pfTrue)
         metricList = [indicator(pf) for pf in pfList]
         rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'IGD.csv')).tolist()
-        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05,
-                           [numpy.mean(rightList), numpy.mean(metricList), metricList])
+        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
 
 
 if __name__ == '__main__':

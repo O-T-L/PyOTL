@@ -44,15 +44,13 @@ class TestCase(unittest.TestCase):
         problem = problemGen()
         pathProblem = os.path.join(self.pathData, type(problem).__name__, str(problem.GetNumberOfObjectives()))
         crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
-        mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())),
-                                                          problem.GetBoundary(), 20)
+        mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
         epsilon = pyotl.utility.PyList2Vector_Real([0.06] * problem.GetNumberOfObjectives())
         pfList = []
         for _ in range(self.repeat):
             problem = problemGen()
             initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), 100)
-            optimizer = pyotl.optimizer.couple_couple.real.Epsilon_MOEA(random, problem, initial, crossover, mutation,
-                                                                        epsilon)
+            optimizer = pyotl.optimizer.couple_couple.real.Epsilon_MOEA(random, problem, initial, crossover, mutation, epsilon)
             while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
                 optimizer()
             pf = pyotl.utility.PyListList2VectorVector_Real(
@@ -65,31 +63,26 @@ class TestCase(unittest.TestCase):
         indicator = pyotl.indicator.real.DTLZ2GD()
         metricList = [indicator(pf) for pf in pfList]
         rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'GD.csv')).tolist()
-        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05,
-                           [numpy.mean(rightList), numpy.mean(metricList), metricList])
+        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
         # IGD
         indicator = pyotl.indicator.real.InvertedGenerationalDistance(pfTrue)
         metricList = [indicator(pf) for pf in pfList]
         rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'IGD.csv')).tolist()
-        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05,
-                           [numpy.mean(rightList), numpy.mean(metricList), metricList])
+        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
 
     def testEpsilon_MOEA_NegativeDTLZ2(self):
         random = pyotl.utility.Random(1)
         problemGen = lambda: pyotl.problem.real.NegativeDTLZ2(3)
         problem = problemGen()
-        pathProblem = os.path.join(self.pathData, type(problem).__name__.replace('Negative', ''),
-                                   str(problem.GetNumberOfObjectives()))
+        pathProblem = os.path.join(self.pathData, type(problem).__name__.replace('Negative', ''), str(problem.GetNumberOfObjectives()))
         crossover = pyotl.crossover.real.SimulatedBinaryCrossover(random, 1, problem.GetBoundary(), 20)
-        mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())),
-                                                          problem.GetBoundary(), 20)
+        mutation = pyotl.mutation.real.PolynomialMutation(random, 1 / float(len(problem.GetBoundary())), problem.GetBoundary(), 20)
         epsilon = pyotl.utility.PyList2Vector_Real([0.06] * problem.GetNumberOfObjectives())
         pfList = []
         for _ in range(self.repeat):
             problem = problemGen()
             initial = pyotl.initial.real.BatchUniform(random, problem.GetBoundary(), 100)
-            optimizer = pyotl.optimizer.couple_couple.real.Epsilon_MOEA(random, problem, initial, crossover, mutation,
-                                                                        epsilon)
+            optimizer = pyotl.optimizer.couple_couple.real.Epsilon_MOEA(random, problem, initial, crossover, mutation, epsilon)
             while optimizer.GetProblem().GetNumberOfEvaluations() < 30000:
                 optimizer()
             pf = pyotl.utility.PyListList2VectorVector_Real(
@@ -104,14 +97,12 @@ class TestCase(unittest.TestCase):
         indicator = pyotl.indicator.real.DTLZ2GD()
         metricList = [indicator(pf) for pf in pfList]
         rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'GD.csv')).tolist()
-        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05,
-                           [numpy.mean(rightList), numpy.mean(metricList), metricList])
+        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
         # IGD
         indicator = pyotl.indicator.real.InvertedGenerationalDistance(pfTrue)
         metricList = [indicator(pf) for pf in pfList]
         rightList = numpy.loadtxt(os.path.join(pathOptimizer, 'IGD.csv')).tolist()
-        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05,
-                           [numpy.mean(rightList), numpy.mean(metricList), metricList])
+        self.assertGreater(scipy.stats.ttest_ind(rightList, metricList)[1], 0.05, [numpy.mean(rightList), numpy.mean(metricList), metricList])
 
 
 if __name__ == '__main__':
