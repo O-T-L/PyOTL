@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define EXPORT_CDAS
 #define EXPORT_EPSILON_MOEA
 #define EXPORT_TDEA
-//#define EXPORT_ISNPS
+#define EXPORT_ISNPS
 #define EXPORT_NSGA_III
 #define EXPORT_AR
 #define EXPORT_AR_CD_
