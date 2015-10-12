@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 #include <list>
 #include <random>
-#include <boost/python/overloads.hpp>
 #include <boost/dynamic_bitset.hpp>
 
 namespace pyotl
